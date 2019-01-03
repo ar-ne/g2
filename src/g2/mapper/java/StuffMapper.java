@@ -28,9 +28,9 @@ public interface StuffMapper {
      */
     @Insert({
         "insert into stuff (id, name, ",
-        "sid)",
+        "sid, did)",
         "values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, ",
-        "#{sid,jdbcType=VARCHAR})"
+        "#{sid,jdbcType=VARCHAR}, #{did,jdbcType=VARCHAR})"
     })
     int insert(Stuff record);
 
@@ -50,7 +50,7 @@ public interface StuffMapper {
      */
     @Select({
         "select",
-        "id, name, sid",
+        "id, name, sid, did",
         "from stuff",
         "where id = #{id,jdbcType=VARCHAR}"
     })
@@ -74,7 +74,8 @@ public interface StuffMapper {
     @Update({
         "update stuff",
         "set name = #{name,jdbcType=VARCHAR},",
-          "sid = #{sid,jdbcType=VARCHAR}",
+          "sid = #{sid,jdbcType=VARCHAR},",
+          "did = #{did,jdbcType=VARCHAR}",
         "where id = #{id,jdbcType=VARCHAR}"
     })
     int updateByPrimaryKey(Stuff record);

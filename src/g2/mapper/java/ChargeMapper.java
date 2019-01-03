@@ -32,7 +32,7 @@ public interface ChargeMapper {
         "mid, result, reason)",
         "values (#{id,jdbcType=VARCHAR}, #{amount,jdbcType=NUMERIC}, ",
         "#{time,jdbcType=TIMESTAMP}, #{uid,jdbcType=VARCHAR}, #{cid,jdbcType=VARCHAR}, ",
-        "#{mid,jdbcType=VARCHAR}, #{result,jdbcType=BIT}, #{reason,jdbcType=VARCHAR})"
+        "#{mid,jdbcType=VARCHAR}, #{result,jdbcType=INTEGER}, #{reason,jdbcType=VARCHAR})"
     })
     int insert(Charge record);
 
@@ -80,7 +80,7 @@ public interface ChargeMapper {
           "uid = #{uid,jdbcType=VARCHAR},",
           "cid = #{cid,jdbcType=VARCHAR},",
           "mid = #{mid,jdbcType=VARCHAR},",
-          "result = #{result,jdbcType=BIT},",
+          "result = #{result,jdbcType=INTEGER},",
           "reason = #{reason,jdbcType=VARCHAR}",
         "where id = #{id,jdbcType=VARCHAR}"
     })

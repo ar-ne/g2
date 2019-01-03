@@ -77,6 +77,17 @@
         <table tableName="charge_log" domainObjectName="Charge" enableCountByExample="false"
             enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
             selectByExampleQueryId="false" />
-
+        <table tableName="Card" domainObjectName="Card" enableCountByExample="false"
+            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false" />
+        <table tableName="User" domainObjectName="User" enableCountByExample="false"
+            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false" />
+        <table tableName="Machine" domainObjectName="Machine" enableCountByExample="false"
+            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false" />
+        <table tableName="Unit" domainObjectName="Unit" enableCountByExample="false"
+            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false" />
     </context>
 </generatorConfiguration>

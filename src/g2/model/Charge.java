@@ -64,7 +64,7 @@ public class Charge {
      *
      * @mbg.generated
      */
-    private Boolean result;
+    private Integer result;
 
     /**
      *
@@ -81,7 +81,7 @@ public class Charge {
      *
      * @mbg.generated
      */
-    public Charge(String id, Long amount, Date time, String uid, String cid, String mid, Boolean result, String reason) {
+    public Charge(String id, Long amount, Date time, String uid, String cid, String mid, Integer result, String reason) {
         this.id = id;
         this.amount = amount;
         this.time = time;
@@ -254,7 +254,7 @@ public class Charge {
      *
      * @mbg.generated
      */
-    public Boolean getResult() {
+    public Integer getResult() {
         return result;
     }
 
@@ -266,7 +266,7 @@ public class Charge {
      *
      * @mbg.generated
      */
-    public void setResult(Boolean result) {
+    public void setResult(Integer result) {
         this.result = result;
     }
 
