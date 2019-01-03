@@ -17,9 +17,9 @@ public interface UserMapper {
      */
     @Delete({
         "delete from User",
-        "where id = #{id,jdbcType=VARCHAR}",
-          "and type = #{type,jdbcType=VARCHAR}",
-          "and cid = #{cid,jdbcType=VARCHAR}"
+        "where name = #{name,jdbcType=VARCHAR}",
+          "and password = #{password,jdbcType=VARCHAR}",
+          "and type = #{type,jdbcType=VARCHAR}"
     })
     int deleteByPrimaryKey(UserKey key);
 
@@ -30,10 +30,10 @@ public interface UserMapper {
      * @mbg.generated
      */
     @Insert({
-        "insert into User (id, type, ",
-        "cid, name, password)",
-        "values (#{id,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, ",
-        "#{cid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR})"
+        "insert into User (name, password, ",
+        "type, id, cid)",
+        "values (#{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, ",
+        "#{type,jdbcType=VARCHAR}, #{id,jdbcType=VARCHAR}, #{cid,jdbcType=VARCHAR})"
     })
     int insert(User record);
 
@@ -53,11 +53,11 @@ public interface UserMapper {
      */
     @Select({
         "select",
-        "id, type, cid, name, password",
+        "name, password, type, id, cid",
         "from User",
-        "where id = #{id,jdbcType=VARCHAR}",
-          "and type = #{type,jdbcType=VARCHAR}",
-          "and cid = #{cid,jdbcType=VARCHAR}"
+        "where name = #{name,jdbcType=VARCHAR}",
+          "and password = #{password,jdbcType=VARCHAR}",
+          "and type = #{type,jdbcType=VARCHAR}"
     })
     @ResultMap("g2.mapper.java.UserMapper.BaseResultMap")
     User selectByPrimaryKey(UserKey key);
@@ -78,11 +78,11 @@ public interface UserMapper {
      */
     @Update({
         "update User",
-        "set name = #{name,jdbcType=VARCHAR},",
-          "password = #{password,jdbcType=VARCHAR}",
-        "where id = #{id,jdbcType=VARCHAR}",
-          "and type = #{type,jdbcType=VARCHAR}",
-          "and cid = #{cid,jdbcType=VARCHAR}"
+        "set id = #{id,jdbcType=VARCHAR},",
+          "cid = #{cid,jdbcType=VARCHAR}",
+        "where name = #{name,jdbcType=VARCHAR}",
+          "and password = #{password,jdbcType=VARCHAR}",
+          "and type = #{type,jdbcType=VARCHAR}"
     })
     int updateByPrimaryKey(User record);
 }
