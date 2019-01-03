@@ -12,4 +12,11 @@
         <property name="prefix" value="/WEB-INF/product/" />
         <property name="suffix" value=".jsp" />
     </bean>
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**" />
+            <mvc:exclude-mapping path="/index"/>
+            <bean class="g2.controller.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

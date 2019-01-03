@@ -38,7 +38,7 @@
                                                                     <input required pattern="\S+" type="text"
                                                                            id="username" class="mdc-text-field__input"
                                                                            aria-controls="name-validation-message"
-                                                                           name="username">
+                                                                           name="name">
                                                                     <label for="username" class="mdc-text-field__label">用户名</label>
                                                                     <div class="mdc-text-field__bottom-line"></div>
                                                                 </div>
