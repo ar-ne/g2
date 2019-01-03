@@ -18,6 +18,7 @@ public interface UserMapper {
     @Delete({
         "delete from User",
         "where id = #{id,jdbcType=VARCHAR}",
+          "and type = #{type,jdbcType=VARCHAR}",
           "and cid = #{cid,jdbcType=VARCHAR}"
     })
     int deleteByPrimaryKey(UserKey key);
@@ -29,12 +30,10 @@ public interface UserMapper {
      * @mbg.generated
      */
     @Insert({
-        "insert into User (id, cid, ",
-        "name, password, ",
-        "type)",
-        "values (#{id,jdbcType=VARCHAR}, #{cid,jdbcType=VARCHAR}, ",
-        "#{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, ",
-        "#{type,jdbcType=VARCHAR})"
+        "insert into User (id, type, ",
+        "cid, name, password)",
+        "values (#{id,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, ",
+        "#{cid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR})"
     })
     int insert(User record);
 
@@ -54,9 +53,10 @@ public interface UserMapper {
      */
     @Select({
         "select",
-        "id, cid, name, password, type",
+        "id, type, cid, name, password",
         "from User",
         "where id = #{id,jdbcType=VARCHAR}",
+          "and type = #{type,jdbcType=VARCHAR}",
           "and cid = #{cid,jdbcType=VARCHAR}"
     })
     @ResultMap("g2.mapper.java.UserMapper.BaseResultMap")
@@ -79,9 +79,9 @@ public interface UserMapper {
     @Update({
         "update User",
         "set name = #{name,jdbcType=VARCHAR},",
-          "password = #{password,jdbcType=VARCHAR},",
-          "type = #{type,jdbcType=VARCHAR}",
+          "password = #{password,jdbcType=VARCHAR}",
         "where id = #{id,jdbcType=VARCHAR}",
+          "and type = #{type,jdbcType=VARCHAR}",
           "and cid = #{cid,jdbcType=VARCHAR}"
     })
     int updateByPrimaryKey(User record);

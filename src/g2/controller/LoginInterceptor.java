@@ -1,5 +1,6 @@
 package g2.controller;
 
+import g2.util.SessionKey;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,7 +11,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         HttpSession session = request.getSession();
-        if (session.getAttribute("login_session") != null && !session.getAttribute("login_session").toString().isEmpty()) {
+        if (session.getAttribute(SessionKey.state) != null && !session.getAttribute(SessionKey.state).toString().isEmpty()) {
             return true;
         }
         else {
