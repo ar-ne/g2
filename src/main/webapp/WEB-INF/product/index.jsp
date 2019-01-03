@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html; UTF-8" pageEncoding="UTF-8" %>
+<html>
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -24,7 +25,7 @@
                     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
                         <div class="mdc-card">
                             <section class="mdc-card__primary bg-white">
-                                <form method="post">
+                                <form method="post" action="/login">
                                     <div class="mdc-layout-grid">
                                         <div class="mdc-layout-grid__inner">
                                             <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
@@ -32,12 +33,17 @@
                                                     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
                                                         <div class="template-demo">
                                                             <div id="username-box-wrapper">
-                                                                <div id="username-box" class="mdc-text-field mdc-text-field--box w-100">
-                                                                    <input required pattern="\S+" type="text" id="username" class="mdc-text-field__input" aria-controls="name-validation-message" name="username">
+                                                                <div id="username-box"
+                                                                     class="mdc-text-field mdc-text-field--box w-100">
+                                                                    <input required pattern="\S+" type="text"
+                                                                           id="username" class="mdc-text-field__input"
+                                                                           aria-controls="name-validation-message"
+                                                                           name="username">
                                                                     <label for="username" class="mdc-text-field__label">用户名</label>
                                                                     <div class="mdc-text-field__bottom-line"></div>
                                                                 </div>
-                                                                <p class="mdc-text-field-helper-text mdc-text-field-helper-text--validation-msg" id="name-validation-msg">
+                                                                <p class="mdc-text-field-helper-text mdc-text-field-helper-text--validation-msg"
+                                                                   id="name-validation-msg">
                                                                     用户名不能为空或包含空格
                                                                 </p>
                                                             </div>
@@ -51,12 +57,17 @@
                                                     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop">
                                                         <div class="template-demo">
                                                             <div id="password-box-wrapper">
-                                                                <div id="password-box" class="mdc-text-field mdc-text-field--box w-100">
-                                                                    <input required pattern="\S+" type="password" id="password" class="mdc-text-field__input" aria-controls="password-validation-message" name="password">
+                                                                <div id="password-box"
+                                                                     class="mdc-text-field mdc-text-field--box w-100">
+                                                                    <input required pattern="\S+" type="password"
+                                                                           id="password" class="mdc-text-field__input"
+                                                                           aria-controls="password-validation-message"
+                                                                           name="password">
                                                                     <label for="password" class="mdc-text-field__label">密码</label>
                                                                     <div class="mdc-text-field__bottom-line"></div>
                                                                 </div>
-                                                                <p class="mdc-text-field-helper-text mdc-text-field-helper-text--validation-msg" id="password-validation-msg">
+                                                                <p class="mdc-text-field-helper-text mdc-text-field-helper-text--validation-msg"
+                                                                   id="password-validation-msg">
                                                                     密码不能为空或包含空格
                                                                 </p>
                                                             </div>
@@ -68,7 +79,8 @@
                                             <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
                                                 <div class="mdc-form-field">
                                                     <div class="mdc-radio demo-radio--custom">
-                                                        <input class="mdc-radio__native-control" type="radio" id="user-type" name="type" value="0" checked>
+                                                        <input class="mdc-radio__native-control" type="radio"
+                                                               id="user-type" name="type" value="0" checked>
                                                         <div class="mdc-radio__background">
                                                             <div class="mdc-radio__outer-circle"></div>
                                                             <div class="mdc-radio__inner-circle"></div>
@@ -81,7 +93,8 @@
                                             <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
                                                 <div class="mdc-form-field">
                                                     <div class="mdc-radio demo-radio--custom">
-                                                        <input class="mdc-radio__native-control" type="radio" id="admin-type" name="type" value="1">
+                                                        <input class="mdc-radio__native-control" type="radio"
+                                                               id="admin-type" name="type" value="1">
                                                         <div class="mdc-radio__background">
                                                             <div class="mdc-radio__outer-circle"></div>
                                                             <div class="mdc-radio__inner-circle"></div>
@@ -94,7 +107,8 @@
                                             <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
                                                 <div class="mdc-form-field">
                                                     <div class="mdc-radio demo-radio--custom">
-                                                        <input class="mdc-radio__native-control" type="radio" id="admin2-type" name="type" value="2">
+                                                        <input class="mdc-radio__native-control" type="radio"
+                                                               id="admin2-type" name="type" value="2">
                                                         <div class="mdc-radio__background">
                                                             <div class="mdc-radio__outer-circle"></div>
                                                             <div class="mdc-radio__inner-circle"></div>
@@ -123,14 +137,14 @@
 </div>
 <!-- body wrapper -->
 <!-- plugins:js -->
-<script src="/node_modules/material-components-web/dist/material-components-web.min.js"></script>
-<script src="/node_modules/jquery/dist/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/node_modules/material-components-web/dist/material-components-web.min.js"></script>
+<script src="${pageContext.request.contextPath}/node_modules/jquery/dist/jquery.min.js"></script>
 <!-- end inject -->
 <!-- Plugin js for this page-->
 <!-- End plugin js for this page-->
 <!-- inject:js -->
-<script src="/js/misc.js"></script>
-<script src="/js/login.js"></script>
+<script src="${pageContext.request.contextPath}/js/misc.js"></script>
+<script src="${pageContext.request.contextPath}/js/login.js"></script>
 <!-- end inject -->
 <!-- Custom js for this page-->
 <!-- End custom js for this page-->
