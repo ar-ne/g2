@@ -8,8 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class LoginInterceptor implements HandlerInterceptor {
+    Boolean deb=true;
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        if (deb)return true;
         HttpSession session = request.getSession();
         if (session.getAttribute(SessionKey.state) != null && !session.getAttribute(SessionKey.state).toString().isEmpty()) {
             return true;
