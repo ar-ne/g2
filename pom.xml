@@ -10,8 +10,6 @@
   <packaging>war</packaging>
 
   <name>t6 Maven Webapp</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -91,7 +89,7 @@
     <dependency>
       <groupId>com.microsoft.sqlserver</groupId>
       <artifactId>mssql-jdbc</artifactId>
-      <version>6.1.0.jre8</version>
+      <version>7.0.0.jre8</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/com.mchange/c3p0 -->
     <dependency>
@@ -165,6 +163,7 @@
   </dependencies>
 
   <build>
+    <sourceDirectory>src</sourceDirectory>
     <finalName>t6</finalName>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
