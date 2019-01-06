@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2012                    */
-/* Created on:     2019/1/3 11:38:37                            */
+/* Created on:     2019/1/6 15:17:56                            */
 /*==============================================================*/
 
 
@@ -27,9 +27,9 @@ go
 
 if exists (select 1
             from  sysobjects
-           where  id = object_id('"User"')
+           where  id = object_id('Users')
             and   type = 'U')
-   drop table "User"
+   drop table Users
 go
 
 if exists (select 1
@@ -89,15 +89,15 @@ create table Unit (
 go
 
 /*==============================================================*/
-/* Table: "User"                                                */
+/* Table: Users                                                 */
 /*==============================================================*/
-create table "User" (
+create table Users (
    id                   varchar(254)         not null,
    name                 varchar(254)         not null,
    password             varchar(254)         not null,
    type                 varchar(254)         not null,
    cid                  varchar(254)         not null,
-   constraint PK_USER primary key (name, password, type)
+   constraint PK_USERS primary key (name, password, type)
 )
 go
 
