@@ -14,7 +14,7 @@
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location" value="classpath:jdbc.properties" />
     </bean>
-    <context:component-scan base-package="g2.controller" />
+    <context:component-scan base-package="g2" />
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
         <property name="driverClass" value="${driver}" />
         <property name="jdbcUrl" value="${url}" />
