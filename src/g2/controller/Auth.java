@@ -1,10 +1,10 @@
 package g2.controller;
 
 import g2.mapper.java.UserMapper;
-import g2.model.User;
 import g2.model.UserKey;
 import g2.service.LoginService;
 import g2.util.MybatisUtil;
+import g2.util.properties.User;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +17,14 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 @Controller
-public class login {
-    @Autowired
+public class Auth {
+    private final
     LoginService loginService;
+
+    @Autowired
+    public Auth(LoginService loginService) {
+        this.loginService = loginService;
+    }
 
     @RequestMapping("/")
     public String index() {
@@ -28,9 +33,8 @@ public class login {
 
     @RequestMapping("/login")
     public String doLogin(UserKey userKey) {
-        System.out.println("login:" + userKey);
         if (loginService.chkLogin(userKey)) {
-            System.out.println(true);
+            return userKey.getType();
         } else System.out.println(false);
         return "404";
     }

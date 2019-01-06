@@ -1,19 +1,19 @@
 package g2.controller;
 
-import g2.util.SessionKey;
+import g2.util.properties.Session;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class LoginInterceptor implements HandlerInterceptor {
-    Boolean deb=true;
+public class AuthInterceptor implements HandlerInterceptor {
+    private Boolean debug =true;
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        if (deb)return true;
+        if (debug)return true;
         HttpSession session = request.getSession();
-        if (session.getAttribute(SessionKey.state) != null && !session.getAttribute(SessionKey.state).toString().isEmpty()) {
+        if (session.getAttribute(Session.state) != null && !session.getAttribute(Session.state).toString().isEmpty()) {
             return true;
         }
         else {

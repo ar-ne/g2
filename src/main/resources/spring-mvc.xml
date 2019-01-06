@@ -8,7 +8,7 @@
     <mvc:default-servlet-handler/>
 
     <context:component-scan base-package="g2.controller"/>
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/product/" />
         <property name="suffix" value=".jsp" />
     </bean>
@@ -17,7 +17,7 @@
             <mvc:mapping path="/admin/**" />
             <mvc:mapping path="/admin2/**" />
             <mvc:mapping path="/user/**" />
-            <bean class="g2.controller.LoginInterceptor"/>
+            <bean class="g2.controller.AuthInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 </beans>
