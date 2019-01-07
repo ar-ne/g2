@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2012                    */
-/* Created on:     2019/1/7 17:52:52                            */
+/* Created on:     2019/1/7 19:09:54                            */
 /*==============================================================*/
 
 
@@ -153,7 +153,7 @@ go
 /* Table: Machine                                               */
 /*==============================================================*/
 create table Machine (
-   id                   numeric              not null,
+   id                   numeric              identity,
    Uni_id               numeric              null,
    addr                 varchar(254)         null,
    constraint PK_MACHINE primary key (id)
@@ -177,7 +177,7 @@ go
 /* Table: Users                                                 */
 /*==============================================================*/
 create table Users (
-   id                   numeric              not null,
+   id                   numeric              identity,
    Car_id               numeric              null,
    name                 varchar(254)         not null,
    password             varchar(254)         not null,
@@ -191,7 +191,7 @@ go
 /* Table: chargelog                                             */
 /*==============================================================*/
 create table chargelog (
-   id                   numeric              not null,
+   id                   numeric              identity,
    Car_id               numeric              null,
    Use_id               numeric              null,
    Mac_id               numeric              null,
@@ -207,7 +207,7 @@ go
 /* Table: consumelog                                            */
 /*==============================================================*/
 create table consumelog (
-   id                   numeric              not null,
+   id                   numeric              identity,
    Car_id               numeric              null,
    Use_id               numeric              null,
    amount               float                null,
@@ -234,7 +234,7 @@ go
 /* Table: stuff                                                 */
 /*==============================================================*/
 create table stuff (
-   id                   numeric              not null,
+   id                   numeric              identity,
    Uni_id               numeric              null,
    sch_id               numeric              null,
    name                 varchar(254)         null,

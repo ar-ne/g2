@@ -31,9 +31,9 @@ public class Auth {
         if (loginService.chkLogin(userKey)) {
             UserSession session = new UserSession(userKey);
             session.setSession(request);
-            return UserProperties.typeString[session.getType()];
+            return "redirect:" + UserProperties.urlString[session.getType()];
         } else System.out.println(false);
-        return "404";
+        return "index";
     }
 
     @RequestMapping("/logout")
