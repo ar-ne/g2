@@ -1,20 +1,13 @@
-package g2.controller;
+package g2.controller.auth;
 
-import g2.mapper.java.UserMapper;
 import g2.model.UserKey;
 import g2.service.LoginService;
-import g2.util.MybatisUtil;
-import g2.util.properties.User;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
+import g2.util.properties.SessionProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 
 @Controller
 public class Auth {
@@ -27,15 +20,22 @@ public class Auth {
     }
 
     @RequestMapping("/")
-    public String index() {
+    public String index(HttpServletRequest request) {
         return "index";
     }
 
     @RequestMapping("/login")
-    public String doLogin(UserKey userKey) {
+    public String doLogin(UserKey userKey, HttpServletRequest request) {
         if (loginService.chkLogin(userKey)) {
+            UserSession session = new UserSession(userKey);
+            session.setSession(request);
             return userKey.getType();
         } else System.out.println(false);
         return "404";
+    }
+
+    @RequestMapping("/logout")
+    public String doLogout(HttpServletRequest request) {
+        return "index";
     }
 }

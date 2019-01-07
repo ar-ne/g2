@@ -8,8 +8,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class LoginService {
+    private final UserMapper userMapper;
+
     @Autowired
-    private UserMapper userMapper;
+    public LoginService(UserMapper userMapper) {
+        this.userMapper = userMapper;
+    }
 
     public boolean chkLogin(UserKey userKey) {
         User chkUser = userMapper.selectByPrimaryKey(userKey);

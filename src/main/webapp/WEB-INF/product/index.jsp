@@ -80,7 +80,7 @@
                                                 <div class="mdc-form-field">
                                                     <div class="mdc-radio demo-radio--custom">
                                                         <input class="mdc-radio__native-control" type="radio"
-                                                               id="user-type" name="type" value="user" checked>
+                                                               id="user-type" name="type" value="0" checked>
                                                         <div class="mdc-radio__background">
                                                             <div class="mdc-radio__outer-circle"></div>
                                                             <div class="mdc-radio__inner-circle"></div>
@@ -94,7 +94,7 @@
                                                 <div class="mdc-form-field">
                                                     <div class="mdc-radio demo-radio--custom">
                                                         <input class="mdc-radio__native-control" type="radio"
-                                                               id="admin-type" name="type" value="admin">
+                                                               id="admin-type" name="type" value="1">
                                                         <div class="mdc-radio__background">
                                                             <div class="mdc-radio__outer-circle"></div>
                                                             <div class="mdc-radio__inner-circle"></div>
@@ -108,7 +108,7 @@
                                                 <div class="mdc-form-field">
                                                     <div class="mdc-radio demo-radio--custom">
                                                         <input class="mdc-radio__native-control" type="radio"
-                                                               id="admin2-type" name="type" value="admin2">
+                                                               id="admin2-type" name="type" value="2">
                                                         <div class="mdc-radio__background">
                                                             <div class="mdc-radio__outer-circle"></div>
                                                             <div class="mdc-radio__inner-circle"></div>
