@@ -55,7 +55,7 @@ public class UserSession {
      */
     public UserSession(UserKey userKey) {
         this.name = userKey.getName();
-        this.type = Parse.userType(userKey.getType());
+        this.type = userKey.getType();
         this.state = true;
     }
 

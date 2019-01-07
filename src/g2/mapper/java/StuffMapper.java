@@ -27,10 +27,10 @@ public interface StuffMapper {
      * @mbg.generated
      */
     @Insert({
-        "insert into stuff (id, name, ",
-        "sid, did)",
-        "values (#{id,jdbcType=NUMERIC}, #{name,jdbcType=VARCHAR}, ",
-        "#{sid,jdbcType=VARCHAR}, #{did,jdbcType=VARCHAR})"
+        "insert into stuff (id, Uni_id, ",
+        "sch_id, name)",
+        "values (#{id,jdbcType=NUMERIC}, #{uni_id,jdbcType=NUMERIC}, ",
+        "#{sch_id,jdbcType=NUMERIC}, #{name,jdbcType=VARCHAR})"
     })
     int insert(Stuff record);
 
@@ -50,7 +50,7 @@ public interface StuffMapper {
      */
     @Select({
         "select",
-        "id, name, sid, did",
+        "id, Uni_id, sch_id, name",
         "from stuff",
         "where id = #{id,jdbcType=NUMERIC}"
     })
@@ -73,9 +73,9 @@ public interface StuffMapper {
      */
     @Update({
         "update stuff",
-        "set name = #{name,jdbcType=VARCHAR},",
-          "sid = #{sid,jdbcType=VARCHAR},",
-          "did = #{did,jdbcType=VARCHAR}",
+        "set Uni_id = #{uni_id,jdbcType=NUMERIC},",
+          "sch_id = #{sch_id,jdbcType=NUMERIC},",
+          "name = #{name,jdbcType=VARCHAR}",
         "where id = #{id,jdbcType=NUMERIC}"
     })
     int updateByPrimaryKey(Stuff record);

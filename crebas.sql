@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2012                    */
-/* Created on:     2019/1/7 15:17:10                            */
+/* Created on:     2019/1/7 17:52:52                            */
 /*==============================================================*/
 
 
@@ -58,6 +58,20 @@ if exists (select 1
    where r.fkeyid = object_id('consumelog') and o.name = 'FK_CONSUMEL_REFERENCE_USERS')
 alter table consumelog
    drop constraint FK_CONSUMEL_REFERENCE_USERS
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('stuff') and o.name = 'FK_STUFF_REFERENCE_UNIT')
+alter table stuff
+   drop constraint FK_STUFF_REFERENCE_UNIT
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('stuff') and o.name = 'FK_STUFF_REFERENCE_SCHEDULE')
+alter table stuff
+   drop constraint FK_STUFF_REFERENCE_SCHEDULE
 go
 
 if exists (select 1
@@ -220,10 +234,10 @@ go
 /* Table: stuff                                                 */
 /*==============================================================*/
 create table stuff (
-   id                   numeric              identity,
+   id                   numeric              not null,
+   Uni_id               numeric              null,
+   sch_id               numeric              null,
    name                 varchar(254)         null,
-   sid                  varchar(254)         null,
-   did                  varchar(254)         null,
    constraint PK_STUFF primary key (id)
 )
 go
@@ -275,5 +289,15 @@ go
 alter table consumelog
    add constraint FK_CONSUMEL_REFERENCE_USERS foreign key (Use_id)
       references Users (id)
+go
+
+alter table stuff
+   add constraint FK_STUFF_REFERENCE_UNIT foreign key (Uni_id)
+      references Unit (id)
+go
+
+alter table stuff
+   add constraint FK_STUFF_REFERENCE_SCHEDULE foreign key (sch_id)
+      references schedule (id)
 go
 

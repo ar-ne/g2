@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/src/g2/mapper/xml/UserMapper.xml" dialect="TSQL" />
+  </component>
+  <component name="SqlResolveMappings">
+    <file url="file://$PROJECT_DIR$/src/g2/mapper/xml/UserMapper.xml" scope="{&quot;node&quot;:{  &quot;@negative&quot;:&quot;1&quot;,  &quot;group&quot;:{   &quot;@kind&quot;:&quot;root&quot;,   &quot;node&quot;:{    &quot;name&quot;:{     &quot;@name&quot;:&quot;4fdce983-45a1-45da-8492-d1687fabd2f7&quot;,     &quot;@quoted&quot;:&quot;1&quot;    },    &quot;group&quot;:{     &quot;@kind&quot;:&quot;database&quot;,     &quot;node&quot;:{      &quot;name&quot;:{       &quot;@name&quot;:&quot;t6&quot;,       &quot;@quoted&quot;:&quot;1&quot;      }     }    }   }  } }}" />
+  </component>
+</project>

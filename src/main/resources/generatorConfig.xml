@@ -90,6 +90,7 @@
         <table tableName="Users" domainObjectName="User" enableCountByExample="false" enableUpdateByExample="false"
             enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <property name="useActualColumnNames" value="true" />
+            <property name="rootInterface" value="g2.mapper.Extension.User"/>
         </table>
         <table tableName="Machine" domainObjectName="Machine" enableCountByExample="false" enableUpdateByExample="false"
             enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
