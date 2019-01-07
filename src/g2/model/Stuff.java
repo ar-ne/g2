@@ -8,7 +8,7 @@ public class Stuff {
      *
      * @mbg.generated
      */
-    private String id;
+    private Long id;
 
     /**
      *
@@ -43,7 +43,7 @@ public class Stuff {
      *
      * @mbg.generated
      */
-    public Stuff(String id, String name, String sid, String did) {
+    public Stuff(Long id, String name, String sid, String did) {
         this.id = id;
         this.name = name;
         this.sid = sid;
@@ -68,7 +68,7 @@ public class Stuff {
      *
      * @mbg.generated
      */
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
@@ -80,8 +80,8 @@ public class Stuff {
      *
      * @mbg.generated
      */
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
+    public void setId(Long id) {
+        this.id = id;
     }
 
     /**

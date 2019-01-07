@@ -10,7 +10,7 @@ public class Schedule {
      *
      * @mbg.generated
      */
-    private String id;
+    private Long id;
 
     /**
      *
@@ -45,7 +45,7 @@ public class Schedule {
      *
      * @mbg.generated
      */
-    public Schedule(String id, Date begin, Date end, String address) {
+    public Schedule(Long id, Date begin, Date end, String address) {
         this.id = id;
         this.begin = begin;
         this.end = end;
@@ -70,7 +70,7 @@ public class Schedule {
      *
      * @mbg.generated
      */
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
@@ -82,8 +82,8 @@ public class Schedule {
      *
      * @mbg.generated
      */
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
+    public void setId(Long id) {
+        this.id = id;
     }
 
     /**

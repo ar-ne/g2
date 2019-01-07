@@ -1,8 +1,15 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2012                    */
-/* Created on:     2019/1/7 14:32:50                            */
+/* Created on:     2019/1/7 14:56:18                            */
 /*==============================================================*/
 
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('Machine') and o.name = 'FK_MACHINE_REFERENCE_UNIT')
+alter table Machine
+   drop constraint FK_MACHINE_REFERENCE_UNIT
+go
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
@@ -132,8 +139,8 @@ go
 /* Table: Machine                                               */
 /*==============================================================*/
 create table Machine (
-   id                   numeric              identity,
-   did                  numeric              not null,
+   id                   numeric              not null,
+   Uni_id               numeric              null,
    addr                 varchar(254)         null,
    constraint PK_MACHINE primary key (id)
 )
@@ -228,6 +235,11 @@ create table usertype (
    usertype             varchar(254)         not null,
    constraint PK_USERTYPE primary key (usertype)
 )
+go
+
+alter table Machine
+   add constraint FK_MACHINE_REFERENCE_UNIT foreign key (Uni_id)
+      references Unit (id)
 go
 
 alter table Users

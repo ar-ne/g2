@@ -8,7 +8,7 @@ public class Unit {
      *
      * @mbg.generated
      */
-    private String id;
+    private Long id;
 
     /**
      *
@@ -52,7 +52,7 @@ public class Unit {
      *
      * @mbg.generated
      */
-    public Unit(String id, String type, String account, String password, String pnum) {
+    public Unit(Long id, String type, String account, String password, String pnum) {
         this.id = id;
         this.type = type;
         this.account = account;
@@ -78,7 +78,7 @@ public class Unit {
      *
      * @mbg.generated
      */
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
@@ -90,8 +90,8 @@ public class Unit {
      *
      * @mbg.generated
      */
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
+    public void setId(Long id) {
+        this.id = id;
     }
 
     /**
