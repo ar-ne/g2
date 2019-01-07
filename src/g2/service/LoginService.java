@@ -16,7 +16,7 @@ public class LoginService {
     }
 
     public boolean chkLogin(UserKey userKey) {
-        User chkUser = userMapper.selectByPrimaryKey(userKey);
+        User chkUser = userMapper.selectByPrimaryKey(1l);
         return chkUser.getType().equals(userKey.getType()) &&
                 chkUser.getName().equals(userKey.getName()) &&
                 chkUser.getPassword().equals(userKey.getPassword());

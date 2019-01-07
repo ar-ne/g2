@@ -13,7 +13,7 @@ public class AuthInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        //if (debug) return true;
+        if (debug) return true;
         UserSession session = new UserSession(request);
         try {
             if (session.getState() && !session.getName().isEmpty() && session.getType() != UserProperties.unAuth)

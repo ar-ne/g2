@@ -78,7 +78,7 @@
             selectByExampleQueryId="false">
             <property name="useActualColumnNames" value="true" />
         </table>
-        <table tableName="charge_log" domainObjectName="Charge" enableCountByExample="false"
+        <table tableName="chargelog" domainObjectName="Charge" enableCountByExample="false"
             enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
             selectByExampleQueryId="false">
             <property name="useActualColumnNames" value="true" />
@@ -99,7 +99,7 @@
             enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <property name="useActualColumnNames" value="true" />
         </table>
-        <table tableName="consume_log" domainObjectName="Consume" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="consumelog" domainObjectName="Consume" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <property name="useActualColumnNames" value="true" />
         </table>

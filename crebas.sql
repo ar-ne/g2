@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2012                    */
-/* Created on:     2019/1/7 14:56:18                            */
+/* Created on:     2019/1/7 15:17:10                            */
 /*==============================================================*/
 
 
@@ -27,37 +27,37 @@ go
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('charge_log') and o.name = 'FK_CHARGE_L_REFERENCE_CARD')
-alter table charge_log
-   drop constraint FK_CHARGE_L_REFERENCE_CARD
+   where r.fkeyid = object_id('chargelog') and o.name = 'FK_CHARGELO_REFERENCE_CARD')
+alter table chargelog
+   drop constraint FK_CHARGELO_REFERENCE_CARD
 go
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('charge_log') and o.name = 'FK_CHARGE_L_REFERENCE_MACHINE')
-alter table charge_log
-   drop constraint FK_CHARGE_L_REFERENCE_MACHINE
+   where r.fkeyid = object_id('chargelog') and o.name = 'FK_CHARGELO_REFERENCE_MACHINE')
+alter table chargelog
+   drop constraint FK_CHARGELO_REFERENCE_MACHINE
 go
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('charge_log') and o.name = 'FK_CHARGE_L_REFERENCE_USERS')
-alter table charge_log
-   drop constraint FK_CHARGE_L_REFERENCE_USERS
+   where r.fkeyid = object_id('chargelog') and o.name = 'FK_CHARGELO_REFERENCE_USERS')
+alter table chargelog
+   drop constraint FK_CHARGELO_REFERENCE_USERS
 go
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('consume_log') and o.name = 'FK_CONSUME__REFERENCE_CARD')
-alter table consume_log
-   drop constraint FK_CONSUME__REFERENCE_CARD
+   where r.fkeyid = object_id('consumelog') and o.name = 'FK_CONSUMEL_REFERENCE_CARD')
+alter table consumelog
+   drop constraint FK_CONSUMEL_REFERENCE_CARD
 go
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('consume_log') and o.name = 'FK_CONSUME__REFERENCE_USERS')
-alter table consume_log
-   drop constraint FK_CONSUME__REFERENCE_USERS
+   where r.fkeyid = object_id('consumelog') and o.name = 'FK_CONSUMEL_REFERENCE_USERS')
+alter table consumelog
+   drop constraint FK_CONSUMEL_REFERENCE_USERS
 go
 
 if exists (select 1
@@ -90,16 +90,16 @@ go
 
 if exists (select 1
             from  sysobjects
-           where  id = object_id('charge_log')
+           where  id = object_id('chargelog')
             and   type = 'U')
-   drop table charge_log
+   drop table chargelog
 go
 
 if exists (select 1
             from  sysobjects
-           where  id = object_id('consume_log')
+           where  id = object_id('consumelog')
             and   type = 'U')
-   drop table consume_log
+   drop table consumelog
 go
 
 if exists (select 1
@@ -174,9 +174,9 @@ create table Users (
 go
 
 /*==============================================================*/
-/* Table: charge_log                                            */
+/* Table: chargelog                                             */
 /*==============================================================*/
-create table charge_log (
+create table chargelog (
    id                   numeric              not null,
    Car_id               numeric              null,
    Use_id               numeric              null,
@@ -185,14 +185,14 @@ create table charge_log (
    time                 datetime             null,
    result               int                  null,
    reason               varchar(254)         null,
-   constraint PK_CHARGE_LOG primary key (id)
+   constraint PK_CHARGELOG primary key (id)
 )
 go
 
 /*==============================================================*/
-/* Table: consume_log                                           */
+/* Table: consumelog                                            */
 /*==============================================================*/
-create table consume_log (
+create table consumelog (
    id                   numeric              not null,
    Car_id               numeric              null,
    Use_id               numeric              null,
@@ -200,7 +200,7 @@ create table consume_log (
    time                 datetime             null,
    result               int                  null,
    reason               varchar(254)         null,
-   constraint PK_CONSUME_LOG primary key (id)
+   constraint PK_CONSUMELOG primary key (id)
 )
 go
 
@@ -252,28 +252,28 @@ alter table Users
       references Card (id)
 go
 
-alter table charge_log
-   add constraint FK_CHARGE_L_REFERENCE_CARD foreign key (Car_id)
+alter table chargelog
+   add constraint FK_CHARGELO_REFERENCE_CARD foreign key (Car_id)
       references Card (id)
 go
 
-alter table charge_log
-   add constraint FK_CHARGE_L_REFERENCE_MACHINE foreign key (Mac_id)
+alter table chargelog
+   add constraint FK_CHARGELO_REFERENCE_MACHINE foreign key (Mac_id)
       references Machine (id)
 go
 
-alter table charge_log
-   add constraint FK_CHARGE_L_REFERENCE_USERS foreign key (Use_id)
+alter table chargelog
+   add constraint FK_CHARGELO_REFERENCE_USERS foreign key (Use_id)
       references Users (id)
 go
 
-alter table consume_log
-   add constraint FK_CONSUME__REFERENCE_CARD foreign key (Car_id)
+alter table consumelog
+   add constraint FK_CONSUMEL_REFERENCE_CARD foreign key (Car_id)
       references Card (id)
 go
 
-alter table consume_log
-   add constraint FK_CONSUME__REFERENCE_USERS foreign key (Use_id)
+alter table consumelog
+   add constraint FK_CONSUMEL_REFERENCE_USERS foreign key (Use_id)
       references Users (id)
 go
 
