@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2012                    */
-/* Created on:     2019/1/6 15:17:56                            */
+/* Created on:     2019/1/7 11:34:54                            */
 /*==============================================================*/
 
 
@@ -57,10 +57,11 @@ go
 /* Table: Card                                                  */
 /*==============================================================*/
 create table Card (
-   ¿¨ºÅ                   varchar(254)         not null,
-   ×´Ì¬                   varchar(254)         null,
-   Óà¶î                   float                null,
-   constraint PK_CARD primary key (¿¨ºÅ)
+   id                   numeric              identity,
+   state                varchar(254)         null,
+   amount               float                null,
+   limit                float                null,
+   constraint PK_CARD primary key (id)
 )
 go
 
@@ -68,8 +69,8 @@ go
 /* Table: Machine                                               */
 /*==============================================================*/
 create table Machine (
-   id                   varchar(254)         not null,
-   did                  varchar(254)         not null,
+   id                   numeric              identity,
+   did                  numeric              not null,
    addr                 varchar(254)         null,
    constraint PK_MACHINE primary key (id, did)
 )
@@ -79,7 +80,7 @@ go
 /* Table: Unit                                                  */
 /*==============================================================*/
 create table Unit (
-   id                   varchar(254)         not null,
+   id                   numeric              identity,
    type                 varchar(254)         null,
    account              varchar(254)         null,
    password             varchar(254)         null,
@@ -92,11 +93,11 @@ go
 /* Table: Users                                                 */
 /*==============================================================*/
 create table Users (
-   id                   varchar(254)         not null,
+   id                   numeric              identity,
    name                 varchar(254)         not null,
    password             varchar(254)         not null,
    type                 varchar(254)         not null,
-   cid                  varchar(254)         not null,
+   cid                  numeric              not null,
    constraint PK_USERS primary key (name, password, type)
 )
 go
@@ -105,12 +106,12 @@ go
 /* Table: charge_log                                            */
 /*==============================================================*/
 create table charge_log (
-   id                   varchar(254)         not null,
-   amount               numeric              null,
+   id                   numeric              identity,
+   amount               float                null,
    time                 datetime             null,
-   uid                  varchar(254)         null,
-   cid                  varchar(254)         null,
-   mid                  varchar(254)         null,
+   uid                  numeric              null,
+   cid                  numeric              null,
+   mid                  numeric              null,
    result               int                  null,
    reason               varchar(254)         null,
    constraint PK_CHARGE_LOG primary key (id)
@@ -121,7 +122,7 @@ go
 /* Table: schedule                                              */
 /*==============================================================*/
 create table schedule (
-   id                   varchar(254)         not null,
+   id                   numeric              identity,
    "begin"              datetime             null,
    "end"                datetime             null,
    address              varchar(254)         null,
@@ -133,7 +134,7 @@ go
 /* Table: stuff                                                 */
 /*==============================================================*/
 create table stuff (
-   id                   varchar(254)         not null,
+   id                   numeric              identity,
    name                 varchar(254)         null,
    sid                  varchar(254)         null,
    did                  varchar(254)         null,

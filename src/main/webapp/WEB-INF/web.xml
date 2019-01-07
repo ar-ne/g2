@@ -6,6 +6,14 @@
     <welcome-file-list>
         <welcome-file>/</welcome-file>
     </welcome-file-list>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/error/404.html</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/WEB-INF/error/500.html</location>
+    </error-page>
 
     <!-- Bootstraps the root web application context before servlet initialization -->
     <listener>
