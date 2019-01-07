@@ -1,6 +1,6 @@
 package g2.mapper.java;
 
-import g2.mapper.Extension.User;
+import g2.mapper.Extra.User;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.ResultMap;

@@ -38,6 +38,10 @@ public class Auth {
 
     @RequestMapping("/logout")
     public String doLogout(HttpServletRequest request) {
+        request.getSession().removeAttribute(SessionProperties.state);
+        request.getSession().removeAttribute(SessionProperties.name);
+        request.getSession().removeAttribute(SessionProperties.type);
+        request.getSession().invalidate();
         return "index";
     }
 }

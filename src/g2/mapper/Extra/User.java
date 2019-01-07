@@ -1,6 +1,5 @@
-package g2.mapper.Extension;
+package g2.mapper.Extra;
 
-import g2.model.User;
 import g2.model.UserKey;
 import org.apache.ibatis.annotations.Select;
 
