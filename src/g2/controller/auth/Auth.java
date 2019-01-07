@@ -19,6 +19,7 @@ public class Auth {
         this.loginService = loginService;
     }
 
+
     @RequestMapping("/")
     public String index(HttpServletRequest request) {
         return "index";
