@@ -43,6 +43,7 @@ public class Auth {
         request.getSession().removeAttribute(SessionProperties.state);
         request.getSession().removeAttribute(SessionProperties.name);
         request.getSession().removeAttribute(SessionProperties.type);
+        request.getSession().removeAttribute(SessionProperties.cardID);
         request.getSession().invalidate();
         return "index";
     }

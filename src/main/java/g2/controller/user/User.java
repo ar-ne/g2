@@ -17,7 +17,7 @@ public class User {
     @RequestMapping("/user/QRCode")
     public ModelAndView doQRCode(HttpServletRequest request) {
         ModelAndView mv = new ModelAndView("/user/QRCode");
-        mv.addObject("name", request.getSession().getAttribute(SessionProperties.name));
+        mv.addObject("qrText", request.getSession().getAttribute(SessionProperties.cardID));
         return mv;
     }
 }

@@ -7,15 +7,6 @@ import java.util.List;
 
 public interface UnitExt {
 
-    @Select({"<script>",
-            "select * from Unit",
-            "where 1=1",
-            "<when test='id!=null'>",
-            "AND id= #{id}",
-            "</when>",
-            "<when test='type!=null'>",
-            "AND type= #{type}",
-            "</when>",
-            "</script>"})
+    @Select({"select * from unit"})
     List<Unit> get(int id, String type);
     }
