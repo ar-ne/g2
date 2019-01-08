@@ -28,12 +28,12 @@ public interface ChargeMapper {
      */
     @Insert({
         "insert into chargelog (id, Car_id, ",
-        "Use_id, Mac_id, ",
-        "amount, time, result, ",
+        "Mac_id, name, amount, ",
+        "time, result, ",
         "reason)",
         "values (#{id,jdbcType=NUMERIC}, #{car_id,jdbcType=NUMERIC}, ",
-        "#{use_id,jdbcType=NUMERIC}, #{mac_id,jdbcType=NUMERIC}, ",
-        "#{amount,jdbcType=DOUBLE}, #{time,jdbcType=TIMESTAMP}, #{result,jdbcType=INTEGER}, ",
+        "#{mac_id,jdbcType=NUMERIC}, #{name,jdbcType=VARCHAR}, #{amount,jdbcType=DOUBLE}, ",
+        "#{time,jdbcType=TIMESTAMP}, #{result,jdbcType=INTEGER}, ",
         "#{reason,jdbcType=VARCHAR})"
     })
     int insert(Charge record);
@@ -54,7 +54,7 @@ public interface ChargeMapper {
      */
     @Select({
         "select",
-        "id, Car_id, Use_id, Mac_id, amount, time, result, reason",
+        "id, Car_id, Mac_id, name, amount, time, result, reason",
         "from chargelog",
         "where id = #{id,jdbcType=NUMERIC}"
     })
@@ -78,8 +78,8 @@ public interface ChargeMapper {
     @Update({
         "update chargelog",
         "set Car_id = #{car_id,jdbcType=NUMERIC},",
-          "Use_id = #{use_id,jdbcType=NUMERIC},",
           "Mac_id = #{mac_id,jdbcType=NUMERIC},",
+          "name = #{name,jdbcType=VARCHAR},",
           "amount = #{amount,jdbcType=DOUBLE},",
           "time = #{time,jdbcType=TIMESTAMP},",
           "result = #{result,jdbcType=INTEGER},",

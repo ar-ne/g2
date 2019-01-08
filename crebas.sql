@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2012                    */
-/* Created on:     2019/1/8 18:37:17                            */
+/* Created on:     2019/1/8 22:13:11                            */
 /*==============================================================*/
 
 
@@ -177,13 +177,12 @@ go
 /* Table: Users                                                 */
 /*==============================================================*/
 create table Users (
-   id                   numeric              identity,
    Car_id               numeric              null,
    name                 varchar(254)         not null,
    password             varchar(254)         not null,
    usertype             varchar(254)         null,
    type                 int                  not null,
-   constraint PK_USERS primary key (id)
+   constraint PK_USERS primary key (name)
 )
 go
 
@@ -193,8 +192,8 @@ go
 create table chargelog (
    id                   numeric              identity,
    Car_id               numeric              null,
-   Use_id               numeric              null,
    Mac_id               numeric              null,
+   name                 varchar(254)         null,
    amount               float                null,
    time                 datetime             null,
    result               int                  null,
@@ -209,7 +208,7 @@ go
 create table consumelog (
    id                   numeric              identity,
    Car_id               numeric              null,
-   Use_id               numeric              null,
+   name                 varchar(254)         null,
    amount               float                null,
    time                 datetime             null,
    result               int                  null,
@@ -277,8 +276,8 @@ alter table chargelog
 go
 
 alter table chargelog
-   add constraint FK_CHARGELO_REFERENCE_USERS foreign key (Use_id)
-      references Users (id)
+   add constraint FK_CHARGELO_REFERENCE_USERS foreign key (name)
+      references Users (name)
 go
 
 alter table consumelog
@@ -287,8 +286,8 @@ alter table consumelog
 go
 
 alter table consumelog
-   add constraint FK_CONSUMEL_REFERENCE_USERS foreign key (Use_id)
-      references Users (id)
+   add constraint FK_CONSUMEL_REFERENCE_USERS foreign key (name)
+      references Users (name)
 go
 
 alter table stuff

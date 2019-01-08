@@ -28,10 +28,10 @@ public interface ConsumeMapper {
      */
     @Insert({
         "insert into consumelog (id, Car_id, ",
-        "Use_id, amount, time, ",
+        "name, amount, time, ",
         "result, reason)",
         "values (#{id,jdbcType=NUMERIC}, #{car_id,jdbcType=NUMERIC}, ",
-        "#{use_id,jdbcType=NUMERIC}, #{amount,jdbcType=DOUBLE}, #{time,jdbcType=TIMESTAMP}, ",
+        "#{name,jdbcType=VARCHAR}, #{amount,jdbcType=DOUBLE}, #{time,jdbcType=TIMESTAMP}, ",
         "#{result,jdbcType=INTEGER}, #{reason,jdbcType=VARCHAR})"
     })
     int insert(Consume record);
@@ -52,7 +52,7 @@ public interface ConsumeMapper {
      */
     @Select({
         "select",
-        "id, Car_id, Use_id, amount, time, result, reason",
+        "id, Car_id, name, amount, time, result, reason",
         "from consumelog",
         "where id = #{id,jdbcType=NUMERIC}"
     })
@@ -76,7 +76,7 @@ public interface ConsumeMapper {
     @Update({
         "update consumelog",
         "set Car_id = #{car_id,jdbcType=NUMERIC},",
-          "Use_id = #{use_id,jdbcType=NUMERIC},",
+          "name = #{name,jdbcType=VARCHAR},",
           "amount = #{amount,jdbcType=DOUBLE},",
           "time = #{time,jdbcType=TIMESTAMP},",
           "result = #{result,jdbcType=INTEGER},",
