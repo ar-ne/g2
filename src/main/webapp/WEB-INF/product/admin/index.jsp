@@ -1,10 +1,12 @@
 <%@ page pageEncoding="utf-8" contentType="text/html; utf-8" %>
+
 <html>
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Material Admin</title>
+    <title>后台中心管理系统</title>
+
     <link rel="stylesheet" href="node_modules/mdi/css/materialdesignicons.min.css">
     <!-- endinject -->
     <!-- plugin css for this page -->
@@ -27,11 +29,18 @@
             <div class="mdc-list-group">
                 <nav class="mdc-list mdc-drawer-menu">
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="index.jsp">
+                        <a class="mdc-drawer-link" href="/unit">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
-                            首页
+                            单位管理
                         </a>
+                    </div>
+                    <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-drawer-link" href="index.jsp">
+                        <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
+                           aria-hidden="true">desktop_mac</i>
+                        刷卡机管理
+                    </a>
                     </div>
                 </nav>
             </div>

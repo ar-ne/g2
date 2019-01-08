@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Material Admin</title>
     <link rel="stylesheet" href="node_modules/mdi/css/materialdesignicons.min.css">
+
     <!-- endinject -->
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
@@ -113,7 +114,7 @@
 				</thread>
 
 				<tbody>
-				<c:forEach items="${unit}"	var="u">
+				<c:forEach items="${ul}"	var="u">
 					<tr>
 						<td>${u.id}</td>
 						<td>${u.type}</td>

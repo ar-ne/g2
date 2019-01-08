@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 public class AuthInterceptor implements HandlerInterceptor {
     private Boolean debug = true;
 
-    @Override
+/*    @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         if (debug) return true;
         UserSession session = new UserSession(request);
@@ -22,5 +22,5 @@ public class AuthInterceptor implements HandlerInterceptor {
             return false;
         }
         return false;
-    }
+    }*/
 }
