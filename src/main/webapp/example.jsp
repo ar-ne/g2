@@ -5,14 +5,24 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Material Admin</title>
-    <link rel="stylesheet" href="node_modules/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/node_modules/mdi/css/materialdesignicons.min.css">
     <!-- endinject -->
     <!-- plugin css for this page -->
+    <style type="text/css">
+        a:hover {
+            background: rgba(0, 0, 0, 0.06);
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            -ms-border-radius: 5px;
+            -o-border-radius: 5px;
+            border-radius: 5px;
+        }
+    </style>
     <!-- End plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="images/favicon.png"/>
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.png"/>
 </head>
 <body>
 <div class="body-wrapper">
@@ -20,14 +30,14 @@
     <aside class="mdc-persistent-drawer mdc-persistent-drawer--open">
         <nav class="mdc-persistent-drawer__drawer">
             <div class="mdc-persistent-drawer__toolbar-spacer">
-                <a href="index.html">
+                <a href="index">
                     欢迎使用校园一卡通管理系统
                 </a>
             </div>
             <div class="mdc-list-group">
                 <nav class="mdc-list mdc-drawer-menu">
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="index.jsp">
+                        <a class="mdc-drawer-link" href="index">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
                             首页
@@ -95,19 +105,19 @@
 <!-- body wrapper -->
 
 <!-- plugins:js -->
-<script src="node_modules/material-components-web/dist/material-components-web.min.js"></script>
-<script src="node_modules/jquery/dist/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/node_modules/material-components-web/dist/material-components-web.min.js"></script>
+<script src="${pageContext.request.contextPath}/node_modules/jquery/dist/jquery.min.js"></script>
 <!-- endinject -->
 <!-- Plugin js for this page-->
-<script src="node_modules/chart.js/dist/Chart.min.js"></script>
-<script src="node_modules/progressbar.js/dist/progressbar.min.js"></script>
+<script src="${pageContext.request.contextPath}/node_modules/chart.js/dist/Chart.min.js"></script>
+<script src="${pageContext.request.contextPath}/node_modules/progressbar.js/dist/progressbar.min.js"></script>
 <!-- End plugin js for this page-->
 <!-- inject:js -->
-<script src="js/misc.js"></script>
-<script src="js/material.js"></script>
+<script src="${pageContext.request.contextPath}/js/misc.js"></script>
+<script src="${pageContext.request.contextPath}/js/material.js"></script>
 <!-- endinject -->
 <!-- Custom js for this page-->
-<script src="js/dashboard.js"></script>
+<script src="${pageContext.request.contextPath}/js/dashboard.js"></script>
 <!-- End custom js for this page-->
 </body>
 </html>
