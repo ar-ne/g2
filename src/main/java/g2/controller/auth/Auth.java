@@ -23,7 +23,7 @@ public class Auth {
 
     @RequestMapping("/")
     public String index(HttpServletRequest request) {
-        return "index";
+        return "/admin";
     }
 
     @RequestMapping("/login")

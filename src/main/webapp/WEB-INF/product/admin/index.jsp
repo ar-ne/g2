@@ -1,12 +1,11 @@
 <%@ page pageEncoding="utf-8" contentType="text/html; utf-8" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>后台中心管理系统</title>
-
+    <title>Material Admin</title>
     <link rel="stylesheet" href="node_modules/mdi/css/materialdesignicons.min.css">
     <!-- endinject -->
     <!-- plugin css for this page -->
@@ -29,18 +28,39 @@
             <div class="mdc-list-group">
                 <nav class="mdc-list mdc-drawer-menu">
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="/unit">
+                        <a class="mdc-drawer-link" href="index">
+                            <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
+                               aria-hidden="true">desktop_mac</i>
+                            首页
+                        </a>
+                    </div>
+                    <div class="mdc-list-item mdc-drawer-item">
+                        <a class="mdc-drawer-link" href="/admin/unit/UnitList">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
                             单位管理
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                    <a class="mdc-drawer-link" href="index.jsp">
-                        <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
-                           aria-hidden="true">desktop_mac</i>
-                        刷卡机管理
-                    </a>
+                        <a class="mdc-drawer-link" href="UnitList">
+                            <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
+                               aria-hidden="true">desktop_mac</i>
+                            刷卡机管理
+                        </a>
+                    </div>
+                    <div class="mdc-list-item mdc-drawer-item">
+                        <a class="mdc-drawer-link" href="UnitList">
+                            <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
+                               aria-hidden="true">desktop_mac</i>
+                            办卡中心管理
+                        </a>
+                    </div>
+                    <div class="mdc-list-item mdc-drawer-item">
+                        <a class="mdc-drawer-link" href="UnitList">
+                            <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
+                               aria-hidden="true">desktop_mac</i>
+                            统计报表管理
+                        </a>
                     </div>
                 </nav>
             </div>
@@ -65,8 +85,12 @@
                     <div class="mdc-simple-menu mdc-simple-menu--right" tabindex="-1" id="logout-menu">
                         <ul class="mdc-simple-menu__items mdc-list" role="menu" aria-hidden="true">
                             <li class="mdc-list-item" role="menuitem" tabindex="0">
+                                <i class="material-icons mdc-theme--primary mr-1">settings</i>
+                                Settings
+                            </li>
+                            <li class="mdc-list-item" role="menuitem" tabindex="0">
                                 <i class="material-icons mdc-theme--primary mr-1">power_settings_new</i>
-                                <a href="/logout">Logout</a>
+                                Logout
                             </li>
                         </ul>
                     </div>

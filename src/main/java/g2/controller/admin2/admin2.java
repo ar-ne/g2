@@ -11,4 +11,5 @@ public class admin2 {
         return "admin2/index";
     }
 
+
 }
