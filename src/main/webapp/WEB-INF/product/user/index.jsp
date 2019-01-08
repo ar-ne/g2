@@ -31,16 +31,29 @@
         <nav class="mdc-persistent-drawer__drawer">
             <div class="mdc-persistent-drawer__toolbar-spacer">
                 <a href="index">
-                    欢迎使用校园一卡通系统
                 </a>
             </div>
             <div class="mdc-list-group">
                 <nav class="mdc-list mdc-drawer-menu">
                     <div class="mdc-list-item mdc-drawer-item">
+                        <a class="mdc-drawer-link" href="/user/QRCode">
+                            <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
+                               aria-hidden="true">desktop_mac</i>
+                            刷卡消费
+                        </a>
+                    </div>
+                    <div class="mdc-list-item mdc-drawer-item">
                         <a class="mdc-drawer-link" href="index">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
-                            首页
+                            查询统计
+                        </a>
+                    </div>
+                    <div class="mdc-list-item mdc-drawer-item">
+                        <a class="mdc-drawer-link" href="index">
+                            <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
+                               aria-hidden="true">desktop_mac</i>
+                            校园卡管理
                         </a>
                     </div>
                 </nav>

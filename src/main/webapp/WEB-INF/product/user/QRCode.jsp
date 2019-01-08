@@ -25,22 +25,37 @@
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.png"/>
 </head>
 <body>
+<script src="${pageContext.request.contextPath}/node_modules/jquery/dist/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/qrcode.min.js"></script>
 <div class="body-wrapper">
     <!-- partial:partials/_sidebar.html -->
     <aside class="mdc-persistent-drawer mdc-persistent-drawer--open">
         <nav class="mdc-persistent-drawer__drawer">
             <div class="mdc-persistent-drawer__toolbar-spacer">
                 <a href="index">
-                    欢迎使用校园一卡通系统
                 </a>
             </div>
             <div class="mdc-list-group">
                 <nav class="mdc-list mdc-drawer-menu">
                     <div class="mdc-list-item mdc-drawer-item">
+                        <a class="mdc-drawer-link" href="/user/QRCode">
+                            <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
+                               aria-hidden="true">desktop_mac</i>
+                            刷卡消费
+                        </a>
+                    </div>
+                    <div class="mdc-list-item mdc-drawer-item">
                         <a class="mdc-drawer-link" href="index">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
-                            首页
+                            查询统计
+                        </a>
+                    </div>
+                    <div class="mdc-list-item mdc-drawer-item">
+                        <a class="mdc-drawer-link" href="index">
+                            <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
+                               aria-hidden="true">desktop_mac</i>
+                            校园卡管理
                         </a>
                     </div>
                 </nav>
@@ -81,7 +96,17 @@
         <main class="content-wrapper">
             <div class="mdc-layout-grid">
                 <div class="mdc-layout-grid__inner">
-                    main
+                    <div id="qrcode"></div>
+                    <script type="text/javascript">
+                        var qrcode = new QRCode(document.getElementById("qrcode"), {
+                            text: "${name}",
+                            width: 128,
+                            height: 128,
+                            colorDark: "#000000",
+                            colorLight: "#ffffff",
+                            correctLevel: QRCode.CorrectLevel.H
+                        });
+                    </script>
                 </div>
             </div>
         </main>
@@ -106,7 +131,7 @@
 
 <!-- plugins:js -->
 <script src="${pageContext.request.contextPath}/node_modules/material-components-web/dist/material-components-web.min.js"></script>
-<script src="${pageContext.request.contextPath}/node_modules/jquery/dist/jquery.min.js"></script>
+
 <!-- endinject -->
 <!-- Plugin js for this page-->
 <script src="${pageContext.request.contextPath}/node_modules/chart.js/dist/Chart.min.js"></script>
@@ -119,5 +144,6 @@
 <!-- Custom js for this page-->
 <script src="${pageContext.request.contextPath}/js/dashboard.js"></script>
 <!-- End custom js for this page-->
+
 </body>
 </html>
