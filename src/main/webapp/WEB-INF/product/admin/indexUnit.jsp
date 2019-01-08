@@ -7,7 +7,7 @@
     <title>Material Admin</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/node_modules/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=1" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" type="text/css">
     <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
     <!-- endinject -->
     <!-- plugin css for this page -->
@@ -15,9 +15,18 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="images/favicon.png"/>
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.png"/>
     <style type="text/css">
-        @import url('css/admin.css');
+        @import url('${pageContext.request.contextPath}/css/admin.css');
+
+        a:hover {
+            background: rgba(0, 0, 0, 0.06);
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            -ms-border-radius: 5px;
+            -o-border-radius: 5px;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
@@ -196,6 +205,7 @@
 <!-- endinject -->
 <!-- Custom js for this page-->
 <script src="${pageContext.request.contextPath}/js/dashboard.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 <!-- End custom js for this page-->
 </body>
 </html>
