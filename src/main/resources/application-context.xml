@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
-    xmlns:aop="http://www.springframework.org/schema/aop"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    xmlns:aop="http://www.springframework.org/schema/aop" xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd
@@ -14,7 +13,9 @@
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location" value="classpath:jdbc.properties" />
     </bean>
-    <context:component-scan base-package="g2" />
+    <context:component-scan base-package="g2">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+    </context:component-scan>
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
         <property name="driverClass" value="${driver}" />
         <property name="jdbcUrl" value="${url}" />
@@ -25,26 +26,22 @@
         <property name="minPoolSize" value="5" />
         <property name="maxPoolSize" value="25" />
     </bean>
-    <!-- 会话工厂bean sqlSessionFactoryBean-->
+    <!--        2. 配置和MyBatis的整合    -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <property name="mapperLocations" value="classpath*:g2/mapper/xml/*.xml" />
     </bean>
-    <!--  自动扫描对象关系映射 -->
+    <!-- 配置一个可以执行批量的sqlSession -->
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
+        <constructor-arg name="executorType" value="BATCH" />
+    </bean>
+    <!-- 3. mybatis自动扫描加载Sql映射文件 : MapperScannerConfigurer -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
-        <property name="basePackage" value="g2.mapper.java" />
+        <property name="basePackage" value="g2.mapper" />
     </bean>
-    <!-- 声明式事务管理 -->
-    <!--定义事物管理器，由spring管理事务 -->
-    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource" />
-    </bean>
-    <!--支持注解驱动的事务管理，指定事务管理器 -->
-    <tx:annotation-driven transaction-manager="transactionManager" />
 
     <!--aspectj支持自动代理实现AOP功能 -->
     <aop:aspectj-autoproxy proxy-target-class="true" />
-
 
 </beans>
