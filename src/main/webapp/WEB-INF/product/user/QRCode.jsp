@@ -99,7 +99,7 @@
                     <div id="qrcode"></div>
                     <script type="text/javascript">
                         var qrcode = new QRCode(document.getElementById("qrcode"), {
-                            text: "${name}",
+                            text: "${qrText}",
                             width: 128,
                             height: 128,
                             colorDark: "#000000",
