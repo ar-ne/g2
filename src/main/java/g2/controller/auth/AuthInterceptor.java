@@ -1,13 +1,12 @@
 package g2.controller.auth;
 
-import g2.util.properties.SessionProperties;
+import g2.model.Extra.UserSession;
 import g2.util.properties.UserProperties;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 public class AuthInterceptor implements HandlerInterceptor {
     private Boolean debug = true;

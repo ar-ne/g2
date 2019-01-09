@@ -1,6 +1,7 @@
-package g2.controller.auth;
+package g2.model.Extra;
 
 import g2.model.Extra.UserKey;
+import g2.model.User;
 import g2.util.properties.SessionProperties;
 import g2.util.properties.UserProperties;
 
@@ -13,19 +14,7 @@ public class UserSession {
     private int type;
     private boolean state;
     private String name;
-
-    /**
-     * 从参数构造
-     *
-     * @param type  用户类型
-     * @param state 登陆状态
-     * @param name  用户登录名
-     */
-    public UserSession(int type, boolean state, String name) {
-        this.type = type;
-        this.state = state;
-        this.name = name;
-    }
+    private Long cardID;
 
     /**
      * '
@@ -33,13 +22,14 @@ public class UserSession {
      *
      * @param request
      */
-    UserSession(HttpServletRequest request) {
+    public UserSession(HttpServletRequest request) {
         try {
             this.type = (int) request.getSession(false).getAttribute(SessionProperties.type);
             this.name = (String) request.getSession(false).getAttribute(SessionProperties.name);
             this.state = (boolean) request.getSession(false).getAttribute(SessionProperties.state);
-            if (name.isEmpty())
-                throw new Exception("反正就是出了点问题，我代码大概没写错");
+            this.cardID = (Long) request.getSession(false).getAttribute(SessionProperties.cardID);
+            if (name.isEmpty() || !state)
+                throw new Exception("登录状态肯定有问题");
         } catch (Exception e) {
             this.state = false;
             this.type = UserProperties.unAuth;
@@ -47,13 +37,14 @@ public class UserSession {
     }
 
     /**
-     * 用userKey初始化一个登录状态为true的UserSession
+     * 用user初始化一个登录状态为true的UserSession
      *
-     * @param userKey userKey
+     * @param user user
      */
-    public UserSession(UserKey userKey) {
-        this.name = userKey.getName();
-        this.type = userKey.getType();
+    public UserSession(User user) {
+        this.name = user.getName();
+        this.type = user.getType();
+        this.cardID = user.getCar_id();
         this.state = true;
     }
 
@@ -61,6 +52,7 @@ public class UserSession {
         request.getSession().setAttribute(SessionProperties.state, state);
         request.getSession().setAttribute(SessionProperties.type, type);
         request.getSession().setAttribute(SessionProperties.name, name);
+        request.getSession().setAttribute(SessionProperties.cardID, cardID);
     }
 
     public int getType() {
@@ -73,5 +65,9 @@ public class UserSession {
 
     public String getName() {
         return name;
+    }
+
+    public Long getCardID() {
+        return cardID;
     }
 }
