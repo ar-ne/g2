@@ -130,6 +130,21 @@
                             </section>
                         </div>
                     </div>
+
+                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6" style="display: none;">
+                        <div class="mdc-layout-grid__inner">
+                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4">
+                                <div class="mdc-card mb-auto">
+                                    <div class="mdc-card__primary bg-white">
+                                        <i class="mdi mdi-account-alert icon-md text-red"></i>
+                                        <h3 class="text-red mb-0 mt-0">登录信息错误</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </main>
