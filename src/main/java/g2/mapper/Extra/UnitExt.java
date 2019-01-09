@@ -1,6 +1,7 @@
 package g2.mapper.Extra;
 
 import g2.model.Unit;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;

@@ -27,10 +27,10 @@ public interface CardMapper {
      * @mbg.generated
      */
     @Insert({
-        "insert into Card (id, state, ",
-        "amount, limit)",
-        "values (#{id,jdbcType=NUMERIC}, #{state,jdbcType=VARCHAR}, ",
-        "#{amount,jdbcType=DOUBLE}, #{limit,jdbcType=DOUBLE})"
+            "insert into Card (id, type, ",
+            "state, amount, limit)",
+            "values (#{id,jdbcType=NUMERIC}, #{type,jdbcType=VARCHAR}, ",
+            "#{state,jdbcType=VARCHAR}, #{amount,jdbcType=DOUBLE}, #{limit,jdbcType=DOUBLE})"
     })
     int insert(Card record);
 
@@ -50,7 +50,7 @@ public interface CardMapper {
      */
     @Select({
         "select",
-        "id, state, amount, limit",
+            "id, type, state, amount, limit",
         "from Card",
         "where id = #{id,jdbcType=NUMERIC}"
     })
@@ -73,7 +73,8 @@ public interface CardMapper {
      */
     @Update({
         "update Card",
-        "set state = #{state,jdbcType=VARCHAR},",
+            "set type = #{type,jdbcType=VARCHAR},",
+            "state = #{state,jdbcType=VARCHAR},",
           "amount = #{amount,jdbcType=DOUBLE},",
           "limit = #{limit,jdbcType=DOUBLE}",
         "where id = #{id,jdbcType=NUMERIC}"
