@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Select;
 public interface UserExt {
     @Select({
             "select",
-            "name, password, type, Car_id, usertype",
+            "*",
             "from Users",
             "where name = #{name,jdbcType=VARCHAR}",
             "and password = #{password,jdbcType=VARCHAR}",
