@@ -43,7 +43,7 @@
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="index">
+                        <a class="mdc-drawer-link" href="/user/QueSta">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
                             查询统计
@@ -92,11 +92,7 @@
 
     <div class="page-wrapper mdc-toolbar-fixed-adjust">
         <main class="content-wrapper">
-            <div class="mdc-layout-grid">
-                <div class="mdc-layout-grid__inner">
-                    main
-                </div>
-            </div>
+            <img class="w-100" src="/images/main.png">
         </main>
         <!-- partial:partials/_footer.html -->
         <footer>
@@ -106,7 +102,7 @@
                         <span class="text-muted"></span>
                     </div>
                     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6 d-flex justify-content-end">
-                        <span class="mt-0 text-right">g2t006 单位管理</span>
+                        <span class="mt-0 text-right">g2t006 用户中心</span>
                     </div>
                 </div>
             </div>

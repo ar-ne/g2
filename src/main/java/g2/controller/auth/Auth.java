@@ -25,7 +25,7 @@ public class Auth {
 
     @RequestMapping("/")
     public String index(HttpServletRequest request) {
-        return "/index";
+        return "/user/index";
     }
 
     @RequestMapping("/login")
