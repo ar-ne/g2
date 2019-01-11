@@ -15,8 +15,6 @@
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.png"/>
 </head>
 <body>
-<script src="${pageContext.request.contextPath}/node_modules/jquery/dist/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/qrcode.min.js"></script>
 <div class="body-wrapper">
     <!-- partial:partials/_sidebar.html -->
     <aside class="mdc-persistent-drawer mdc-persistent-drawer--open">
@@ -36,7 +34,7 @@
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link active" href="/user/QRCode">
+                        <a class="mdc-drawer-link" href="/user/QRCode">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
                             刷卡消费
@@ -51,7 +49,7 @@
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
                         <a class="mdc-drawer-link" href="/user/Management">
-                            <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
+                            <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon active"
                                aria-hidden="true">desktop_mac</i>
                             校园卡管理
                         </a>
@@ -91,27 +89,34 @@
     <!-- partial -->
 
     <div class="page-wrapper mdc-toolbar-fixed-adjust">
-        <main class="auth-screen">
+        <main class="content-wrapper">
             <div class="mdc-layout-grid">
                 <div class="mdc-layout-grid__inner">
-                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-5">
-                        <h1 class="mdc-typography--display1">
-                            快用你的刷卡机扫我吧！！！
-                            <i class="mdi mdi-hand-pointing-right icon-md"></i>
-                        </h1>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
+                        <a class="mdc-button mdc-button--stroked secondary-stroked-button w-100" href="/user/ReportLoss"
+                           data-mdc-auto-init="MDCRipple">
+                            <i class="mdi mdi-account-alert icon-md"></i>
+                            挂失
+                        </a>
                     </div>
                     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
-                        <div id="qrcode"></div>
-                        <script type="text/javascript">
-                            var qrcode = new QRCode(document.getElementById("qrcode"), {
-                                text: "${qrText}",
-                                width: 128,
-                                height: 128,
-                                colorDark: "#000000",
-                                colorLight: "#ffffff",
-                                correctLevel: QRCode.CorrectLevel.H
-                            });
-                        </script>
+                        <a class="mdc-button mdc-button--raised secondary-filled-button w-100"
+                           data-mdc-auto-init="MDCRipple">
+                            <i class="mdi mdi-account-circle icon-md"></i>
+                            取消挂失
+                        </a>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
+                        <a class="mdc-button mdc-button--raised w-100" data-mdc-auto-init="MDCRipple">
+                            <i class="mdi mdi-diamond icon-md"></i>
+                            充值
+                        </a>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
+                        <a class="mdc-button mdc-button--stroked w-100" data-mdc-auto-init="MDCRipple">
+                            <i class="mdi  mdi-account-settings-variant icon-md"></i>
+                            修改密码
+                        </a>
                     </div>
                 </div>
             </div>
@@ -137,7 +142,7 @@
 
 <!-- plugins:js -->
 <script src="${pageContext.request.contextPath}/node_modules/material-components-web/dist/material-components-web.min.js"></script>
-
+<script src="${pageContext.request.contextPath}/node_modules/jquery/dist/jquery.min.js"></script>
 <!-- endinject -->
 <!-- Plugin js for this page-->
 <script src="${pageContext.request.contextPath}/node_modules/chart.js/dist/Chart.min.js"></script>
@@ -150,6 +155,5 @@
 <!-- Custom js for this page-->
 <script src="${pageContext.request.contextPath}/js/dashboard.js"></script>
 <!-- End custom js for this page-->
-
 </body>
 </html>

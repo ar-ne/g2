@@ -131,7 +131,8 @@
                         </div>
                     </div>
 
-                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6" style="display: none;">
+                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6"
+                         style="display: none;">
                         <div class="mdc-layout-grid__inner">
                             <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4">
                                 <div class="mdc-card mb-auto">
