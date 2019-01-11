@@ -37,14 +37,14 @@
             <div class="mdc-list-group">
                 <nav class="mdc-list mdc-drawer-menu">
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link active" href="/admin2">
+                        <a class="mdc-drawer-link" href="/admin2">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
                             首页
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="/admin2/stuff">
+                        <a class="mdc-drawer-link active" href="/admin2/stuff">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">dashboard</i>
                             员工列表

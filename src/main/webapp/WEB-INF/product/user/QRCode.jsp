@@ -38,14 +38,14 @@
             <div class="mdc-list-group">
                 <nav class="mdc-list mdc-drawer-menu">
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="/user/QRCode">
+                        <a class="mdc-drawer-link active" href="/user/QRCode">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
                             刷卡消费
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="index">
+                        <a class="mdc-drawer-link" href="/user/QueSta">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
                             查询统计
@@ -118,7 +118,7 @@
                         <span class="text-muted"></span>
                     </div>
                     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6 d-flex justify-content-end">
-                        <span class="mt-0 text-right">g2t006 单位管理</span>
+                        <span class="mt-0 text-right">g2t006 用户中心</span>
                     </div>
                 </div>
             </div>

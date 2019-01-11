@@ -20,4 +20,9 @@ public class User {
         mv.addObject("qrText", request.getSession().getAttribute(SessionProperties.cardID));
         return mv;
     }
+
+    @RequestMapping("/user/QueSta")
+    public String doQueSta() {
+        return "user/QueSta";
+    }
 }
