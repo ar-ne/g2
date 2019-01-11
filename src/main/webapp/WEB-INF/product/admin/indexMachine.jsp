@@ -1,19 +1,21 @@
 <%@ page pageEncoding="utf-8" contentType="text/html; utf-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Material Admin</title>
-    <link rel="stylesheet" href="node_modules/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/node_modules/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=1" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" type="text/css">
+    <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
     <!-- endinject -->
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="images/favicon.png"/>
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.png"/>
     <style type="text/css">
         @import url('${pageContext.request.contextPath}/css/admin.css');
 
@@ -26,8 +28,17 @@
             border-radius: 5px;
         }
     </style>
+
+
 </head>
 <body>
+<script type="text/javascript">
+    function del(e) {
+        if (confirm("确认要删除该刷卡机和相关的收费消费信息？")) {
+            window.location.href = '/admin/ma/MaDelete?id=' + e;
+        }
+    }
+</script>
 <div class="body-wrapper">
     <!-- partial:partials/_sidebar.html -->
     <aside class="mdc-persistent-drawer mdc-persistent-drawer--open">
@@ -40,7 +51,7 @@
             <div class="mdc-list-group">
                 <nav class="mdc-list mdc-drawer-menu">
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link active" href="/admin">
+                        <a class="mdc-drawer-link " href="/admin">
                             <%--<i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
 --%>
@@ -55,7 +66,7 @@
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="/admin/ma/MaList">
+                        <a class="mdc-drawer-link active" href="/admin/ma/MaList">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
 
@@ -111,11 +122,57 @@
         </div>
     </header>
     <!-- partial -->
-
     <div class="page-wrapper mdc-toolbar-fixed-adjust">
         <main class="content-wrapper">
             <div class="mdc-layout-grid">
                 <div class="mdc-layout-grid__inner">
+                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-8">
+
+                        <form name="frm" action="/admin/ma/MaList">
+                            <div class="form-froup" style="float:left;margin-right:30px">
+                                <label class="form-label">刷卡机编号：</label><input class="form-control" type="text"
+                                                                               name="id"
+                                                                               value='${id}'>
+                            </div>
+                            <div class="form-froup" style="float:left;margin-right:30px">
+                                <label class="form-label">单位编号：</label><input class="form-control" type="text"
+                                                                              name="Uni_id"
+                                                                              value='${Uni_id}'>
+                            </div>
+                            <button type="submit" class="btn btn-info" style="float:left;margin-top:32px"> 查找</button>
+                        </form>
+                    </div>
+                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-2">
+                        <div id="toolbar" style="text-align:center;margin-right:10px;margin-top: 30px;">
+                            <a class="btn btn-success" href="/admin/ma/MaInsert">新增刷卡机</a>
+                        </div>
+                    </div>
+
+                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+                        <table class="table table-hover">
+                            <thread>
+                                <tr>
+                                    <th class="text-left">卡机编号</th>
+                                    <th class="text-left">单位编号</th>
+                                    <th class="text-left">放置地点</th>
+                                </tr>
+                            </thread>
+
+                            <tbody>
+                            <c:forEach items="${mac}" var="m">
+                                <tr>
+                                    <td class="text-left">&nbsp;&nbsp;${m.id}</td>
+                                    <td class="text-left">&nbsp;&nbsp;${m.uni_id}</td>
+                                    <td class="text-left">&nbsp;&nbsp;${m.addr}</td>
+                                    <td class="text-left"><a class="btn btn-primary"
+                                                             href='/admin/ma/MaUpdate?id=${m.id}'>修改</a>
+                                        <button class="btn btn-danger" onclick="del(${m.id})">删除</button>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
 
                 </div>
             </div>
@@ -135,24 +192,24 @@
         </footer>
         <!-- partial -->
     </div>
-
 </div>
 <!-- body wrapper -->
 
 <!-- plugins:js -->
-<script src="node_modules/material-components-web/dist/material-components-web.min.js"></script>
-<script src="node_modules/jquery/dist/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/node_modules/material-components-web/dist/material-components-web.min.js"></script>
+<script src="${pageContext.request.contextPath}/node_modules/jquery/dist/jquery.min.js"></script>
 <!-- endinject -->
 <!-- Plugin js for this page-->
-<script src="node_modules/chart.js/dist/Chart.min.js"></script>
-<script src="node_modules/progressbar.js/dist/progressbar.min.js"></script>
+<script src="${pageContext.request.contextPath}/node_modules/chart.js/dist/Chart.min.js"></script>
+<script src="${pageContext.request.contextPath}/node_modules/progressbar.js/dist/progressbar.min.js"></script>
 <!-- End plugin js for this page-->
 <!-- inject:js -->
-<script src="js/misc.js"></script>
-<script src="js/material.js"></script>
+<script src="${pageContext.request.contextPath}/js/misc.js"></script>
+<script src="${pageContext.request.contextPath}/js/material.js"></script>
 <!-- endinject -->
 <!-- Custom js for this page-->
-<script src="js/dashboard.js"></script>
+<script src="${pageContext.request.contextPath}/js/dashboard.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 <!-- End custom js for this page-->
 </body>
 </html>
