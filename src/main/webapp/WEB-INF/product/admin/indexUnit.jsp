@@ -28,8 +28,17 @@
             border-radius: 5px;
         }
     </style>
+
+
 </head>
 <body>
+<script type="text/javascript">
+    function del(e) {
+        if (confirm("确认要删除该单位和相关的刷卡机信息？")) {
+            window.location.href = '/admin/unit/UnitDelete?id=' + e;
+        }
+    }
+</script>
 <div class="body-wrapper">
     <!-- partial:partials/_sidebar.html -->
     <aside class="mdc-persistent-drawer mdc-persistent-drawer--open">
@@ -42,37 +51,37 @@
             <div class="mdc-list-group">
                 <nav class="mdc-list mdc-drawer-menu">
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="../admin2/index.jsp">
-                            <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
+                        <a class="mdc-drawer-link " href="/admin">
+                            <%--<i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
+--%>
+                            <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">account_circle</i>
                             首页
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="UnitList">
-                            <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
-                               aria-hidden="true">desktop_mac</i>
+                        <a class="mdc-drawer-link active" href="/admin/unit/UnitList">
+                            <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">group_work</i>
                             单位管理
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="UnitList">
+                        <a class="mdc-drawer-link" href="/admin/ma/MaList">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
+
                             刷卡机管理
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="UnitList">
-                            <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
-                               aria-hidden="true">desktop_mac</i>
+                        <a class="mdc-drawer-link" href="/admin/card/">
+                            <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">extension</i>
                             办卡中心管理
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="UnitList">
-                            <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
-                               aria-hidden="true">desktop_mac</i>
+                        <a class="mdc-drawer-link" href="/admin/report/">
+                            <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">timeline</i>
                             统计报表管理
                         </a>
                     </div>
@@ -113,81 +122,84 @@
         </div>
     </header>
     <!-- partial -->
+    <div class="page-wrapper mdc-toolbar-fixed-adjust">
+        <main class="content-wrapper">
+            <div class="mdc-layout-grid">
+                <div class="mdc-layout-grid__inner">
+                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-10">
 
-    <div class="page-wrapper mdc-toolbar-fixed-adjust" style="width:100%">
-        <main class="content-wrapper" style="width:100%">
-
-            <div class="mdc-layout-grid" style="width:100%">
-
-                <!-- <div class="col-md-10"> -->
-                <div style="width:100%">
-                    <form name="frm" action="UnitList">
-                        <div class="form-froup" style="float:left;margin-right:30px">
-                            <label class="form-label">单位编号：</label><input class="form-control" type="text" name="id" value='${id}'>
+                        <form name="frm" action="/admin/unit/UnitList">
+                            <div class="form-froup" style="float:left;margin-right:30px">
+                                <label class="form-label">单位编号：</label><input class="form-control" type="text" name="id"
+                                                                              value='${id}'>
+                            </div>
+                            <div class="form-group" style="float:left;margin-right:30px">
+                                <label class="form-label">单位类型：</label>
+                                <select class="form-control" name="type">
+                                    <option value="">请选择</option>
+                                    <option value="车队"     <c:if test="${type=='车队'}">${"selected"}</c:if>>车队</option>
+                                    <option value="食堂窗口" <c:if test="${type=='食堂窗口'}">${"selected"}</c:if>>食堂窗口</option>
+                                    <option value="售电窗口" <c:if test="${type=='售电窗口'}">${"selected"}</c:if>>售电窗口</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-info" style="float:left;margin-top:32px"> 查找</button>
+                        </form>
+                    </div>
+                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-2">
+                        <div id="toolbar" style="text-align:center;margin-right:10px;margin-top: 30px;">
+                            <a class="btn btn-success" href="/admin/unit/UnitInsert">新增单位</a>
                         </div>
-                        <div class="form-group" style="float:left;margin-right:30px">
-                            <label class="form-label">单位类型：</label>
-                            <select  class="form-control" name="type">
-                                <option value="">请选择</option>
+                    </div>
 
-                                <option value="车队" 		<c:if test="${type=='车队'}">${"selected"}</c:if>>车队</option>
-                                <option value="食堂窗口" <c:if test="${type='食堂窗口'}">${"selected"}></c:if>>食堂窗口</option>
-                                <option value="售电窗口" <c:if test="${type='售电窗口'}">${"selected"}></c:if>>售电窗口</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-info" style="float:left;margin-top:32px"> 查找 </button>
-                        <input type="hidden" name="cur_page" value=""><!-- 增加隐藏变量，记录当前页码 -->
-                    </form>
-                </div>
-                <div id="dataArea">
-                    <table class="table table-hover">
-                        <thread>
-                            <tr>
-                                <th>单位编号</th>
-                                <th>单位类型</th>
-                                <th>单位账号</th>
-                                <th>单位密码</th>
-                                <th>单位联系方式</th>
-                            </tr>
-                        </thread>
+                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+                        <table class="table table-hover">
+                            <thread>
+                                <tr>
+                                    <th class="text-left">单位编号</th>
+                                    <th class="text-left">单位类型</th>
+                                    <th class="text-left">单位账号</th>
+                                    <th class="text-left">单位密码</th>
+                                    <th class="text-left">单位联系方式</th>
+                                </tr>
+                            </thread>
 
-                        <tbody>
-                        <c:forEach items="${unit}"	var="u">
-                            <tr>
-                                <td align="center" valign="middle">${u.id}</td>
-                                <td>${u.type}</td>
-                                <td>${u.account}</td>
-                                <td>${u.password}</td>
-                                <td>${u.pnum}</td>
+                            <tbody>
+                            <c:forEach items="${unit}" var="u">
+                                <tr>
+                                    <td class="text-left">&nbsp;&nbsp;${u.id}</td>
+                                    <td class="text-left">&nbsp;&nbsp;${u.type}</td>
+                                    <td class="text-left">&nbsp;&nbsp;${u.account}</td>
+                                    <td class="text-left">&nbsp;&nbsp;${u.password}</td>
+                                    <td class="text-left">&nbsp;&nbsp;${u.pnum}</td>
 
-                                <td><a class="btn btn-primary" href='FileEdit?id=${bean.id}'>修改</a>
-                                    <a class="btn btn-danger" href='FileDelete?id=${bean.id}'>删除</a></td>
-                            </tr>
-                        </c:forEach>
-                        </tbody>
-                    </table>
+                                    <td class="text-left"><a class="btn btn-primary"
+                                                             href='/admin/unit/UnitSelect?id=${u.id}'>修改</a>
+                                        <button class="btn btn-danger" onclick="del(${u.id})">删除</button>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
             </div>
-            <div id="toolbar" style="text-align:right;margin-right:10px;">
-                <input class="btn btn-success"  type="button" value=" 新增文件 " onclick="add()" />
+        </main>
+        <!-- partial:partials/_footer.html -->
+        <footer>
+            <div class="mdc-layout-grid">
+                <div class="mdc-layout-grid__inner">
+                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+                        <span class="text-muted"></span>
+                    </div>
+                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6 d-flex justify-content-end">
+                        <span class="mt-0 text-right">g2t006 单位管理</span>
+                    </div>
+                </div>
             </div>
-
+        </footer>
+        <!-- partial -->
     </div>
-    </main>
-    <!-- partial:partials/_footer.html -->
-    <footer>
-        <div class="mdc-layout-grid">
-            <div class="mdc-layout-grid__inner">
-                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
-                    <span class="text-muted"></span>
-                </div>
-                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6 d-flex justify-content-end">
-                    <span class="mt-0 text-right">g2t006 单位管理</span>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- partial -->
 </div>
 <!-- body wrapper -->
 

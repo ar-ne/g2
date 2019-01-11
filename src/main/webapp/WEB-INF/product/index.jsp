@@ -131,8 +131,8 @@
                         </div>
                     </div>
 
-                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6"
-                         style="display: none;">
+                    <!-- ErrMsg -->
+                    <div id="errMsg" class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6" style="display: none">
                         <div class="mdc-layout-grid__inner">
                             <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4">
                                 <div class="mdc-card mb-auto">
@@ -144,7 +144,6 @@
                             </div>
                         </div>
                     </div>
-
 
                 </div>
             </div>
@@ -163,6 +162,7 @@
 <script src="${pageContext.request.contextPath}/js/login.js"></script>
 <!-- end inject -->
 <!-- Custom js for this page-->
+<scrip${err}>$("#errMsg").show();</scrip${err}>
 <!-- End custom js for this page-->
 </body>
 

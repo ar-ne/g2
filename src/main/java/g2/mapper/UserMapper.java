@@ -29,11 +29,9 @@ public interface UserMapper extends UserExt {
      */
     @Insert({
         "insert into Users (name, Car_id, ",
-        "password, usertype, ",
-        "type)",
+            "password, type)",
         "values (#{name,jdbcType=VARCHAR}, #{car_id,jdbcType=NUMERIC}, ",
-        "#{password,jdbcType=VARCHAR}, #{usertype,jdbcType=VARCHAR}, ",
-        "#{type,jdbcType=INTEGER})"
+            "#{password,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER})"
     })
     int insert(User record);
 
@@ -53,7 +51,7 @@ public interface UserMapper extends UserExt {
      */
     @Select({
         "select",
-        "name, Car_id, password, usertype, type",
+            "name, Car_id, password, type",
         "from Users",
         "where name = #{name,jdbcType=VARCHAR}"
     })
@@ -78,7 +76,6 @@ public interface UserMapper extends UserExt {
         "update Users",
         "set Car_id = #{car_id,jdbcType=NUMERIC},",
           "password = #{password,jdbcType=VARCHAR},",
-          "usertype = #{usertype,jdbcType=VARCHAR},",
           "type = #{type,jdbcType=INTEGER}",
         "where name = #{name,jdbcType=VARCHAR}"
     })

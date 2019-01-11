@@ -14,6 +14,18 @@
     <link rel="stylesheet" href="css/style.css">
     <!-- endinject -->
     <link rel="shortcut icon" href="images/favicon.png"/>
+    <style type="text/css">
+        @import url('${pageContext.request.contextPath}/css/admin.css');
+
+        a:hover {
+            background: rgba(0, 0, 0, 0.06);
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            -ms-border-radius: 5px;
+            -o-border-radius: 5px;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
 <div class="body-wrapper">
@@ -29,36 +41,36 @@
                 <nav class="mdc-list mdc-drawer-menu">
                     <div class="mdc-list-item mdc-drawer-item">
                         <a class="mdc-drawer-link active" href="/admin">
-                            <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
+                            <%--<i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
+--%>
+                            <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">account_circle</i>
                             首页
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
                         <a class="mdc-drawer-link" href="/admin/unit/UnitList">
-                            <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
-                               aria-hidden="true">desktop_mac</i>
+                            <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">group_work</i>
                             单位管理
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="UnitList">
+                        <a class="mdc-drawer-link" href="/admin/ma/MaList">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
+
                             刷卡机管理
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="UnitList">
-                            <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
-                               aria-hidden="true">desktop_mac</i>
+                        <a class="mdc-drawer-link" href="/admin/card/">
+                            <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">extension</i>
                             办卡中心管理
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="UnitList">
-                            <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
-                               aria-hidden="true">desktop_mac</i>
+                        <a class="mdc-drawer-link" href="/admin/report/">
+                            <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">timeline</i>
                             统计报表管理
                         </a>
                     </div>
