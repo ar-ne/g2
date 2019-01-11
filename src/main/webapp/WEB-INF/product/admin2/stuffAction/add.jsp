@@ -105,10 +105,14 @@
                     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
                         <div class="mdc-card">
                             <div class="mdc-card__primary">
-                                <h1>添加用户</h1>
+                                <h1>添加员工</h1>
                             </div>
                             <div class="mdc-card__primary">
-
+                                <form action="/admin2/stuff/add.do" method="post">
+                                    <label>
+                                        姓名<input type="text" name="name">
+                                    </label>
+                                </form>
                             </div>
                         </div>
                     </div>

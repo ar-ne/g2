@@ -13,6 +13,7 @@ public class UnitService {
     private final MachineService machineService;
     private final ConsumeService consumeService;
     private final ChargeService chargeService;
+
     @Autowired
     public UnitService(UnitMapper unitmapper, MachineService machineService, ConsumeService consumeService, ChargeService chargeService) {
         this.unitmapper = unitmapper;
@@ -33,24 +34,24 @@ public class UnitService {
      * @return 被影响的行数目
      * @see MachineService#deleteByUnitId(Long)
      */
-    public int UnitDelete(Long id) {
+    public int delete(Long id) {
         return machineService.deleteByUnitId(id) + unitmapper.deleteByPrimaryKey(id);
 
     }
 
-    public int UnitUpdate(Unit unit) {
+    public int update(Unit unit) {
         return unitmapper.updateByPrimaryKeySelective(unit);
     }
 
-    public Unit unitselectbyid(Long id) {
+    public Unit getByPrimaryKey(Long id) {
         return unitmapper.selectByPrimaryKey(id);
     }
 
-    public int unitInsert(Unit unit) {
+    public int add(Unit unit) {
         return unitmapper.insertSelective(unit);
     }
 
-    public List<Long> getById() {
-        return unitmapper.getById();
+    public List<Long> getIdList() {
+        return unitmapper.getIdAll();
     }
 }
