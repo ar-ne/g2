@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2012                    */
-/* Created on:     2019/1/9 14:34:56                            */
+/* Created on:     2019/1/9 14:50:11                            */
 /*==============================================================*/
 
 
@@ -213,7 +213,7 @@ go
 /* Table: consumelog                                            */
 /*==============================================================*/
 create table consumelog (
-   id                   numeric              not null,
+   id                   numeric              identity,
    Car_id               numeric              null,
    name                 varchar(254)         null,
    Mac_id               numeric              null,

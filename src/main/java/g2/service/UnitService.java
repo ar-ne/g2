@@ -4,17 +4,21 @@ import g2.mapper.UnitMapper;
 import g2.model.Unit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import java.util.List;
 
 @Service
 public class UnitService {
     private final UnitMapper unitmapper;
-    private Unit unit;
+    private final MachineService machineService;
+    private final ConsumeService consumeService;
+    private final ChargeService chargeService;
     @Autowired
-    public UnitService(UnitMapper unitmapper) {
+    public UnitService(UnitMapper unitmapper, MachineService machineService, ConsumeService consumeService, ChargeService chargeService) {
         this.unitmapper = unitmapper;
+        this.machineService = machineService;
+        this.consumeService = consumeService;
+        this.chargeService = chargeService;
     }
 
 
@@ -22,8 +26,16 @@ public class UnitService {
         return unitmapper.getd(id, type);
     }
 
+    /**
+     * 根据单位id同时删除单位和刷卡机
+     *
+     * @param id 单位id
+     * @return 被影响的行数目
+     * @see MachineService#deleteByUnitId(Long)
+     */
     public int UnitDelete(Long id) {
-        return unitmapper.deleteByPrimaryKey(id);
+        return machineService.deleteByUnitId(id) + unitmapper.deleteByPrimaryKey(id);
+
     }
 
     public int UnitUpdate(Unit unit) {
@@ -38,4 +50,7 @@ public class UnitService {
         return unitmapper.insertSelective(unit);
     }
 
+    public List<Long> getById() {
+        return unitmapper.getById();
+    }
 }

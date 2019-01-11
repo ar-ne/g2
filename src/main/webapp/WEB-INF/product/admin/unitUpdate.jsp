@@ -42,37 +42,37 @@
             <div class="mdc-list-group">
                 <nav class="mdc-list mdc-drawer-menu">
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="/admin2/index.jsp">
-                            <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
+                        <a class="mdc-drawer-link " href="/admin">
+                            <%--<i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
+--%>
+                            <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">account_circle</i>
                             首页
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
                         <a class="mdc-drawer-link active" href="/admin/unit/UnitList">
-                            <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
-                               aria-hidden="true">desktop_mac</i>
+                            <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">group_work</i>
                             单位管理
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="">
+                        <a class="mdc-drawer-link" href="/admin/ma/MaList">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
+
                             刷卡机管理
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="">
-                            <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
-                               aria-hidden="true">desktop_mac</i>
+                        <a class="mdc-drawer-link" href="/admin/card/">
+                            <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">extension</i>
                             办卡中心管理
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="">
-                            <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
-                               aria-hidden="true">desktop_mac</i>
+                        <a class="mdc-drawer-link" href="/admin/report/">
+                            <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">timeline</i>
                             统计报表管理
                         </a>
                     </div>
@@ -118,7 +118,7 @@
             <div class="mdc-layout-grid">
                 <div class="mdc-layout-grid__inner">
                     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-10">
-                        <form name="frm" action="/admin/unit/UnitUpdate">
+                        <form name="frm" action="/admin/unit/UnitUpdate" style="margin: auto auto">
                             <div class="form-froup">
                                 <input type="hidden" name="id" value="${unit.id}"><!-- 增加隐藏变量-->
                                 <label class="form-label">单位类型：</label>
@@ -148,8 +148,9 @@
                                                                               value='${unit.pnum}'>
                             </div>
                             <div class="form-froup">
-                                <button type="submit" class="btn btn-info">保存</button>
-                                <button type="button" class="btn btn-danger" onclick="ret()"> 返回</button>
+                                <button type="submit" class="btn btn-info" style="float: left">保存</button>
+                                <button type="button" class="btn btn-danger" onclick="ret()" style="float: right"> 返回
+                                </button>
 
                             </div>
                         </form>

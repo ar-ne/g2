@@ -39,13 +39,13 @@ public class UnitController {
     }
 
     @RequestMapping("/UnitDelete")
-    public String unitdelete(Model model, Long id) {
+    public String unitdelete(Long id) {
         unitService.UnitDelete(id);
         return "redirect:/admin/unit/UnitList";
     }
 
     @RequestMapping("/UnitUpdate")
-    public String unitupdate(Model model, Long id, String type, String account, String password, String pnum) {
+    public String unitupdate(Long id, String type, String account, String password, String pnum) {
         Unit unit = new Unit(id, type, account, password, pnum);
         unitService.UnitUpdate(unit);
         return "redirect:/admin/unit/UnitList";

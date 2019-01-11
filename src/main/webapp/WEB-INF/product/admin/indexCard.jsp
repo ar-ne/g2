@@ -28,8 +28,23 @@
             border-radius: 5px;
         }
     </style>
+
+
 </head>
 <body>
+<script type="text/javascript">
+    function del(e1, e2) {
+        if (confirm("确认要冻结该卡？")) {
+            window.location.href = '/admin/card/update?id=' + e1 + '&state=' + e2;
+        }
+    }
+
+    function add(e1, e2) {
+        if (confirm("确认要恢复该卡？")) {
+            window.location.href = '/admin/card/update?id=' + e1 + '&state=' + e2;
+        }
+    }
+</script>
 <div class="body-wrapper">
     <!-- partial:partials/_sidebar.html -->
     <aside class="mdc-persistent-drawer mdc-persistent-drawer--open">
@@ -65,13 +80,13 @@
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="/admin/card/">
+                        <a class="mdc-drawer-link active" href="/admin/card/">
                             <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">extension</i>
                             办卡中心管理
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link active" href="/admin/report/">
+                        <a class="mdc-drawer-link" href="/admin/report/">
                             <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">timeline</i>
                             统计报表管理
                         </a>
@@ -117,16 +132,76 @@
         <main class="content-wrapper">
             <div class="mdc-layout-grid">
                 <div class="mdc-layout-grid__inner">
-                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
-                        <form style="margin: auto auto">
-                            <div class="form-group">
-                                <a class="btn btn-info" href="/admin/report/user">统计用户消费报表</a>
-                        </div>
-                            <div class="form-group">
-                                <a class="btn btn-info" href="/admin/report/unit">统计单位收费报表</a>
-                        </div>
+                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+
+                        <form name="frm" action="/admin/card/">
+                            <div class="form-froup" style="float:left;margin-right:30px">
+                                <label class="form-label">卡号：</label><input class="form-control" type="text" name="id"
+                                                                            value='${id}'>
+                            </div>
+                            <div class="form-group" style="float:left;margin-right:30px">
+                                <label class="form-label">用户类型：</label>
+                                <select class="form-control" name="type">
+                                    <option value="">请选择</option>
+                                    <c:forEach items="${list}" var="l">
+                                        <option value="${l}" <c:if test="${l==type}">${"selected"}</c:if>>${l}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-info" style="float:left;margin-top:32px"> 查找</button>
+
+                            <div class="form-froup" style="float:left;margin-right:30px">
+                                <label class="form-label">资助金额：</label>
+                                <input class="form-control" type="text" name="money"
+                                       value='${money}'>
+                            </div>
+                            <button class="btn btn-success" type="submit" style="float:left;margin-top:30px"> 资助
+                            </button>
+                            <div class="form-froup" style="float:left;margin-right:30px">
+                                <button class="btn btn-success" type="submit" style="float:left;margin-top:30px"> 充值
+                                </button>
+                            </div>
                         </form>
                     </div>
+                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-2">
+                        <div id="toolbar" style="text-align:center;margin-right:10px;margin-top: 30px;">
+                            <a class="btn btn-success" href="/admin/card/insert">办卡</a>
+                        </div>
+                    </div>
+
+                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+                        <table class="table table-hover">
+                            <thread>
+                                <tr>
+                                    <th class="text-left">卡号</th>
+                                    <th class="text-left">用户类型</th>
+                                    <th class="text-left">用户状态</th>
+                                    <th class="text-left">用户余额</th>
+                                    <th class="text-left">消费上限</th>
+                                    <th class="text-left">消费上限</th>
+                                    <th class="text-left">消费上限</th>
+                                </tr>
+                            </thread>
+
+                            <tbody>
+                            <c:forEach items="${card}" var="c">
+                                <tr>
+                                    <td class="text-left">&nbsp;&nbsp;${c.id}</td>
+                                    <td class="text-left">&nbsp;&nbsp;${c.type}</td>
+                                    <td class="text-left">&nbsp;&nbsp;${c.state}</td>
+                                    <td class="text-left">&nbsp;&nbsp;${c.amount}</td>
+                                    <td class="text-left">&nbsp;&nbsp;${c.limit}</td>
+
+                                    <td class="text-left">
+                                        <button class="btn btn-danger" onclick="del(${c.id},'冻结')">冻结</button>
+                                        <button class="btn btn-primary" onclick="add(${c.id},'正常')">恢复</button>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
             </div>
         </main>

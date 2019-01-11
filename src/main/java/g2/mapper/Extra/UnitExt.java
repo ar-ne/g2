@@ -21,4 +21,11 @@ public interface UnitExt {
             "</when>",
             "</script>"})
     List<Unit> getd(@Param("id") Long id, @Param("type") String type);
+
+    @Select({
+            "select ",
+            " distinct id",
+            "from Unit"
+    })
+    List<Long> getById();
     }
