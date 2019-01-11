@@ -43,12 +43,12 @@ public class Auth {
     }
 
     @RequestMapping("/logout")
-    public ModelAndView doLogout(HttpServletRequest request) {
+    public String doLogout(HttpServletRequest request) {
         request.getSession().removeAttribute(SessionProperties.state);
         request.getSession().removeAttribute(SessionProperties.name);
         request.getSession().removeAttribute(SessionProperties.type);
         request.getSession().removeAttribute(SessionProperties.cardID);
         request.getSession().invalidate();
-        return index(null);
+        return "redirect:index";
     }
 }

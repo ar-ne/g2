@@ -17273,6 +17273,11 @@ address p {
 .text-green {
   color: green !important; }
 
+.text-lighter-grey {
+  color: #d7ced5;
+!important;
+}
+
 .my-auto {
   margin-top: auto;
   margin-bottom: auto; }
