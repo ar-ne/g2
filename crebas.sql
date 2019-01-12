@@ -1,147 +1,20 @@
 /*==============================================================*/
+/* Database name:  t6                                           */
 /* DBMS name:      Microsoft SQL Server 2012                    */
-/* Created on:     2019/1/12 0:08:56                            */
+/* Created on:     2019/1/12 13:18:55                           */
 /*==============================================================*/
 
 
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('Card') and o.name = 'FK_CARD_REFERENCE_USERTYPE')
-alter table Card
-   drop constraint FK_CARD_REFERENCE_USERTYPE
+drop database t6
 go
 
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('Machine') and o.name = 'FK_MACHINE_REFERENCE_UNIT')
-alter table Machine
-   drop constraint FK_MACHINE_REFERENCE_UNIT
+/*==============================================================*/
+/* Database: t6                                                 */
+/*==============================================================*/
+create database t6
 go
 
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('Users') and o.name = 'FK_USERS_REFERENCE_CARD')
-alter table Users
-   drop constraint FK_USERS_REFERENCE_CARD
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('chargelog') and o.name = 'FK_CHARGELO_REFERENCE_CARD')
-alter table chargelog
-   drop constraint FK_CHARGELO_REFERENCE_CARD
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('chargelog') and o.name = 'FK_CHARGELO_REFERENCE_MACHINE')
-alter table chargelog
-   drop constraint FK_CHARGELO_REFERENCE_MACHINE
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('chargelog') and o.name = 'FK_CHARGELO_REFERENCE_USERS')
-alter table chargelog
-   drop constraint FK_CHARGELO_REFERENCE_USERS
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('consumelog') and o.name = 'FK_CONSUMEL_REFERENCE_MACHINE')
-alter table consumelog
-   drop constraint FK_CONSUMEL_REFERENCE_MACHINE
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('consumelog') and o.name = 'FK_CONSUMEL_REFERENCE_CARD')
-alter table consumelog
-   drop constraint FK_CONSUMEL_REFERENCE_CARD
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('consumelog') and o.name = 'FK_CONSUMEL_REFERENCE_USERS')
-alter table consumelog
-   drop constraint FK_CONSUMEL_REFERENCE_USERS
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('stuff') and o.name = 'FK_STUFF_REFERENCE_UNIT')
-alter table stuff
-   drop constraint FK_STUFF_REFERENCE_UNIT
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('stuff') and o.name = 'FK_STUFF_REFERENCE_SCHEDULE')
-alter table stuff
-   drop constraint FK_STUFF_REFERENCE_SCHEDULE
-go
-
-if exists (select 1
-            from  sysobjects
-           where  id = object_id('Card')
-            and   type = 'U')
-   drop table Card
-go
-
-if exists (select 1
-            from  sysobjects
-           where  id = object_id('Machine')
-            and   type = 'U')
-   drop table Machine
-go
-
-if exists (select 1
-            from  sysobjects
-           where  id = object_id('Unit')
-            and   type = 'U')
-   drop table Unit
-go
-
-if exists (select 1
-            from  sysobjects
-           where  id = object_id('Users')
-            and   type = 'U')
-   drop table Users
-go
-
-if exists (select 1
-            from  sysobjects
-           where  id = object_id('chargelog')
-            and   type = 'U')
-   drop table chargelog
-go
-
-if exists (select 1
-            from  sysobjects
-           where  id = object_id('consumelog')
-            and   type = 'U')
-   drop table consumelog
-go
-
-if exists (select 1
-            from  sysobjects
-           where  id = object_id('schedule')
-            and   type = 'U')
-   drop table schedule
-go
-
-if exists (select 1
-            from  sysobjects
-           where  id = object_id('stuff')
-            and   type = 'U')
-   drop table stuff
-go
-
-if exists (select 1
-            from  sysobjects
-           where  id = object_id('usertype')
-            and   type = 'U')
-   drop table usertype
+use t6
 go
 
 /*==============================================================*/
