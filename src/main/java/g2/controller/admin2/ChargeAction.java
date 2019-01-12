@@ -35,6 +35,7 @@ public class ChargeAction {
     @RequestMapping("mac")
     public ModelAndView mac(Long macID) {
         ModelAndView modelAndView = new ModelAndView("admin2/chargeAction/machine");
+        modelAndView.addObject("mac", machineService.selectByPrimaryKey(macID));
         return modelAndView;
     }
 

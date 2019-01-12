@@ -34,7 +34,7 @@ public class MachineController {
 
     @RequestMapping("/MaInsert")
     public String insert(Model model) {
-        List<Long> list = unitService.getIdAll();
+        List<Long> list = unitService.getIdList();
         model.addAttribute("list", list);
         return "admin/machineInsert";
     }
@@ -56,7 +56,7 @@ public class MachineController {
     @RequestMapping("/MaUpdate")
     public String update(Model model, Long id) {
         Machine machine = machineService.selectByPrimaryKey(id);
-        List<Long> list = unitService.getIdAll();
+        List<Long> list = unitService.getIdList();
         model.addAttribute("list", list);
         model.addAttribute("machine", machine);
         return "admin/machineUpdate";
