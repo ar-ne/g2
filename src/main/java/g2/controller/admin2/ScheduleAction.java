@@ -14,11 +14,11 @@ import java.util.Date;
 
 @Controller
 @RequestMapping("admin2/schedule")
-public class scheduleAction extends BaseController {
+public class ScheduleAction extends BaseController {
     private final ScheduleService scheduleService;
 
     @Autowired
-    public scheduleAction(ScheduleService scheduleService) {
+    public ScheduleAction(ScheduleService scheduleService) {
         this.scheduleService = scheduleService;
     }
 

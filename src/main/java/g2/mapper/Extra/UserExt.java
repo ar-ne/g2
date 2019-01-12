@@ -16,4 +16,7 @@ public interface UserExt {
     })
     @ResultMap("g2.mapper.UserMapper.BaseResultMap")
     User selectByUserKey(UserKey key);
+
+    @Select({"select name from Users where Car_id=#{id,jdbcType=NUMERIC}"})
+    String selectNameByCardID(Long id);
 }

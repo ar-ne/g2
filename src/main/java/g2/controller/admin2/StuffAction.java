@@ -13,13 +13,13 @@ import java.util.List;
 
 @Controller
 @RequestMapping("admin2/stuff")
-public class stuffAction {
+public class StuffAction {
     private final StuffService stuffService;
     private final UnitService unitService;
     private final ScheduleService scheduleService;
 
     @Autowired
-    public stuffAction(StuffService stuffService, UnitService unitService, ScheduleService scheduleService) {
+    public StuffAction(StuffService stuffService, UnitService unitService, ScheduleService scheduleService) {
         this.stuffService = stuffService;
         this.unitService = unitService;
         this.scheduleService = scheduleService;

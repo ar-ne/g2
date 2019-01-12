@@ -4,8 +4,7 @@ import g2.model.Extra.UserKey;
 import g2.model.Extra.UserSession;
 import g2.model.User;
 import g2.service.UserService;
-import g2.util.properties.SessionProperties;
-import g2.util.properties.UserProperties;
+import g2.util.Properites;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,18 +36,18 @@ public class Auth {
         if (chkUSer != null) {
             UserSession session = new UserSession(chkUSer);
             session.setSession(request);
-            return new ModelAndView("redirect:" + UserProperties.urlString[session.getType()]);
+            return new ModelAndView("redirect:" + Properites.loginUrlString[session.getType()]);
         }
         return index("t");
     }
 
     @RequestMapping("/logout")
     public String doLogout(HttpServletRequest request) {
-        request.getSession().removeAttribute(SessionProperties.state);
-        request.getSession().removeAttribute(SessionProperties.name);
-        request.getSession().removeAttribute(SessionProperties.type);
-        request.getSession().removeAttribute(SessionProperties.cardID);
+        request.getSession().removeAttribute(Properites.Session.state);
+        request.getSession().removeAttribute(Properites.Session.name);
+        request.getSession().removeAttribute(Properites.Session.type);
+        request.getSession().removeAttribute(Properites.Session.cardID);
         request.getSession().invalidate();
-        return "redirect:index";
+        return "redirect:/";
     }
 }

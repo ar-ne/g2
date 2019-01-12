@@ -36,4 +36,8 @@ public class UserService {
     public User getUser(String name) {
         return userMapper.selectByPrimaryKey(name);
     }
+
+    public String getNameByCardID(Long cardID) {
+        return userMapper.selectNameByCardID(cardID);
+    }
 }

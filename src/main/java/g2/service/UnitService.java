@@ -11,17 +11,12 @@ import java.util.List;
 public class UnitService {
     private final UnitMapper unitmapper;
     private final MachineService machineService;
-    private final ConsumeService consumeService;
-    private final ChargeService chargeService;
 
     @Autowired
-    public UnitService(UnitMapper unitmapper, MachineService machineService, ConsumeService consumeService, ChargeService chargeService) {
+    public UnitService(UnitMapper unitmapper, MachineService machineService) {
         this.unitmapper = unitmapper;
         this.machineService = machineService;
-        this.consumeService = consumeService;
-        this.chargeService = chargeService;
     }
-
 
     public List<Unit> UnitGet(Long id, String type) {
         return unitmapper.getd(id, type);
@@ -53,5 +48,9 @@ public class UnitService {
 
     public List<Long> getIdList() {
         return unitmapper.getIdAll();
+    }
+
+    public List<Unit> getAll() {
+        return unitmapper.selectAll();
     }
 }

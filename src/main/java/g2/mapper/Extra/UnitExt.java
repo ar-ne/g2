@@ -28,4 +28,7 @@ public interface UnitExt {
             "from Unit"
     })
     List<Long> getIdAll();
-    }
+
+    @Select({"select * from Unit"})
+    List<Unit> selectAll();
+}

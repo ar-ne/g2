@@ -39,4 +39,8 @@ public class CardService {
     public int reCharge(Long id, Double money) {
         return cardMapper.recharge(id, money);
     }
+
+    public Card get(Long id) {
+        return cardMapper.selectByPrimaryKey(id);
+    }
 }
