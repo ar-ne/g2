@@ -106,7 +106,7 @@
                     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
                         <div class="mdc-card">
                             <div class="mdc-card__primary">
-                                <h1>添加员工</h1>
+                                <h1>修改员工</h1>
                             </div>
                             <div class="mdc-card__primary">
 

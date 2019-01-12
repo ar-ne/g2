@@ -61,4 +61,11 @@ public class stuffAction {
             return "redirect:/admin2/stuff";
         return "redirect:/admin2/error";
     }
+
+    @RequestMapping("del")
+    public String delete(Long id) {
+        if (stuffService.delete(id) > 0)
+            return "redirect:/admin2/schedule";
+        return "redirect:/admin2/error";
+    }
 }

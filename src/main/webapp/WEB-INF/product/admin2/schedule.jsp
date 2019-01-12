@@ -153,11 +153,12 @@
                                                                data-mdc-auto-init="MDCRipple"
                                                                style="--mdc-ripple-fg-size:27.9375px; --mdc-ripple-fg-scale:2.23298; --mdc-ripple-fg-translate-start:5.19373px, -3.39374px; --mdc-ripple-fg-translate-end:9.3125px, -1.96875px;">
                                                                 <i class="material-icons text-green">edit</i></a>
-                                                            <a href="/admin2/schedule/del?id=${i.id}"
-                                                               class="col mdc-button mdc-ripple-upgraded"
-                                                               data-mdc-auto-init="MDCRipple"
-                                                               style="--mdc-ripple-fg-size:27.9375px; --mdc-ripple-fg-scale:2.23298;">
-                                                                <i class="material-icons text-red">delete_forever</i></a>
+                                                            <button onclick="confirmInfo(${i.id})"
+                                                                    class="col mdc-button mdc-ripple-upgraded"
+                                                                    data-mdc-auto-init="MDCRipple"
+                                                                    style="--mdc-ripple-fg-size:27.9375px; --mdc-ripple-fg-scale:2.23298;">
+                                                                <i class="material-icons text-red">delete_forever</i>
+                                                            </button>
                                                         </td>
                                                     </tr>
                                                 </c:forEach>
@@ -208,6 +209,14 @@
 <!-- endinject -->
 <!-- Custom js for this page-->
 <script src="${pageContext.request.contextPath}/js/dashboard.js"></script>
+<script>
+    function confirmInfo(e) {
+        if (confirm("确认删除？")) {
+            //console.log(e);
+            window.location.href = "/admin2/schedule/del?id=" + e;
+        }
+    }
+</script>
 <!-- End custom js for this page-->
 </body>
 </html>

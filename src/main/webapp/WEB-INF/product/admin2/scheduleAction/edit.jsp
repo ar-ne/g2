@@ -106,19 +106,19 @@
                     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
                         <div class="mdc-card">
                             <div class="mdc-card__primary">
-                                <h1>添加员工</h1>
+                                <h1>修改排班</h1>
                             </div>
-                            <div class="mdc-card__primary">
-                                <div class="mdc-layout-grid__inner">
-                                    <form action="/admin2/schedule/edit.do" method="post">
+                            <form action="/admin2/schedule/edit.do" method="post">
+                                <div class="mdc-card__primary">
+                                    <div class="mdc-layout-grid__inner">
                                         <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
                                             <div id="demo-tf-box-leading-wrapper" class="w-100">
                                                 <div id="tf-box-leading-example"
                                                      class="mdc-text-field mdc-text-field--box w-100 mdc-text-field--upgraded mdc-ripple-upgraded"
                                                      style="--mdc-ripple-fg-size:111.06px; --mdc-ripple-fg-scale:1.83131; --mdc-ripple-fg-translate-start:60.37px, -17.93px; --mdc-ripple-fg-translate-end:37.02px, -27.53px;">
-                                                    <input type="hidden" value="${id}">
+                                                    <input type="hidden" value="${id}" name="id">
                                                     <input type="text" id="tf-box-leading" class="mdc-text-field__input"
-                                                           name="name" value="${address}">
+                                                           name="address" value="${address}">
                                                     <label for="tf-box-leading"
                                                            class="mdc-text-field__label mdc-text-field__label--float-above">地点</label>
                                                     <div class="mdc-text-field__bottom-line"
@@ -136,7 +136,7 @@
                                                      style="--mdc-ripple-fg-size:111.06px; --mdc-ripple-fg-scale:1.83131; --mdc-ripple-fg-translate-start:60.37px, -17.93px; --mdc-ripple-fg-translate-end:37.02px, -27.53px;">
                                                     <input type="datetime-local" id="tf-box-leading1"
                                                            class="mdc-text-field__input"
-                                                           name="name" value="${start}">
+                                                           name="start" value="${start}">
                                                     <label for="tf-box-leading1"
                                                            class="mdc-text-field__label mdc-text-field__label--float-above">开始时间</label>
                                                     <div class="mdc-text-field__bottom-line"
@@ -153,7 +153,7 @@
                                                      style="--mdc-ripple-fg-size:111.06px; --mdc-ripple-fg-scale:1.83131; --mdc-ripple-fg-translate-start:60.37px, -17.93px; --mdc-ripple-fg-translate-end:37.02px, -27.53px;">
                                                     <input type="datetime-local" id="tf-box-leading2"
                                                            class="mdc-text-field__input"
-                                                           name="name" value="${stop}">
+                                                           name="stop" value="${stop}">
                                                     <label for="tf-box-leading2"
                                                            class="mdc-text-field__label mdc-text-field__label--float-above">结束时间</label>
                                                     <div class="mdc-text-field__bottom-line"
@@ -170,9 +170,10 @@
                                                 提交
                                             </button>
                                         </div>
-                                    </form>
+                                    </div>
+
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>

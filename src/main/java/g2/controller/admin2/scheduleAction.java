@@ -52,7 +52,7 @@ public class scheduleAction extends BaseController {
         return "redirect:/admin2/error";
     }
 
-    @RequestMapping("delete")
+    @RequestMapping("del")
     public String delete(Long id) {
         if (scheduleService.delete(id) > 0)
             return "redirect:/admin2/schedule";

@@ -34,4 +34,8 @@ public class StuffService {
     public int update(Stuff stuff) {
         return stuffMapper.updateByPrimaryKey(stuff);
     }
+
+    public int delete(Long id) {
+        return stuffMapper.deleteByPrimaryKey(id);
+    }
 }
