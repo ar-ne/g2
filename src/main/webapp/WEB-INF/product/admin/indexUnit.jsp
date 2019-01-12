@@ -38,6 +38,22 @@
             window.location.href = '/admin/unit/UnitDelete?id=' + e;
         }
     }
+
+    /* function onSearch(){//js函数开始
+             var unitId = document.getElementById('unit');//获取table的id标识
+             var unitLength = storeId.rows.length;//表格总共有多少行
+             var idKey = $("#id");//获取id的值
+             var typeKey = $("#type");//获取type的值
+             var unitCol = [1,2];//要搜索的哪一列，这里是第一列，从0开始数起
+             for(var i=1;i<rowsLength;i++){//按表的行数进行循环，本例第一行是标题，所以i=1，从第二行开始筛选（从0数起）
+                 var searchText = storeId.rows[i].cells[searchCol].innerHTML;//取得table行，列的值
+                 if(searchText.match(key)){//用match函数进行筛选，如果input的值，即变量 key的值为空，返回的是ture，
+                     storeId.rows[i].style.display='';//显示行操作，
+                 }else{
+                     storeId.rows[i].style.display='none';//隐藏行操作
+                 }
+             }
+         }*/
 </script>
 <div class="body-wrapper">
     <!-- partial:partials/_sidebar.html -->
@@ -51,7 +67,7 @@
             <div class="mdc-list-group">
                 <nav class="mdc-list mdc-drawer-menu">
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link " href="/admin">
+                        <a class="mdc-drawer-link " href="/admin/">
                             <%--<i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
 --%>
@@ -60,13 +76,13 @@
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link active" href="/admin/unit/UnitList">
+                        <a class="mdc-drawer-link active" href="/admin/unit/">
                             <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">group_work</i>
                             单位管理
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="/admin/ma/MaList">
+                        <a class="mdc-drawer-link" href="/admin/ma/">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
 
@@ -85,6 +101,12 @@
                             统计报表管理
                         </a>
                     </div>
+                    <div class="mdc-list-item mdc-drawer-item">
+                        <a class="mdc-drawer-link " href="/admin/data/">
+                            <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">poll</i>
+                            数据分析与挖掘
+                        </a>
+                    </div>
                 </nav>
             </div>
         </nav>
@@ -100,6 +122,25 @@
           </span>
             </section>
             <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
+                <div class="mdc-menu-anchor">
+                    <a href="#" class="mdc-toolbar__icon toggle mdc-ripple-surface" data-toggle="dropdown"
+                       toggle-dropdown="notification-menu" data-mdc-auto-init="MDCRipple">
+                        <i class="material-icons">notifications</i>
+                        <span class="dropdown-count">2</span>
+                    </a>
+                    <div class="mdc-simple-menu mdc-simple-menu--right" tabindex="-1" id="notification-menu">
+                        <ul class="mdc-simple-menu__items mdc-list" role="menu" aria-hidden="true">
+                            <li class="mdc-list-item" role="menuitem" tabindex="0">
+                                <i class="material-icons mdc-theme--primary mr-1">email</i>
+                                检查更新
+                            </li>
+                            <li class="mdc-list-item" role="menuitem" tabindex="0">
+                                <i class="material-icons mdc-theme--primary mr-1">group</i>
+                                未读信息
+                            </li>
+                        </ul>
+                    </div>
+                </div>
                 <div class="mdc-menu-anchor mr-1">
                     <a href="#" class="mdc-toolbar__icon toggle mdc-ripple-surface" data-toggle="dropdown"
                        toggle-dropdown="logout-menu" data-mdc-auto-init="MDCRipple">
@@ -128,21 +169,22 @@
                 <div class="mdc-layout-grid__inner">
                     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-10">
 
-                        <form name="frm" action="/admin/unit/UnitList">
+                        <form name="frm" action="/admin/unit/">
                             <div class="form-froup" style="float:left;margin-right:30px">
                                 <label class="form-label">单位编号：</label><input class="form-control" type="text" name="id"
-                                                                              value='${id}'>
+                                                                              id="id" value='${id}'>
                             </div>
                             <div class="form-group" style="float:left;margin-right:30px">
                                 <label class="form-label">单位类型：</label>
-                                <select class="form-control" name="type">
+                                <select class="form-control" name="type" id="type">
                                     <option value="">请选择</option>
                                     <option value="车队"     <c:if test="${type=='车队'}">${"selected"}</c:if>>车队</option>
                                     <option value="食堂窗口" <c:if test="${type=='食堂窗口'}">${"selected"}</c:if>>食堂窗口</option>
                                     <option value="售电窗口" <c:if test="${type=='售电窗口'}">${"selected"}</c:if>>售电窗口</option>
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-info" style="float:left;margin-top:32px"> 查找</button>
+                            <button onclick="submit" class="btn btn-info" style="float:left;margin-top:32px"> 查找
+                            </button>
                         </form>
                     </div>
                     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-2">
@@ -152,16 +194,17 @@
                     </div>
 
                     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
-                        <table class="table table-hover">
-                            <thread>
-                                <tr>
+                        <table class="table table-hover" id="unit">
+                            <thead>
+                            <tr style="font-family: 'Arial Narrow'">
                                     <th class="text-left">单位编号</th>
                                     <th class="text-left">单位类型</th>
                                     <th class="text-left">单位账号</th>
                                     <th class="text-left">单位密码</th>
                                     <th class="text-left">单位联系方式</th>
+                                <th class="text-left">操作</th>
                                 </tr>
-                            </thread>
+                            </thead>
 
                             <tbody>
                             <c:forEach items="${unit}" var="u">

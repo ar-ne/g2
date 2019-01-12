@@ -41,4 +41,7 @@ public interface MachineExt {
             "</when>",
             "</script>"})
     List<Machine> GetByTwoId(@Param("id") Long id, @Param("Uni_id") Long Uni_id);
+
+    @Select({"SElect * from machine where uni_id=#{id,jdbcType=NUMERIC}"})
+    List<Machine> selectMachinesByUnitID(Long id);
 }

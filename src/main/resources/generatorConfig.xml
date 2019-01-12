@@ -72,42 +72,52 @@
         <table tableName="stuff" domainObjectName="Stuff" enableCountByExample="false" enableUpdateByExample="false"
             enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <property name="useActualColumnNames" value="true" />
+            <property name="rootInterface" value="g2.mapper.Extra.StuffExt" />
         </table>
         <table tableName="schedule" domainObjectName="Schedule" enableCountByExample="false"
             enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
             selectByExampleQueryId="false">
             <property name="useActualColumnNames" value="true" />
+            <property name="rootInterface" value="g2.mapper.Extra.ScheduleExt" />
         </table>
         <table tableName="chargelog" domainObjectName="Charge" enableCountByExample="false"
             enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
             selectByExampleQueryId="false">
             <property name="useActualColumnNames" value="true" />
-            <property name="rootInterface" value="g2.mapper.Extra.ChargeExt"/>
+            <property name="rootInterface" value="g2.mapper.Extra.ChargeExt" />
         </table>
         <table tableName="Card" domainObjectName="Card" enableCountByExample="false" enableUpdateByExample="false"
             enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <property name="useActualColumnNames" value="true" />
-            <property name="rootInterface" value="g2.mapper.Extra.CardExt"/>
+            <property name="rootInterface" value="g2.mapper.Extra.CardExt" />
         </table>
         <table tableName="Users" domainObjectName="User" enableCountByExample="false" enableUpdateByExample="false"
             enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <property name="useActualColumnNames" value="true" />
-            <property name="rootInterface" value="g2.mapper.Extra.UserExt"/>
+            <property name="rootInterface" value="g2.mapper.Extra.UserExt" />
         </table>
         <table tableName="Machine" domainObjectName="Machine" enableCountByExample="false" enableUpdateByExample="false"
             enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <property name="useActualColumnNames" value="true" />
-            <property name="rootInterface" value="g2.mapper.Extra.MachineExt"/>
+            <property name="rootInterface" value="g2.mapper.Extra.MachineExt" />
         </table>
         <table tableName="Unit" domainObjectName="Unit" enableCountByExample="false" enableUpdateByExample="false"
             enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <property name="useActualColumnNames" value="true" />
-            <property name="rootInterface" value="g2.mapper.Extra.UnitExt"/>
+            <property name="rootInterface" value="g2.mapper.Extra.UnitExt" />
         </table>
-        <table tableName="consumelog" domainObjectName="Consume" enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        <table tableName="consumelog" domainObjectName="Consume" enableCountByExample="false"
+            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false">
             <property name="useActualColumnNames" value="true" />
-            <property name="rootInterface" value="g2.mapper.Extra.ConsumeExt"/>
+            <property name="rootInterface" value="g2.mapper.Extra.ConsumeExt" />
         </table>
+        <table tableName="usertype" domainObjectName="Usertype" enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
+            <property name="rootInterface" value="g2.mapper.Extra.UsertypeExt">
+        </table>
+
     </context>
 </generatorConfiguration>
