@@ -38,8 +38,7 @@ public class UserService {
         return userMapper.selectByPrimaryKey(name);
     }
 
-    /*public int deleteByCardId(Long id){
-        String name = userMapper.selectNameByCardId(id);
-        return consumeService.deleteByName(name) + chargeService.deleteByName(name)+userMapper.deleteByCardId(id);
-    }*/
+    public String getNameByCardID(Long cardID) {
+        return userMapper.selectNameByCardID(cardID);
+    }
 }

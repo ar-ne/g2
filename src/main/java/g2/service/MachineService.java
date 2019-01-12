@@ -2,10 +2,12 @@ package g2.service;
 
 import g2.mapper.MachineMapper;
 import g2.model.Machine;
+import g2.model.Unit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class MachineService {
@@ -41,6 +43,10 @@ public class MachineService {
 
     public List<Long> selectByUnitId(Long id) {
         return machineMapper.SelectByUnitId(id);
+    }
+
+    public List<Machine> getMachineByUnit(Long id) {
+        return machineMapper.selectMachinesByUnitID(id);
     }
 
     public List<Machine> getByTwoId(Long id, Long Uni_id) {

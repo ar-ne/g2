@@ -24,8 +24,11 @@ public interface UnitExt {
 
     @Select({
             "select ",
-            " distinct id",
+            " id",
             "from Unit"
     })
-    List<Long> getById();
-    }
+    List<Long> getIdAll();
+
+    @Select({"select * from Unit"})
+    List<Unit> selectAll();
+}

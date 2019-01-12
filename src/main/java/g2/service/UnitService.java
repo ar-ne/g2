@@ -11,16 +11,12 @@ import java.util.List;
 public class UnitService {
     private final UnitMapper unitmapper;
     private final MachineService machineService;
-    private final ConsumeService consumeService;
-    private final ChargeService chargeService;
+
     @Autowired
-    public UnitService(UnitMapper unitmapper, MachineService machineService, ConsumeService consumeService, ChargeService chargeService) {
+    public UnitService(UnitMapper unitmapper, MachineService machineService) {
         this.unitmapper = unitmapper;
         this.machineService = machineService;
-        this.consumeService = consumeService;
-        this.chargeService = chargeService;
     }
-
 
     public List<Unit> UnitGet(Long id, String type) {
         return unitmapper.getd(id, type);
@@ -33,7 +29,7 @@ public class UnitService {
      * @return 被影响的行数目
      * @see MachineService#deleteByUnitId(Long)
      */
-    public int UnitDelete(Long id) {
+    public int delete(Long id) {
         return machineService.deleteByUnitId(id) + unitmapper.deleteByPrimaryKey(id);
 
     }
@@ -42,15 +38,19 @@ public class UnitService {
         return unitmapper.updateByPrimaryKeySelective(unit);
     }
 
-    public Unit selectById(Long id) {
+    public Unit getByPrimaryKey(Long id) {
         return unitmapper.selectByPrimaryKey(id);
     }
 
-    public int insert(Unit unit) {
+    public int add(Unit unit) {
         return unitmapper.insertSelective(unit);
     }
 
-    public List<Long> getIdAll() {
-        return unitmapper.getById();
+    public List<Long> getIdList() {
+        return unitmapper.getIdAll();
+    }
+
+    public List<Unit> getAll() {
+        return unitmapper.selectAll();
     }
 }

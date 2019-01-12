@@ -1,4 +1,5 @@
 <%@ page pageEncoding="utf-8" contentType="text/html; utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <!-- Required meta tags -->
@@ -102,7 +103,75 @@
         <main class="content-wrapper">
             <div class="mdc-layout-grid">
                 <div class="mdc-layout-grid__inner">
-                    <h3 class="text-center">欢迎 ${user}</h3>
+                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+                        <div class="mdc-card">
+                            <%--按钮/输入框区--%>
+                            <div class="mdc-card__primary">
+                                <div class="mdc-layout-grid__inner">
+                                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6 w-100"></div>
+
+                                    <%--添加按钮--%>
+                                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4 w-100">
+                                        <a href="/admin2/stuff/add"
+                                           class="mdc-button mdc-button--stroked mdc-ripple-upgraded w-100"
+                                           data-mdc-auto-init="MDCRipple"
+                                           style="--mdc-ripple-fg-size:60.2325px; --mdc-ripple-fg-scale:1.93662; --mdc-ripple-fg-translate-start:32.9175px, -5.18249px; --mdc-ripple-fg-translate-end:20.255px, -12.3825px;">
+                                            <i class="material-icons mdc-button__icon">add_box</i>
+                                            添加
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <%--表格区--%>
+                            <div class="mdc-card__primary">
+                                <div class="mdc-layout-grid__inner">
+                                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+                                        <c:if test="${list.size()!=0}">
+                                            <table class="table table-hoverable w-100">
+                                                <thead>
+                                                <tr>
+                                                    <th class="text-left">员工编号</th>
+                                                    <th class="text-left">单位编号</th>
+                                                    <th class="text-left">排班编号</th>
+                                                    <th class="text-left">员工姓名</th>
+                                                    <th class="text-left">操作</th>
+                                                </thead>
+
+                                                <tbody>
+                                                <c:forEach items="${list}" var="i">
+                                                    <tr id="tr_id_${i.id}">
+                                                        <td class="text-left">${i.id}</td>
+                                                        <td ${i.uni_id==null?"style='color: lightgray;'":""}
+                                                                class="text-left">${i.uni_id==null?"空":i.uni_id}</td>
+                                                        <td ${i.sch_id==null?"style='color: lightgray;'":""}
+                                                                class="text-left">${i.sch_id==null?"空":i.sch_id}</td>
+                                                        <td ${i.name==null?"style='color: lightgray;'":""}
+                                                                class="text-left">${i.name==null?"空":i.name}</td>
+                                                        <td class="text-left">
+                                                            <a href="/admin2/stuff/edit?id=${i.id}"
+                                                               class="col mdc-button mdc-ripple-upgraded"
+                                                               data-mdc-auto-init="MDCRipple"
+                                                               style="--mdc-ripple-fg-size:27.9375px; --mdc-ripple-fg-scale:2.23298; --mdc-ripple-fg-translate-start:5.19373px, -3.39374px; --mdc-ripple-fg-translate-end:9.3125px, -1.96875px;">
+                                                                <i class="material-icons text-green">edit</i></a>
+                                                            <a href="/admin2/stuff/del?id=${i.id}"
+                                                               class="col mdc-button mdc-ripple-upgraded"
+                                                               data-mdc-auto-init="MDCRipple"
+                                                               style="--mdc-ripple-fg-size:27.9375px; --mdc-ripple-fg-scale:2.23298;">
+                                                                <i class="material-icons text-red">delete_forever</i></a>
+                                                        </td>
+                                                    </tr>
+                                                </c:forEach>
+                                                </tbody>
+                                            </table>
+                                        </c:if>
+                                        <c:if test="${list.size()==0}">
+                                            <h2>员工信息为空</h2>
+                                        </c:if>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
@@ -139,6 +208,22 @@
 <!-- endinject -->
 <!-- Custom js for this page-->
 <script src="${pageContext.request.contextPath}/js/dashboard.js"></script>
+<script>
+    function sort() {
+        var storeId = document.getElementById('store');//获取table的id标识
+        var rowsLength = storeId.rows.length;//表格总共有多少行
+        var key = obj.value;//获取输入框的值
+        var searchCol = 0;//要搜索的哪一列，这里是第一列，从0开始数起
+        for (var i = 1; i < rowsLength; i++) {//按表的行数进行循环，本例第一行是标题，所以i=1，从第二行开始筛选（从0数起）
+            var searchText = storeId.rows[i].cells[searchCol].innerHTML;//取得table行，列的值
+            if (searchText.match(key)) {//用match函数进行筛选，如果input的值，即变量 key的值为空，返回的是ture，
+                storeId.rows[i].style.display = '';//显示行操作，
+            } else {
+                storeId.rows[i].style.display = 'none';//隐藏行操作
+            }
+        }
+    }
+</script>
 <!-- End custom js for this page-->
 </body>
 </html>

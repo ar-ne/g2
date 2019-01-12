@@ -1,6 +1,7 @@
 package g2.service;
 
 import g2.mapper.ChargeMapper;
+import g2.model.Charge;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,10 @@ public class ChargeService {
 
     public int deleteByMacId(Long id) {
         return chargeMapper.DeleteByMacId(id);
+    }
+
+    public int add(Charge charge) {
+        return chargeMapper.insertSelective(charge);
     }
 
     public int deleteByCardId(Long id) {

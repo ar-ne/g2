@@ -31,4 +31,7 @@ public interface UserExt {
             "Car_id = #{id,jdbcType=VARCHAR}"
     })
     String selectNameByCardId(Long id);
+
+    @Select({"select name from Users where Car_id=#{id,jdbcType=NUMERIC}"})
+    String selectNameByCardID(Long id);
 }

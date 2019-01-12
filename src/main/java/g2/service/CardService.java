@@ -53,12 +53,8 @@ public class CardService {
     public int reCharge(Long id, Double money) {
         return cardMapper.recharge(id, money);
     }
-    /*public int deleteById(Long id){
-        System.out.println(consumeService.deleteByCardId(id));
-        System.out.println(chargeService.deleteByCardId(id));
-        System.out.println(cardMapper.deleteByPrimaryKey(id));
-        System.out.println(userService.deleteByCardId(id));
-        return 1;
-        //return consumeService.deleteByCardId(id)+chargeService.deleteByCardId(id)+cardMapper.deleteByPrimaryKey(id)+userService.deleteByCardId(id);
-    }*/
+
+    public Card get(Long id) {
+        return cardMapper.selectByPrimaryKey(id);
+    }
 }

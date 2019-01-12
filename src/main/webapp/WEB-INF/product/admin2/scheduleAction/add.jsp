@@ -105,71 +105,71 @@
                 <div class="mdc-layout-grid__inner">
                     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
                         <div class="mdc-card">
-                            <%--按钮/输入框区--%>
                             <div class="mdc-card__primary">
-                                <div class="mdc-layout-grid__inner">
-                                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6 w-100"></div>
-
-                                    <%--添加按钮--%>
-                                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4 w-100">
-                                        <a href="/admin2/schedule/add"
-                                           class="mdc-button mdc-button--stroked mdc-ripple-upgraded w-100"
-                                           data-mdc-auto-init="MDCRipple"
-                                           style="--mdc-ripple-fg-size:60.2325px; --mdc-ripple-fg-scale:1.93662; --mdc-ripple-fg-translate-start:32.9175px, -5.18249px; --mdc-ripple-fg-translate-end:20.255px, -12.3825px;">
-                                            <i class="material-icons mdc-button__icon">add_box</i>
-                                            添加
-                                        </a>
-                                    </div>
-                                </div>
+                                <h1>添加排班</h1>
                             </div>
-                            <%--表格区--%>
                             <div class="mdc-card__primary">
-                                <div class="mdc-layout-grid__inner">
-                                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
-                                        <c:if test="${list.size()!=0}">
-                                            <table class="table table-hoverable w-100">
-                                                <thead>
-                                                <tr>
-                                                    <th class="text-left">排班编号</th>
-                                                    <th class="text-left">开始时间</th>
-                                                    <th class="text-left">结束时间</th>
-                                                    <th class="text-left">地点</th>
-                                                    <th class="text-left">操作</th>
-                                                </thead>
+                                <form method="post" action="/admin2/schedule/add.do">
+                                    <div class="mdc-layout-grid__inner">
+                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+                                            <div id="demo-tf-box-leading-wrapper" class="w-100">
+                                                <div id="tf-box-leading-example"
+                                                     class="mdc-text-field mdc-text-field--box w-100 mdc-text-field--upgraded mdc-ripple-upgraded"
+                                                     style="--mdc-ripple-fg-size:111.06px; --mdc-ripple-fg-scale:1.83131; --mdc-ripple-fg-translate-start:60.37px, -17.93px; --mdc-ripple-fg-translate-end:37.02px, -27.53px;">
+                                                    <input type="text" id="tf-box-leading" class="mdc-text-field__input"
+                                                           name="address">
+                                                    <label for="tf-box-leading"
+                                                           class="mdc-text-field__label">地点</label>
+                                                    <div class="mdc-text-field__bottom-line"
+                                                         style="transform-origin: 115.89999389648438px center"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6"></div>
 
-                                                <tbody>
-                                                <c:forEach items="${list}" var="i">
-                                                    <tr id="tr_id_${i.id}">
-                                                        <td class="text-left">${i.id}</td>
-                                                        <td ${i.start==null?"style='color: lightgray;'":""}
-                                                                class="text-left">${i.start==null?"空":i.start}</td>
-                                                        <td ${i.stop==null?"style='color: lightgray;'":""}
-                                                                class="text-left">${i.stop==null?"空":i.stop}</td>
-                                                        <td ${i.address==null?"style='color: lightgray;'":""}
-                                                                class="text-left">${i.address==null?"空":i.address}</td>
-                                                        <td class="text-left">
-                                                            <a href="/admin2/schedule/edit?id=${i.id}"
-                                                               class="col mdc-button mdc-ripple-upgraded"
-                                                               data-mdc-auto-init="MDCRipple"
-                                                               style="--mdc-ripple-fg-size:27.9375px; --mdc-ripple-fg-scale:2.23298; --mdc-ripple-fg-translate-start:5.19373px, -3.39374px; --mdc-ripple-fg-translate-end:9.3125px, -1.96875px;">
-                                                                <i class="material-icons text-green">edit</i></a>
-                                                            <button onclick="confirmInfo(${i.id})"
-                                                                    class="col mdc-button mdc-ripple-upgraded"
-                                                                    data-mdc-auto-init="MDCRipple"
-                                                                    style="--mdc-ripple-fg-size:27.9375px; --mdc-ripple-fg-scale:2.23298;">
-                                                                <i class="material-icons text-red">delete_forever</i>
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                </c:forEach>
-                                                </tbody>
-                                            </table>
-                                        </c:if>
-                                        <c:if test="${list.size()==0}">
-                                            <h2>排班信息为空</h2>
-                                        </c:if>
+                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+                                            <div id="demo-tf-box-leading-wrapper1" class="w-100">
+                                                <div id="tf-box-leading-example1"
+                                                     class="mdc-text-field mdc-text-field--box w-100 mdc-text-field--upgraded mdc-ripple-upgraded"
+                                                     style="--mdc-ripple-fg-size:111.06px; --mdc-ripple-fg-scale:1.83131; --mdc-ripple-fg-translate-start:60.37px, -17.93px; --mdc-ripple-fg-translate-end:37.02px, -27.53px;">
+                                                    <input type="datetime-local" id="tf-box-leading1"
+                                                           class="mdc-text-field__input"
+                                                           name="start">
+                                                    <label for="tf-box-leading1"
+                                                           class="mdc-text-field__label mdc-text-field__label--float-above">开始时间</label>
+                                                    <div class="mdc-text-field__bottom-line"
+                                                         style="transform-origin: 115.89999389648438px center"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6"></div>
+
+                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+                                            <div id="demo-tf-box-leading-wrapper2" class="w-100">
+                                                <div id="tf-box-leading-example2"
+                                                     class="mdc-text-field mdc-text-field--box w-100 mdc-text-field--upgraded mdc-ripple-upgraded"
+                                                     style="--mdc-ripple-fg-size:111.06px; --mdc-ripple-fg-scale:1.83131; --mdc-ripple-fg-translate-start:60.37px, -17.93px; --mdc-ripple-fg-translate-end:37.02px, -27.53px;">
+                                                    <input type="datetime-local" id="tf-box-leading2"
+                                                           class="mdc-text-field__input"
+                                                           name="stop">
+                                                    <label for="tf-box-leading2"
+                                                           class="mdc-text-field__label mdc-text-field__label--float-above">结束时间</label>
+                                                    <div class="mdc-text-field__bottom-line"
+                                                         style="transform-origin: 115.89999389648438px center"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6"></div>
+                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+                                            <button type="submit"
+                                                    class="mdc-button mdc-button--stroked thick-stroke-button mdc-ripple-upgraded"
+                                                    data-mdc-auto-init="MDCRipple"
+                                                    style="--mdc-ripple-fg-size:115.62px; --mdc-ripple-fg-scale:1.78199; --mdc-ripple-fg-translate-start:104.79px, -32.2099px; --mdc-ripple-fg-translate-end:38.54px, -39.81px;">
+                                                提交
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -206,17 +206,31 @@
 <!-- inject:js -->
 <script src="${pageContext.request.contextPath}/js/misc.js"></script>
 <script src="${pageContext.request.contextPath}/js/material.js"></script>
+<script>
+    if ($('#hero-js-select1').length) {
+        var heroSelect1 = document.getElementById('hero-js-select1');
+        var heroSelectComponent1 = new mdc.select.MDCSelect(heroSelect1);
+    }
+    if ($('#tf-box-example1').length) {
+        var tfEl = document.getElementById('tf-box-example1');
+        var tf = new mdc.textField.MDCTextField(tfEl);
+    }
+    if ($('#demo-tf-box-wrapper1').length) {
+        var wrapper = document.getElementById('demo-tf-box-wrapper1');
+    }
+    if ($('#tf-box-example2').length) {
+        var tfEl = document.getElementById('tf-box-example2');
+        var tf = new mdc.textField.MDCTextField(tfEl);
+    }
+    if ($('#demo-tf-box-wrapper2').length) {
+        var wrapper = document.getElementById('demo-tf-box-wrapper2');
+    }
+
+    $("form").submit(chk());
+</script>
 <!-- endinject -->
 <!-- Custom js for this page-->
 <script src="${pageContext.request.contextPath}/js/dashboard.js"></script>
-<script>
-    function confirmInfo(e) {
-        if (confirm("确认删除？")) {
-            //console.log(e);
-            window.location.href = "/admin2/schedule/del?id=" + e;
-        }
-    }
-</script>
 <!-- End custom js for this page-->
 </body>
 </html>
