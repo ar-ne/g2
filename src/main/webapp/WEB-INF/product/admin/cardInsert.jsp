@@ -51,13 +51,13 @@
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="/admin/unit/">
+                        <a class="mdc-drawer-link" href="/admin/unit/UnitList">
                             <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">group_work</i>
                             单位管理
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link " href="/admin/ma/">
+                        <a class="mdc-drawer-link " href="/admin/ma/MaList">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
 
@@ -76,12 +76,6 @@
                             统计报表管理
                         </a>
                     </div>
-                    <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link " href="/admin/data/">
-                            <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">poll</i>
-                            数据分析与挖掘
-                        </a>
-                    </div>
                 </nav>
             </div>
         </nav>
@@ -97,25 +91,6 @@
           </span>
             </section>
             <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
-                <div class="mdc-menu-anchor">
-                    <a href="#" class="mdc-toolbar__icon toggle mdc-ripple-surface" data-toggle="dropdown"
-                       toggle-dropdown="notification-menu" data-mdc-auto-init="MDCRipple">
-                        <i class="material-icons">notifications</i>
-                        <span class="dropdown-count">2</span>
-                    </a>
-                    <div class="mdc-simple-menu mdc-simple-menu--right" tabindex="-1" id="notification-menu">
-                        <ul class="mdc-simple-menu__items mdc-list" role="menu" aria-hidden="true">
-                            <li class="mdc-list-item" role="menuitem" tabindex="0">
-                                <i class="material-icons mdc-theme--primary mr-1">email</i>
-                                检查更新
-                            </li>
-                            <li class="mdc-list-item" role="menuitem" tabindex="0">
-                                <i class="material-icons mdc-theme--primary mr-1">group</i>
-                                未读信息
-                            </li>
-                        </ul>
-                    </div>
-                </div>
                 <div class="mdc-menu-anchor mr-1">
                     <a href="#" class="mdc-toolbar__icon toggle mdc-ripple-surface" data-toggle="dropdown"
                        toggle-dropdown="logout-menu" data-mdc-auto-init="MDCRipple">
@@ -145,15 +120,12 @@
                     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-10">
                         <form name="frm" action="/admin/card/insertDo" style="margin: auto auto;">
                             <div class="form-froup">
-                                <label class="form-label">用户类型：</label>
-                                <input class="form-control" type="text" name="type" value='1级'>
+                                <label class="form-label">用户类型：</label><input class="form-control" type="text"
+                                                                              name="type" value='1级'>
                             </div>
                             <div class="form-froup">
-                                <label class="form-label">用户状态：</label>
-                                <select class="form-control" name="state">
-                                    <option value="正常">正常</option>
-                                    <option value="冻结">冻结</option>
-                                </select>
+                                <label class="form-label">用户状态：</label><input class="form-control" type="text"
+                                                                              name="state" value='正常'>
                             </div>
                             <div class="form-froup">
                                 <label class="form-label">用户余额：</label><input class="form-control" type="text"

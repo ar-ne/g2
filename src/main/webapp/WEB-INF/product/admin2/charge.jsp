@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page pageEncoding="utf-8" contentType="text/html; utf-8" %>
 <html>
 <head>
@@ -103,61 +102,7 @@
         <main class="content-wrapper">
             <div class="mdc-layout-grid">
                 <div class="mdc-layout-grid__inner">
-
-                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
-                        <div class="mdc-card">
-                            <div class="mdc-card__primary">
-                                <h1>选择刷卡机</h1>
-                            </div>
-                            <div class="mdc-card__primary">
-                                <form method="post" action="/admin2/charge/mac">
-                                    <input type="hidden" name="macID" id="macID">
-                                </form>
-                                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
-                                    <div id="hero-js-select" class="mdc-select w-100" role="listbox">
-                                        <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0"
-                                             style="width: 394px; --mdc-ripple-fg-size:261.6px; --mdc-ripple-fg-scale:1.71858; --mdc-ripple-fg-translate-start:-43.5px, -90px; --mdc-ripple-fg-translate-end:87.2px, -102.8px;">
-                                            <div class="mdc-select__label">选择单位</div>
-                                            <div id="unit" class="mdc-select__selected-text"></div>
-                                            <div class="mdc-select__bottom-line"
-                                                 style="transform-origin: 87.29998779296875px bottom"></div>
-                                        </div>
-                                        <div class="mdc-simple-menu mdc-select__menu">
-                                            <ul class="mdc-list mdc-simple-menu__items">
-                                                <c:forEach items="${unitList}" var="unit">
-                                                    <li class="mdc-list-item" role="option" tabindex="0">
-                                                        单位编号:${unit.id} </li>
-                                                </c:forEach>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6"></div>
-                                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
-                                    <div id="hero-js-select1" class="mdc-select w-100" role="listbox">
-                                        <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0"
-                                             style="width: 394px; --mdc-ripple-fg-size:261.6px; --mdc-ripple-fg-scale:1.71858; --mdc-ripple-fg-translate-start:-43.5px, -90px; --mdc-ripple-fg-translate-end:87.2px, -102.8px;">
-                                            <div class="mdc-select__label">选择刷卡机</div>
-                                            <div class="mdc-select__selected-text"></div>
-                                            <div class="mdc-select__bottom-line"
-                                                 style="transform-origin: 87.29998779296875px bottom"></div>
-                                        </div>
-                                        <div class="mdc-simple-menu mdc-select__menu">
-                                            <ul id="mac" class="mdc-list mdc-simple-menu__items">
-                                                <li class="mdc-list-item" role="option" tabindex="0">
-                                                    无
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6"></div>
-
-
-                            </div>
-                        </div>
-                    </div>
-
+                    <h3 class="text-center">欢迎 ${user}</h3>
                 </div>
             </div>
         </main>
@@ -191,31 +136,6 @@
 <!-- inject:js -->
 <script src="${pageContext.request.contextPath}/js/misc.js"></script>
 <script src="${pageContext.request.contextPath}/js/material.js"></script>
-<script>
-    $('#unit').bind('DOMNodeInserted', function (e) {
-        var inner = e.target.innerHTML;
-        // console.log(inner);
-        // console.log(inner.substring(inner.indexOf(":")+1));
-        loadMacList(inner.substring(inner.indexOf(":") + 1));
-    });
-    if ($('#hero-js-select1').length) {
-        var heroSelect1 = document.getElementById('hero-js-select1');
-        var heroSelectComponent1 = new mdc.select.MDCSelect(heroSelect1);
-    }
-    $("form").submit(chk());
-
-    function loadMacList(uid) {
-        var mac = $("#mac");
-        $.post("/admin2/charge/macListIF", {id: uid}, function (data, status) {
-            if (data === [] && status === "success")
-                console.log("SUCCESS")
-        })
-    }
-
-    function append(obj, text) {
-        obj.append("<li class='mdc-list-item' role='option' tabindex='0' style='' aria-selected='true'>" + text + "</li>");
-    }
-</script>
 <!-- endinject -->
 <!-- Custom js for this page-->
 <script src="${pageContext.request.contextPath}/js/dashboard.js"></script>

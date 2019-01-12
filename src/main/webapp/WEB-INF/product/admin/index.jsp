@@ -1,21 +1,19 @@
 <%@ page pageEncoding="utf-8" contentType="text/html; utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Material Admin</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/node_modules/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=1" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" type="text/css">
-    <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+    <link rel="stylesheet" href="node_modules/mdi/css/materialdesignicons.min.css">
     <!-- endinject -->
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.png"/>
+    <link rel="shortcut icon" href="images/favicon.png"/>
     <style type="text/css">
         @import url('${pageContext.request.contextPath}/css/admin.css');
 
@@ -51,13 +49,13 @@
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="/admin/unit/">
+                        <a class="mdc-drawer-link" href="/admin/unit/UnitList">
                             <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">group_work</i>
                             单位管理
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="/admin/ma/">
+                        <a class="mdc-drawer-link" href="/admin/ma/MaList">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
 
@@ -71,15 +69,9 @@
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link " href="/admin/report/">
+                        <a class="mdc-drawer-link" href="/admin/report/">
                             <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">timeline</i>
                             统计报表管理
-                        </a>
-                    </div>
-                    <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link " href="/admin/data/">
-                            <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">poll</i>
-                            数据分析与挖掘
                         </a>
                     </div>
                 </nav>
@@ -97,25 +89,6 @@
           </span>
             </section>
             <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
-                <div class="mdc-menu-anchor">
-                    <a href="#" class="mdc-toolbar__icon toggle mdc-ripple-surface" data-toggle="dropdown"
-                       toggle-dropdown="notification-menu" data-mdc-auto-init="MDCRipple">
-                        <i class="material-icons">notifications</i>
-                        <span class="dropdown-count">2</span>
-                    </a>
-                    <div class="mdc-simple-menu mdc-simple-menu--right" tabindex="-1" id="notification-menu">
-                        <ul class="mdc-simple-menu__items mdc-list" role="menu" aria-hidden="true">
-                            <li class="mdc-list-item" role="menuitem" tabindex="0">
-                                <i class="material-icons mdc-theme--primary mr-1">email</i>
-                                检查更新
-                            </li>
-                            <li class="mdc-list-item" role="menuitem" tabindex="0">
-                                <i class="material-icons mdc-theme--primary mr-1">group</i>
-                                未读信息
-                            </li>
-                        </ul>
-                    </div>
-                </div>
                 <div class="mdc-menu-anchor mr-1">
                     <a href="#" class="mdc-toolbar__icon toggle mdc-ripple-surface" data-toggle="dropdown"
                        toggle-dropdown="logout-menu" data-mdc-auto-init="MDCRipple">
@@ -138,8 +111,14 @@
         </div>
     </header>
     <!-- partial -->
+
     <div class="page-wrapper mdc-toolbar-fixed-adjust">
         <main class="content-wrapper">
+            <div class="mdc-layout-grid">
+                <div class="mdc-layout-grid__inner">
+
+                </div>
+            </div>
         </main>
         <!-- partial:partials/_footer.html -->
         <footer>
@@ -156,24 +135,24 @@
         </footer>
         <!-- partial -->
     </div>
+
 </div>
 <!-- body wrapper -->
 
 <!-- plugins:js -->
-<script src="${pageContext.request.contextPath}/node_modules/material-components-web/dist/material-components-web.min.js"></script>
-<script src="${pageContext.request.contextPath}/node_modules/jquery/dist/jquery.min.js"></script>
+<script src="node_modules/material-components-web/dist/material-components-web.min.js"></script>
+<script src="node_modules/jquery/dist/jquery.min.js"></script>
 <!-- endinject -->
 <!-- Plugin js for this page-->
-<script src="${pageContext.request.contextPath}/node_modules/chart.js/dist/Chart.min.js"></script>
-<script src="${pageContext.request.contextPath}/node_modules/progressbar.js/dist/progressbar.min.js"></script>
+<script src="node_modules/chart.js/dist/Chart.min.js"></script>
+<script src="node_modules/progressbar.js/dist/progressbar.min.js"></script>
 <!-- End plugin js for this page-->
 <!-- inject:js -->
-<script src="${pageContext.request.contextPath}/js/misc.js"></script>
-<script src="${pageContext.request.contextPath}/js/material.js"></script>
+<script src="js/misc.js"></script>
+<script src="js/material.js"></script>
 <!-- endinject -->
 <!-- Custom js for this page-->
-<script src="${pageContext.request.contextPath}/js/dashboard.js"></script>
-<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<script src="js/dashboard.js"></script>
 <!-- End custom js for this page-->
 </body>
 </html>

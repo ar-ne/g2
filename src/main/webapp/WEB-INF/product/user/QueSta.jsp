@@ -16,22 +16,6 @@
 </head>
 
 <body>
-<script type="text/javascript">
-    function onSearch() {
-        var consumeId = document.getElementById('consume');
-        var rowsLength = consumeId.rows.length;
-        var key = document.getElementById('tf-box-leading');
-        var searchCol = 0;
-        for (var i = 1; i < rowsLength; i++) {
-            var searchText = consumeId.rows[i].cells[searchCol].innerHTML;
-            if (searchText.match(key)) {
-                consumeId.rows[i].style.display = '';
-            } else {
-                consumeId.rows[i].style.display = 'none';
-            }
-        }
-    }
-</script>
 <div class="body-wrapper">
     <!-- partial:partials/_sidebar.html -->
     <aside class="mdc-persistent-drawer mdc-persistent-drawer--open">
@@ -118,8 +102,7 @@
                                             <div id="demo-tf-box-leading-wrapper" class="w-100">
                                                 <div id="tf-box-leading-example"
                                                      class="mdc-text-field mdc-text-field--box mdc-text-field--with-leading-icon w-100">
-                                                    <i class="material-icons mdc-text-field__icon"
-                                                       tabindex="0">event</i>
+                                                    <i class="material-icons mdc-text-field__icon" tabindex="0">monetization_on</i>
                                                     <input type="text" id="tf-box-leading"
                                                            class="mdc-text-field__input w-100">
                                                     <label for="tf-box-leading"
@@ -177,40 +160,33 @@
                                     <table class="table table-hoverable" id="consume">
                                         <thead>
                                         <tr>
-                                            <th class="text-left">Dessert (100g serving)</th>
-                                            <th>Calories</th>
-                                            <th>Fat (g)</th>
-                                            <th>Link</th>
-                                            <th>Carbs</th>
-                                            <th>Protein (g)</th>
-                                            <th>Sodium (mg)</th>
-                                            <th>Calcium (%)</th>
-                                            <th>Iron (%)</th>
+                                            <th class="text-left">${c.car_id}</th>
+                                            <th>校园卡编号</th>
+                                            <th>消费时间</th>
+                                            <th>消费卡机编号</th>
+                                            <th>消费金额</th>
+                                            <th>消费结果</th>
+                                            <th>失败原因</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td class="text-left">Frozen yogurt</td>
-                                            <td>1.59</td>
-                                            <td>6.0</td>
-                                            <td>50</td>
-                                            <td>4.0</td>
-                                            <td>87</td>
-                                            <td>20%</td>
-                                            <td>4%</td>
-                                            <td>6%</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-left">Frozen yogurt</td>
-                                            <td>1.59</td>
-                                            <td>2.5</td>
-                                            <td>35</td>
-                                            <td>2.0</td>
-                                            <td>97</td>
-                                            <td>17%</td>
-                                            <td>2%</td>
-                                            <td>6%</td>
-                                        </tr>
+                                        <c:forEach items="${cosumelist}" var="c">
+                                            <tr id="tr_id_${c.id}">
+                                                <td class="text-left">${c.id}</td>
+                                                <td ${c.car_id==null?"style='color: lightgray;'":""}
+                                                        class="text-left">${c.car_id==null?"空":c.car_id}</td>
+                                                <td ${c.time==null?"style='color: lightgray;'":""}
+                                                        class="text-left">${c.time==null?"空":c.time}</td>
+                                                <td ${c.mac_id==null?"style='color: lightgray;'":""}
+                                                        class="text-left">${c.mac_id==null?"空":c.mac_id}</td>
+                                                <td ${c.amount==null?"style='color: lightgray;'":""}
+                                                        class="text-left">${c.amount==null?"空":c.amount}</td>
+                                                <td ${c.result==null?"style='color: lightgray;'":""}
+                                                        class="text-left">${c.result?"空":c.result}</td>
+                                                <td ${c.reason==null?"style='color: lightgray;'":""}
+                                                        class="text-left">${c.reason?"空":c.reason}</td>
+                                            </tr>
+                                        </c:forEach>
                                         </tbody>
                                     </table>
                                 </div>
@@ -253,7 +229,22 @@
 <!-- endinject -->
 <!-- Custom js for this page-->
 <script src="${pageContext.request.contextPath}/js/dashboard.js"></script>
-
+<script type="text/javascript">
+    function onSearch() {
+        var consumeId = document.getElementById('consume');
+        var rowsLength = consumeId.rows.length;
+        var key = document.getElementById('tf-box-leading');
+        var searchCol = 0;
+        for (var i = 1; i < rowsLength; i++) {
+            var searchText = consumeId.rows[i].cells[searchCol].innerHTML;
+            if (searchText.match(key)) {
+                consumeId.rows[i].style.display = '';
+            } else {
+                consumeId.rows[i].style.display = 'none';
+            }
+        }
+    }
+</script>
 <!-- End custom js for this page-->
 </body>
 </html>
