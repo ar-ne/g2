@@ -16,6 +16,13 @@ public class ChargeService {
     public int deleteByMacId(Long id) {
         return chargeMapper.DeleteByMacId(id);
     }
+
+    public int deleteByCardId(Long id) {
+        return chargeMapper.DeleteByCardId(id);
+    }
+  /*  public int deleteByName(String name) {
+        return chargeMapper.DeleteByName(name);
+    }*/
 }
 
 

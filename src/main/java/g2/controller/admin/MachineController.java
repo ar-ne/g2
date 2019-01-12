@@ -23,8 +23,7 @@ public class MachineController {
         this.unitService = unitService;
     }
 
-
-    @RequestMapping("/MaList")
+    @RequestMapping("")
     public String maList(Model model, Long id, Long Uni_id) {
         List<Machine> mac = machineService.getByTwoId(id, Uni_id);
         model.addAttribute("mac", mac);
@@ -35,7 +34,7 @@ public class MachineController {
 
     @RequestMapping("/MaInsert")
     public String insert(Model model) {
-        List<Long> list = unitService.getById();
+        List<Long> list = unitService.getIdAll();
         model.addAttribute("list", list);
         return "admin/machineInsert";
     }
@@ -44,20 +43,20 @@ public class MachineController {
     public String insertDo(Model model, Long id, Long Uni_id, String addr) {
         Machine machine = new Machine(null, Uni_id, addr);
         machineService.insertSelective(machine);
-        return "redirect:/admin/ma/MaList";
+        return "redirect:/admin/ma";
     }
 
     @RequestMapping("/MaDelete")
     public String delete(Long id) {
         machineService.deleteById(id);
         System.out.println(machineService.deleteById(id));
-        return "redirect:/admin/ma/MaList";
+        return "redirect:/admin/ma";
     }
 
     @RequestMapping("/MaUpdate")
     public String update(Model model, Long id) {
         Machine machine = machineService.selectByPrimaryKey(id);
-        List<Long> list = unitService.getById();
+        List<Long> list = unitService.getIdAll();
         model.addAttribute("list", list);
         model.addAttribute("machine", machine);
         return "admin/machineUpdate";
@@ -67,6 +66,6 @@ public class MachineController {
     public String upDateDo(Long id, Long Uni_id, String addr) {
         Machine machine = new Machine(id, Uni_id, addr);
         machineService.updateByPrimaryKey(machine);
-        return "redirect:/admin/ma/MaList";
+        return "redirect:/admin/ma";
     }
 }

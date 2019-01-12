@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 public class UserService {
     private final UserMapper userMapper;
 
+
     @Autowired
     public UserService(UserMapper userMapper) {
         this.userMapper = userMapper;
@@ -36,4 +37,9 @@ public class UserService {
     public User getUser(String name) {
         return userMapper.selectByPrimaryKey(name);
     }
+
+    /*public int deleteByCardId(Long id){
+        String name = userMapper.selectNameByCardId(id);
+        return consumeService.deleteByName(name) + chargeService.deleteByName(name)+userMapper.deleteByCardId(id);
+    }*/
 }

@@ -2,6 +2,7 @@ package g2.service;
 
 import g2.mapper.CardMapper;
 import g2.model.Card;
+import g2.model.Usertype;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,11 +11,21 @@ import java.util.List;
 @Service
 public class CardService {
     private final CardMapper cardMapper;
+    private final UsertypeService usertypeService;
+    private final ConsumeService consumeService;
+    private final ChargeService chargeService;
+    private final UserService userService;
+
+    public CardService(CardMapper cardMapper, UsertypeService usertypeService, ConsumeService consumeService, ChargeService chargeService, UserService userService) {
+        this.cardMapper = cardMapper;
+        this.usertypeService = usertypeService;
+        this.consumeService = consumeService;
+        this.chargeService = chargeService;
+        this.userService = userService;
+    }
 
     @Autowired
-    public CardService(CardMapper cardMapper) {
-        this.cardMapper = cardMapper;
-    }
+
 
     public List<String> selectType() {
         return cardMapper.selectType();
@@ -32,11 +43,22 @@ public class CardService {
         return cardMapper.updateByType(id, state);
     }
 
-    public int insertById(Card card) {
+    public int insertById(Usertype usertype, Card card) {
+        if (usertypeService.selectByType(usertype.getType()) == null) {
+            usertypeService.insertType(usertype);
+        }
         return cardMapper.insertSelective(card);
     }
 
     public int reCharge(Long id, Double money) {
         return cardMapper.recharge(id, money);
     }
+    /*public int deleteById(Long id){
+        System.out.println(consumeService.deleteByCardId(id));
+        System.out.println(chargeService.deleteByCardId(id));
+        System.out.println(cardMapper.deleteByPrimaryKey(id));
+        System.out.println(userService.deleteByCardId(id));
+        return 1;
+        //return consumeService.deleteByCardId(id)+chargeService.deleteByCardId(id)+cardMapper.deleteByPrimaryKey(id)+userService.deleteByCardId(id);
+    }*/
 }

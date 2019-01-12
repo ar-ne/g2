@@ -20,7 +20,7 @@ public interface UnitExt {
             "AND type= #{type,jdbcType=VARCHAR}",
             "</when>",
             "</script>"})
-    List<Unit> getd(@Param("id") Long id, @Param("type") String type);
+    List<Unit> getd(@Param("id") Long id, @Param("type") String type);//数据库查询方法
 
     @Select({
             "select ",

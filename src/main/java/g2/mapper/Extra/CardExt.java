@@ -57,6 +57,7 @@ public interface CardExt {
             " amount + #{money,jdbcType=DOUBLE}",
             "where ",
             "id= #{id,jdbcType=NUMERIC}",
+            "AND state= '正常'",
             "</script>"})
     int recharge(@Param("id") Long id, @Param("money") Double money);
 

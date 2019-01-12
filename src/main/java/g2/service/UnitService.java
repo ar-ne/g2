@@ -38,19 +38,19 @@ public class UnitService {
 
     }
 
-    public int UnitUpdate(Unit unit) {
+    public int update(Unit unit) {
         return unitmapper.updateByPrimaryKeySelective(unit);
     }
 
-    public Unit unitselectbyid(Long id) {
+    public Unit selectById(Long id) {
         return unitmapper.selectByPrimaryKey(id);
     }
 
-    public int unitInsert(Unit unit) {
+    public int insert(Unit unit) {
         return unitmapper.insertSelective(unit);
     }
 
-    public List<Long> getById() {
+    public List<Long> getIdAll() {
         return unitmapper.getById();
     }
 }
