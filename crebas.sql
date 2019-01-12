@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2012                    */
-/* Created on:     2019/1/9 14:50:11                            */
+/* Created on:     2019/1/12 0:08:56                            */
 /*==============================================================*/
 
 
@@ -230,8 +230,8 @@ go
 /*==============================================================*/
 create table schedule (
    id                   numeric              identity,
-   "begin"              datetime             null,
-   "end"                datetime             null,
+   start                datetime             null,
+   stop                 datetime             null,
    address              varchar(254)         null,
    constraint PK_SCHEDULE primary key (id)
 )

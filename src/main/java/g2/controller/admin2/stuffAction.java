@@ -27,23 +27,38 @@ public class stuffAction {
 
     @RequestMapping("edit")
     public ModelAndView edit(Long id) {
-        ModelAndView modelAndView = new ModelAndView("admin2/stuffAction/edit");
-        List<Long> uniIDList
-        return modelAndView;
+        ModelAndView modelAndView = new ModelAndView("/admin2/stuffAction/edit");
+        List<Long> uniList = unitService.getIdList();
+        List<Long> schList = scheduleService.getIdList();
+        modelAndView.addObject("stuff", stuffService.get(id));
+        modelAndView.addObject("uniList", uniList);
+        modelAndView.addObject("schList", schList);
+        return (modelAndView);
+    }
+
+    @RequestMapping("edit.do")
+    public String editDo(Stuff stuff) {
+        if (stuffService.update(stuff) > 0)
+            return "redirect:/admin2/stuff";
+        else return "redirect:/admin2/error";
     }
 
     @RequestMapping("add")
     public ModelAndView add() {
         ModelAndView modelAndView = new ModelAndView("admin2/stuffAction/add");
-        modelAndView.addObject("item", stuffService.get(id));
-        return modelAndView;
+        List<Long> uniList = unitService.getIdList();
+        List<Long> schList = scheduleService.getIdList();
+        modelAndView.addObject("uniList", uniList);
+        modelAndView.addObject("schList", schList);
+        return (modelAndView);
     }
+
 
     @RequestMapping("add.do")
     public String addDo(Stuff stuff) {
         stuff.setId(null);
-        if (stuffService.add(stuff) == 1)
+        if (stuffService.add(stuff) > 0)
             return "redirect:/admin2/stuff";
-        return "/admin2/error";
+        return "redirect:/admin2/error";
     }
 }

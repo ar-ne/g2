@@ -8,4 +8,7 @@ import java.util.List;
 public interface ScheduleExt {
     @Select({"select * from schedule"})
     public List<Schedule> selectAll();
+
+    @Select({"select id from schedule"})
+    public List<Long> getIdAll();
 }

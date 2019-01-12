@@ -20,5 +20,24 @@ public class ScheduleService {
         return scheduleMapper.selectAll();
     }
 
+    public List<Long> getIdList() {
+        return scheduleMapper.getIdAll();
+    }
+
+    public int add(Schedule schedule) {
+        return scheduleMapper.insertSelective(schedule);
+    }
+
+    public Schedule get(Long id) {
+        return scheduleMapper.selectByPrimaryKey(id);
+    }
+
+    public int update(Schedule schedule) {
+        return scheduleMapper.updateByPrimaryKeySelective(schedule);
+    }
+
+    public int delete(Long id) {
+        return scheduleMapper.deleteByPrimaryKey(id);
+    }
 
 }

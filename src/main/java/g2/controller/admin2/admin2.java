@@ -58,4 +58,8 @@ public class admin2 {
         return modelAndView;
     }
 
+    @RequestMapping("error")
+    public String error() {
+        return "admin2/error";
+    }
 }

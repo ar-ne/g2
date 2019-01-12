@@ -30,4 +30,8 @@ public class StuffService {
     public int add(Stuff stuff) {
         return stuffMapper.insertSelective(stuff);
     }
+
+    public int update(Stuff stuff) {
+        return stuffMapper.updateByPrimaryKey(stuff);
+    }
 }

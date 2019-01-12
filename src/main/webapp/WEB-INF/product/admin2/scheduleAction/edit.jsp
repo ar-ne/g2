@@ -45,14 +45,14 @@
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link active" href="/admin2/stuff">
+                        <a class="mdc-drawer-link" href="/admin2/stuff">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">dashboard</i>
                             员工列表
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="/admin2/schedule">
+                        <a class="mdc-drawer-link active" href="/admin2/schedule">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">grid_on</i>
                             排班管理
@@ -109,86 +109,69 @@
                                 <h1>添加员工</h1>
                             </div>
                             <div class="mdc-card__primary">
-
                                 <div class="mdc-layout-grid__inner">
-                                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
-                                        <div id="demo-tf-box-leading-wrapper" class="w-100">
-                                            <div id="tf-box-leading-example"
-                                                 class="mdc-text-field mdc-text-field--box w-100 mdc-text-field--upgraded mdc-ripple-upgraded"
-                                                 style="--mdc-ripple-fg-size:111.06px; --mdc-ripple-fg-scale:1.83131; --mdc-ripple-fg-translate-start:60.37px, -17.93px; --mdc-ripple-fg-translate-end:37.02px, -27.53px;">
-                                                <form id="form1" action="/admin2/stuff/add.do" method="post">
+                                    <form action="/admin2/schedule/edit.do" method="post">
+                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+                                            <div id="demo-tf-box-leading-wrapper" class="w-100">
+                                                <div id="tf-box-leading-example"
+                                                     class="mdc-text-field mdc-text-field--box w-100 mdc-text-field--upgraded mdc-ripple-upgraded"
+                                                     style="--mdc-ripple-fg-size:111.06px; --mdc-ripple-fg-scale:1.83131; --mdc-ripple-fg-translate-start:60.37px, -17.93px; --mdc-ripple-fg-translate-end:37.02px, -27.53px;">
+                                                    <input type="hidden" value="${id}">
                                                     <input type="text" id="tf-box-leading" class="mdc-text-field__input"
-                                                           name="name">
-                                                    <input type="hidden" id="uniI" class="mdc-text-field__input"
-                                                           name="uni_id">
-                                                    <input type="hidden" id="schI" class="mdc-text-field__input"
-                                                           name="sch_id">
-                                                </form>
-                                                <label for="tf-box-leading" class="mdc-text-field__label">员工姓名</label>
-                                                <div class="mdc-text-field__bottom-line"
-                                                     style="transform-origin: 115.89999389648438px center"></div>
+                                                           name="name" value="${address}">
+                                                    <label for="tf-box-leading"
+                                                           class="mdc-text-field__label mdc-text-field__label--float-above">地点</label>
+                                                    <div class="mdc-text-field__bottom-line"
+                                                         style="transform-origin: 115.89999389648438px center"></div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6"></div>
-                                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
-                                        <div id="hero-js-select" class="mdc-select w-100" role="listbox">
-                                            <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0"
-                                                 style="width: 394px; --mdc-ripple-fg-size:261.6px; --mdc-ripple-fg-scale:1.71858; --mdc-ripple-fg-translate-start:-43.5px, -90px; --mdc-ripple-fg-translate-end:87.2px, -102.8px;">
-                                                <div class="mdc-select__label">选择单位</div>
-                                                <div id="uni" class="mdc-select__selected-text"></div>
-                                                <div class="mdc-select__bottom-line"
-                                                     style="transform-origin: 87.29998779296875px bottom"></div>
-                                            </div>
-                                            <div class="mdc-simple-menu mdc-select__menu">
-                                                <ul class="mdc-list mdc-simple-menu__items">
-                                                    <li class="mdc-list-item" role="option" tabindex="0">
-                                                        无
-                                                    </li>
-                                                    <c:forEach items="${uniList}" var="uni">
-                                                        <li class="mdc-list-item" role="option" tabindex="0">
-                                                                ${uni}
-                                                        </li>
-                                                    </c:forEach>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6"></div>
-                                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
-                                        <div id="hero-js-select1" class="mdc-select w-100" role="listbox">
-                                            <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0"
-                                                 style="width: 394px; --mdc-ripple-fg-size:261.6px; --mdc-ripple-fg-scale:1.71858; --mdc-ripple-fg-translate-start:-43.5px, -90px; --mdc-ripple-fg-translate-end:87.2px, -102.8px;">
-                                                <div class="mdc-select__label">选择排班</div>
-                                                <div id="sch" class="mdc-select__selected-text"></div>
-                                                <div class="mdc-select__bottom-line"
-                                                     style="transform-origin: 87.29998779296875px bottom"></div>
-                                            </div>
-                                            <div class="mdc-simple-menu mdc-select__menu">
-                                                <ul class="mdc-list mdc-simple-menu__items">
-                                                    <li class="mdc-list-item" role="option" tabindex="0">
-                                                        无
-                                                    </li>
-                                                    <c:forEach items="${schList}" var="sch">
-                                                        <li class="mdc-list-item" role="option" tabindex="0">
-                                                                ${sch}
-                                                        </li>
-                                                    </c:forEach>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6"></div>
-                                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
-                                        <button onclick="chk()"
-                                                class="mdc-button mdc-button--stroked thick-stroke-button mdc-ripple-upgraded"
-                                                data-mdc-auto-init="MDCRipple"
-                                                style="--mdc-ripple-fg-size:115.62px; --mdc-ripple-fg-scale:1.78199; --mdc-ripple-fg-translate-start:104.79px, -32.2099px; --mdc-ripple-fg-translate-end:38.54px, -39.81px;">
-                                            提交
-                                        </button>
-                                    </div>
-                                </div>
+                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6"></div>
 
+
+                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+                                            <div id="demo-tf-box-leading-wrapper1" class="w-100">
+                                                <div id="tf-box-leading-example1"
+                                                     class="mdc-text-field mdc-text-field--box w-100 mdc-text-field--upgraded mdc-ripple-upgraded"
+                                                     style="--mdc-ripple-fg-size:111.06px; --mdc-ripple-fg-scale:1.83131; --mdc-ripple-fg-translate-start:60.37px, -17.93px; --mdc-ripple-fg-translate-end:37.02px, -27.53px;">
+                                                    <input type="datetime-local" id="tf-box-leading1"
+                                                           class="mdc-text-field__input"
+                                                           name="name" value="${start}">
+                                                    <label for="tf-box-leading1"
+                                                           class="mdc-text-field__label mdc-text-field__label--float-above">开始时间</label>
+                                                    <div class="mdc-text-field__bottom-line"
+                                                         style="transform-origin: 115.89999389648438px center"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6"></div>
+
+                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+                                            <div id="demo-tf-box-leading-wrapper2" class="w-100">
+                                                <div id="tf-box-leading-example2"
+                                                     class="mdc-text-field mdc-text-field--box w-100 mdc-text-field--upgraded mdc-ripple-upgraded"
+                                                     style="--mdc-ripple-fg-size:111.06px; --mdc-ripple-fg-scale:1.83131; --mdc-ripple-fg-translate-start:60.37px, -17.93px; --mdc-ripple-fg-translate-end:37.02px, -27.53px;">
+                                                    <input type="datetime-local" id="tf-box-leading2"
+                                                           class="mdc-text-field__input"
+                                                           name="name" value="${stop}">
+                                                    <label for="tf-box-leading2"
+                                                           class="mdc-text-field__label mdc-text-field__label--float-above">结束时间</label>
+                                                    <div class="mdc-text-field__bottom-line"
+                                                         style="transform-origin: 115.89999389648438px center"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6"></div>
+                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+                                            <button type="submit"
+                                                    class="mdc-button mdc-button--stroked thick-stroke-button mdc-ripple-upgraded"
+                                                    data-mdc-auto-init="MDCRipple"
+                                                    style="--mdc-ripple-fg-size:115.62px; --mdc-ripple-fg-scale:1.78199; --mdc-ripple-fg-translate-start:104.79px, -32.2099px; --mdc-ripple-fg-translate-end:38.54px, -39.81px;">
+                                                提交
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -230,6 +213,21 @@
         var heroSelect1 = document.getElementById('hero-js-select1');
         var heroSelectComponent1 = new mdc.select.MDCSelect(heroSelect1);
     }
+    if ($('#tf-box-example1').length) {
+        var tfEl = document.getElementById('tf-box-example1');
+        var tf = new mdc.textField.MDCTextField(tfEl);
+    }
+    if ($('#demo-tf-box-wrapper1').length) {
+        var wrapper = document.getElementById('demo-tf-box-wrapper1');
+    }
+    if ($('#tf-box-example2').length) {
+        var tfEl = document.getElementById('tf-box-example2');
+        var tf = new mdc.textField.MDCTextField(tfEl);
+    }
+    if ($('#demo-tf-box-wrapper2').length) {
+        var wrapper = document.getElementById('demo-tf-box-wrapper2');
+    }
+
     $("form").submit(chk());
 </script>
 <!-- endinject -->
