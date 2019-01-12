@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Date;
 
@@ -31,6 +32,12 @@ public class ChargeAction {
         this.chargeService = chargeService;
     }
 
+    @RequestMapping("mac")
+    public ModelAndView mac(Long macID) {
+        ModelAndView modelAndView = new ModelAndView("admin2/chargeAction/machine");
+        return modelAndView;
+    }
+
     /**
      * 接口：从单位ID获取machine
      *
@@ -42,8 +49,17 @@ public class ChargeAction {
         return new JSONMsg(machineService.getMachineByUnit(id));
     }
 
+    /**
+     * 接口：产生收费记录
+     *
+     * @param cardID 卡号
+     * @param macID  刷卡机号
+     * @param amount 金额
+     * @return 收费信息
+     */
     @RequestMapping(value = "chargeIF", method = RequestMethod.POST)
     public JSONMsg charge(Long cardID, Long macID, double amount) {
+        machineService.selectByPrimaryKey(macID);//确保刷卡机没被删除
         Charge charge = new Charge();
         Card card = cardService.get(cardID);
         charge.setCar_id(cardID);
@@ -59,7 +75,29 @@ public class ChargeAction {
             return new JSONMsg(charge);
         }
         //检查余额
+        if (card.getAmount() < amount) {
+            charge.setReason(Properites.ErrorMessages.Insufficient_Balance);
+            charge.setResult(Properites.Result.failed);
+            chargeService.add(charge);
+            return new JSONMsg(charge);
+        }
 
+        //检查消费限制
+        if (card.getLimit() < amount) {
+            charge.setReason(Properites.ErrorMessages.Exceed_Limit);
+            charge.setResult(Properites.Result.failed);
+            chargeService.add(charge);
+            return new JSONMsg(charge);
+        }
+
+        //扣费
+        card.setAmount(card.getAmount() - amount);
+        if (cardService.update(card) > 0)
+            charge.setResult(Properites.Result.success);
+        else {
+            charge.setResult(Properites.Result.failed);
+            charge.setReason(Properites.ErrorMessages.DBERROR);
+        }
         chargeService.add(charge);
         return new JSONMsg(charge);
     }

@@ -13,6 +13,7 @@ public final class Properites {
         public final static String Exceed_Limit = "超出消费限制";
         public final static String Insufficient_Balance = "余额不足";
         public final static String Report_Loss = "挂失卡";
+        public final static String DBERROR = "DBERROR";
     }
 
     public final class Session {
