@@ -13,7 +13,7 @@ public class ExportController {
         this.exportService = exportService;
     }
 
-    @RequestMapping("/")
+    @RequestMapping("")
     public String indexreport() {
         return "admin/indexReport";
     }

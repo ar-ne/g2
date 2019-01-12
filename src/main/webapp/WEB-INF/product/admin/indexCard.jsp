@@ -44,6 +44,12 @@
             window.location.href = '/admin/card/update?id=' + e1 + '&state=' + e2;
         }
     }
+
+    /* function delT(e) {
+         if (confirm("确认要删除该卡和相关消费记录和收费记录？")) {
+             window.location.href = '/admin/card/delete?id=' + e;
+         }
+     }*/
 </script>
 <div class="body-wrapper">
     <!-- partial:partials/_sidebar.html -->
@@ -57,7 +63,7 @@
             <div class="mdc-list-group">
                 <nav class="mdc-list mdc-drawer-menu">
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link " href="/admin">
+                        <a class="mdc-drawer-link " href="/admin/">
                             <%--<i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
 --%>
@@ -66,13 +72,13 @@
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="/admin/unit/UnitList">
+                        <a class="mdc-drawer-link" href="/admin/unit/">
                             <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">group_work</i>
                             单位管理
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="/admin/ma/MaList">
+                        <a class="mdc-drawer-link" href="/admin/ma/">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
 
@@ -91,6 +97,12 @@
                             统计报表管理
                         </a>
                     </div>
+                    <div class="mdc-list-item mdc-drawer-item">
+                        <a class="mdc-drawer-link " href="/admin/data/">
+                            <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">poll</i>
+                            数据分析与挖掘
+                        </a>
+                    </div>
                 </nav>
             </div>
         </nav>
@@ -106,6 +118,25 @@
           </span>
             </section>
             <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
+                <div class="mdc-menu-anchor">
+                    <a href="#" class="mdc-toolbar__icon toggle mdc-ripple-surface" data-toggle="dropdown"
+                       toggle-dropdown="notification-menu" data-mdc-auto-init="MDCRipple">
+                        <i class="material-icons">notifications</i>
+                        <span class="dropdown-count">2</span>
+                    </a>
+                    <div class="mdc-simple-menu mdc-simple-menu--right" tabindex="-1" id="notification-menu">
+                        <ul class="mdc-simple-menu__items mdc-list" role="menu" aria-hidden="true">
+                            <li class="mdc-list-item" role="menuitem" tabindex="0">
+                                <i class="material-icons mdc-theme--primary mr-1">email</i>
+                                检查更新
+                            </li>
+                            <li class="mdc-list-item" role="menuitem" tabindex="0">
+                                <i class="material-icons mdc-theme--primary mr-1">group</i>
+                                未读信息
+                            </li>
+                        </ul>
+                    </div>
+                </div>
                 <div class="mdc-menu-anchor mr-1">
                     <a href="#" class="mdc-toolbar__icon toggle mdc-ripple-surface" data-toggle="dropdown"
                        toggle-dropdown="logout-menu" data-mdc-auto-init="MDCRipple">
@@ -158,7 +189,7 @@
                             <button class="btn btn-success" type="submit" style="float:left;margin-top:30px"> 资助
                             </button>
                             <div class="form-froup" style="float:left;margin-right:30px">
-                                <button class="btn btn-success" type="submit" style="float:left;margin-top:30px"> 充值
+                                <button class="btn btn-success" type="submit" style="float:left;margin-top:30px">充值
                                 </button>
                             </div>
                         </form>
@@ -171,17 +202,16 @@
 
                     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
                         <table class="table table-hover">
-                            <thread>
+                            <thead>
                                 <tr>
                                     <th class="text-left">卡号</th>
                                     <th class="text-left">用户类型</th>
                                     <th class="text-left">用户状态</th>
                                     <th class="text-left">用户余额</th>
                                     <th class="text-left">消费上限</th>
-                                    <th class="text-left">消费上限</th>
-                                    <th class="text-left">消费上限</th>
+                                    <th class="text-left">操作</th>
                                 </tr>
-                            </thread>
+                            </thead>
 
                             <tbody>
                             <c:forEach items="${card}" var="c">
@@ -195,6 +225,7 @@
                                     <td class="text-left">
                                         <button class="btn btn-danger" onclick="del(${c.id},'冻结')">冻结</button>
                                         <button class="btn btn-primary" onclick="add(${c.id},'正常')">恢复</button>
+                                            <%--<button class="btn btn-primary" onclick="delT(${c.id})">删除</button>--%>
                                     </td>
                                 </tr>
                             </c:forEach>

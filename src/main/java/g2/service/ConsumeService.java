@@ -16,4 +16,11 @@ public class ConsumeService {
     public int deleteByMacId(Long id) {
         return consumeMapper.DeleteByMacId(id);
     }
+
+    public int deleteByCardId(Long id) {
+        return consumeMapper.DeleteByCardId(id);
+    }
+    /*public int deleteByName(String name) {
+        return consumeMapper.DeleteByName(name);
+    }*/
 }

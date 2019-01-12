@@ -21,6 +21,13 @@ public class ChargeService {
     public int add(Charge charge) {
         return chargeMapper.insertSelective(charge);
     }
+
+    public int deleteByCardId(Long id) {
+        return chargeMapper.DeleteByCardId(id);
+    }
+  /*  public int deleteByName(String name) {
+        return chargeMapper.DeleteByName(name);
+    }*/
 }
 
 

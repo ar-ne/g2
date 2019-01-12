@@ -57,7 +57,7 @@
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link " href="/admin/ma/">
+                        <a class="mdc-drawer-link" href="/admin/ma/">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
 
@@ -65,19 +65,19 @@
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link active" href="/admin/card/">
+                        <a class="mdc-drawer-link" href="/admin/card/">
                             <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">extension</i>
                             办卡中心管理
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="/admin/report/">
+                        <a class="mdc-drawer-link " href="/admin/report/">
                             <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">timeline</i>
                             统计报表管理
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link " href="/admin/data/">
+                        <a class="mdc-drawer-link active" href="/admin/data/">
                             <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">poll</i>
                             数据分析与挖掘
                         </a>
@@ -142,34 +142,45 @@
         <main class="content-wrapper">
             <div class="mdc-layout-grid">
                 <div class="mdc-layout-grid__inner">
-                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-10">
-                        <form name="frm" action="/admin/card/insertDo" style="margin: auto auto;">
-                            <div class="form-froup">
-                                <label class="form-label">用户类型：</label>
-                                <input class="form-control" type="text" name="type" value='1级'>
-                            </div>
-                            <div class="form-froup">
-                                <label class="form-label">用户状态：</label>
-                                <select class="form-control" name="state">
-                                    <option value="正常">正常</option>
-                                    <option value="冻结">冻结</option>
-                                </select>
-                            </div>
-                            <div class="form-froup">
-                                <label class="form-label">用户余额：</label><input class="form-control" type="text"
-                                                                              name="amount" value='0'>
-                            </div>
-                            <div class="form-froup">
-                                <label class="form-label">消费上限：</label><input class="form-control" type="text"
-                                                                              name="limit" value='30'>
-                            </div>
-                            <div class="form-froup">
-                                <button type="submit" class="btn btn-info" style="float: left">保存</button>
-                                <button type="button" class="btn btn-danger" onclick="ret()" style="float: right"> 重置
-                                </button>
-                            </div>
-
-                        </form>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
+                        <div class="mdc-card">
+                            <section class="mdc-card__primary">
+                                <h1 class="mdc-card__title mdc-card__title--large">消费金额/消费时间</h1>
+                            </section>
+                            <section class="mdc-card__supporting-text">
+                                <canvas id="lineChart" style="height:250px"></canvas>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
+                        <div class="mdc-card">
+                            <section class="mdc-card__primary">
+                                <h1 class="mdc-card__title mdc-card__title--large">消费金额/星期</h1>
+                            </section>
+                            <section class="mdc-card__supporting-text">
+                                <canvas id="barChart" style="height:250px"></canvas>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
+                        <div class="mdc-card">
+                            <section class="mdc-card__primary">
+                                <h1 class="mdc-card__title mdc-card__title--large">消费时间分布</h1>
+                            </section>
+                            <section class="mdc-card__supporting-text">
+                                <canvas id="areaChart" style="height:250px"></canvas>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
+                        <div class="mdc-card">
+                            <section class="mdc-card__primary">
+                                <h1 class="mdc-card__title mdc-card__title--large">正常/冻结卡占比</h1>
+                            </section>
+                            <section class="mdc-card__supporting-text">
+                                <canvas id="doughnutChart" style="height:250px"></canvas>
+                            </section>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -207,6 +218,8 @@
 <!-- Custom js for this page-->
 <script src="${pageContext.request.contextPath}/js/dashboard.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/admin/data/jsData"></script>
 <!-- End custom js for this page-->
 </body>
 </html>
