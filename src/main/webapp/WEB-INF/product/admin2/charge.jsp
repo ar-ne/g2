@@ -98,7 +98,9 @@
         </div>
     </header>
     <!-- partial -->
-
+    <form method="post" action="/admin2/charge/mac" style="display: none;">
+        <input type="hidden" name="macID" id="macID">
+    </form>
     <div class="page-wrapper mdc-toolbar-fixed-adjust">
         <main class="content-wrapper">
             <div class="mdc-layout-grid">
@@ -110,49 +112,60 @@
                                 <h1>选择刷卡机</h1>
                             </div>
                             <div class="mdc-card__primary">
-                                <form method="post" action="/admin2/charge/mac">
-                                    <input type="hidden" name="macID" id="macID">
-                                </form>
-                                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
-                                    <div id="hero-js-select" class="mdc-select w-100" role="listbox">
-                                        <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0"
-                                             style="width: 394px; --mdc-ripple-fg-size:261.6px; --mdc-ripple-fg-scale:1.71858; --mdc-ripple-fg-translate-start:-43.5px, -90px; --mdc-ripple-fg-translate-end:87.2px, -102.8px;">
-                                            <div class="mdc-select__label">选择单位</div>
-                                            <div id="unit" class="mdc-select__selected-text"></div>
-                                            <div class="mdc-select__bottom-line"
-                                                 style="transform-origin: 87.29998779296875px bottom"></div>
+                                <div class="mdc-layout-grid__inner">
+                                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+                                        <div id="hero-js-select" class="mdc-select w-100" role="listbox">
+                                            <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0"
+                                                 style="width: 394px; --mdc-ripple-fg-size:261.6px; --mdc-ripple-fg-scale:1.71858; --mdc-ripple-fg-translate-start:-43.5px, -90px; --mdc-ripple-fg-translate-end:87.2px, -102.8px;">
+                                                <div class="mdc-select__label">选择单位</div>
+                                                <div id="unit" class="mdc-select__selected-text"></div>
+                                                <div class="mdc-select__bottom-line"
+                                                     style="transform-origin: 87.29998779296875px bottom"></div>
+                                            </div>
+                                            <div class="mdc-simple-menu mdc-select__menu">
+                                                <ul class="mdc-list mdc-simple-menu__items">
+                                                    <c:forEach items="${unitList}" var="unit">
+                                                        <li class="mdc-list-item" role="option" tabindex="0">
+                                                            单位编号:${unit.id} </li>
+                                                    </c:forEach>
+                                                </ul>
+                                            </div>
                                         </div>
-                                        <div class="mdc-simple-menu mdc-select__menu">
-                                            <ul class="mdc-list mdc-simple-menu__items">
-                                                <c:forEach items="${unitList}" var="unit">
+                                    </div>
+                                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6"></div>
+                                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+                                        <div id="hero-js-select1" class="mdc-select w-100" role="listbox">
+                                            <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0"
+                                                 style="width: 394px; --mdc-ripple-fg-size:261.6px; --mdc-ripple-fg-scale:1.71858; --mdc-ripple-fg-translate-start:-43.5px, -90px; --mdc-ripple-fg-translate-end:87.2px, -102.8px;">
+                                                <div id="macTitle" class="mdc-select__label">选择刷卡机</div>
+                                                <div id="macContent" class="mdc-select__selected-text"></div>
+                                                <div class="mdc-select__bottom-line"
+                                                     style="transform-origin: 87.29998779296875px bottom"></div>
+                                            </div>
+                                            <div class="mdc-simple-menu mdc-select__menu">
+                                                <ul id="mac" class="mdc-list mdc-simple-menu__items">
                                                     <li class="mdc-list-item" role="option" tabindex="0">
-                                                        单位编号:${unit.id} </li>
-                                                </c:forEach>
-                                            </ul>
+                                                        无
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6"></div>
-                                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
-                                    <div id="hero-js-select1" class="mdc-select w-100" role="listbox">
-                                        <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0"
-                                             style="width: 394px; --mdc-ripple-fg-size:261.6px; --mdc-ripple-fg-scale:1.71858; --mdc-ripple-fg-translate-start:-43.5px, -90px; --mdc-ripple-fg-translate-end:87.2px, -102.8px;">
-                                            <div class="mdc-select__label">选择刷卡机</div>
-                                            <div class="mdc-select__selected-text"></div>
-                                            <div class="mdc-select__bottom-line"
-                                                 style="transform-origin: 87.29998779296875px bottom"></div>
-                                        </div>
-                                        <div class="mdc-simple-menu mdc-select__menu">
-                                            <ul id="mac" class="mdc-list mdc-simple-menu__items">
-                                                <li class="mdc-list-item" role="option" tabindex="0">
-                                                    无
-                                                </li>
-                                            </ul>
-                                        </div>
+                                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6"></div>
+                                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+                                        <button onclick="chk()"
+                                                class="mdc-button mdc-button--stroked thick-stroke-button mdc-ripple-upgraded"
+                                                data-mdc-auto-init="MDCRipple"
+                                                style="--mdc-ripple-fg-size:115.62px; --mdc-ripple-fg-scale:1.78199; --mdc-ripple-fg-translate-start:104.79px, -32.2099px; --mdc-ripple-fg-translate-end:38.54px, -39.81px;">
+                                            提交
+                                        </button>
+                                    </div>
+                                    <div id="errMsg" style="display: none;"
+                                         class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+                                        <i class="material-icons text-red">warning</i>
+                                        请选择刷卡机
                                     </div>
                                 </div>
-                                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6"></div>
-
 
                             </div>
                         </div>
@@ -199,21 +212,45 @@
         loadMacList(inner.substring(inner.indexOf(":") + 1));
     });
     if ($('#hero-js-select1').length) {
-        var heroSelect1 = document.getElementById('hero-js-select1');
-        var heroSelectComponent1 = new mdc.select.MDCSelect(heroSelect1);
+        var heroSelect = document.getElementById('hero-js-select1');
+        var heroSelectComponent1 = new mdc.select.MDCSelect(heroSelect);
     }
-    $("form").submit(chk());
+
+    function resetSelector() {
+        if ($('#hero-js-select1').length) {
+            var heroSelect = document.getElementById('hero-js-select1');
+            var heroSelectComponent1 = new mdc.select.MDCSelect(heroSelect);
+        }
+        $("#macTitle").removeClass("mdc-select__label--float-above");
+        $("#macContent")[0].innerHTML = "";
+    }
 
     function loadMacList(uid) {
         var mac = $("#mac");
         $.post("/admin2/charge/macListIF", {id: uid}, function (data, status) {
-            if (data === [] && status === "success")
-                console.log("SUCCESS")
-        })
+            data = eval(data);
+            mac.empty();
+            resetSelector();
+            if (data.length === 0) append(mac, "空");
+            else
+                for (var i = 0; i < data.length; i++) {
+                    append(mac, data[i].id);
+                }
+        });
     }
 
     function append(obj, text) {
         obj.append("<li class='mdc-list-item' role='option' tabindex='0' style='' aria-selected='true'>" + text + "</li>");
+    }
+
+    function chk() {
+        var c = $("#macContent")[0].innerHTML;
+        if (c === null || c === "" || c === "空") {
+            $("#errMsg").show();
+            return false;
+        }
+        $("#macID").val(c);
+        $("form").submit();
     }
 </script>
 <!-- endinject -->

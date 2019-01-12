@@ -163,7 +163,7 @@
                                         </div>
                                         <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6"></div>
                                         <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
-                                            <button type="submit"
+                                            <button onclick="chk()"
                                                     class="mdc-button mdc-button--stroked thick-stroke-button mdc-ripple-upgraded"
                                                     data-mdc-auto-init="MDCRipple"
                                                     style="--mdc-ripple-fg-size:115.62px; --mdc-ripple-fg-scale:1.78199; --mdc-ripple-fg-translate-start:104.79px, -32.2099px; --mdc-ripple-fg-translate-end:38.54px, -39.81px;">
