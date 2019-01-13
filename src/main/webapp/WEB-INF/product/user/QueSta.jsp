@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page pageEncoding="utf-8" contentType="text/html; utf-8" %>
 <html>
 <head>
@@ -120,24 +121,11 @@
                                                 </div>
                                                 <div class="mdc-simple-menu mdc-select__menu">
                                                     <ul class="mdc-list mdc-simple-menu__items">
-                                                        <li class="mdc-list-item" role="option" tabindex="0">
-                                                            Bread, Cereal, Rice, and Pasta
-                                                        </li>
-                                                        <li class="mdc-list-item" role="option" tabindex="0">
-                                                            Vegetables
-                                                        </li>
-                                                        <li class="mdc-list-item" role="option" tabindex="0">
-                                                            Fruit
-                                                        </li>
-                                                        <li class="mdc-list-item" role="option" tabindex="0">
-                                                            Milk, Yogurt, and Cheese
-                                                        </li>
-                                                        <li class="mdc-list-item" role="option" tabindex="0">
-                                                            Meat, Poultry, Fish, Dry Beans, Eggs, and Nuts
-                                                        </li>
-                                                        <li class="mdc-list-item" role="option" tabindex="0">
-                                                            Fats, Oils, and Sweets
-                                                        </li>
+                                                        <c:forEach items="${addrlist}" var="addr">
+                                                            <li class="mdc-list-item" role="option" tabindex="0">
+                                                                    ${c}
+                                                            </li>
+                                                        </c:forEach>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -160,31 +148,25 @@
                                     <table class="table table-hoverable" id="consume">
                                         <thead>
                                         <tr>
-                                            <th class="text-left">${c.car_id}</th>
-                                            <th>校园卡编号</th>
-                                            <th>消费时间</th>
-                                            <th>消费卡机编号</th>
-                                            <th>消费金额</th>
-                                            <th>消费结果</th>
-                                            <th>失败原因</th>
+                                            <th class="text-left">消费编号</th>
+                                            <th class="text-left">校园卡编号</th>
+                                            <th class="text-left">消费时间</th>
+                                            <th class="text-left">消费卡机编号</th>
+                                            <th class="text-left">消费金额</th>
+                                            <th class="text-left">消费结果</th>
+                                            <th class="text-left">失败原因</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <c:forEach items="${cosumelist}" var="c">
                                             <tr id="tr_id_${c.id}">
                                                 <td class="text-left">${c.id}</td>
-                                                <td ${c.car_id==null?"style='color: lightgray;'":""}
-                                                        class="text-left">${c.car_id==null?"空":c.car_id}</td>
-                                                <td ${c.time==null?"style='color: lightgray;'":""}
-                                                        class="text-left">${c.time==null?"空":c.time}</td>
-                                                <td ${c.mac_id==null?"style='color: lightgray;'":""}
-                                                        class="text-left">${c.mac_id==null?"空":c.mac_id}</td>
-                                                <td ${c.amount==null?"style='color: lightgray;'":""}
-                                                        class="text-left">${c.amount==null?"空":c.amount}</td>
-                                                <td ${c.result==null?"style='color: lightgray;'":""}
-                                                        class="text-left">${c.result?"空":c.result}</td>
-                                                <td ${c.reason==null?"style='color: lightgray;'":""}
-                                                        class="text-left">${c.reason?"空":c.reason}</td>
+                                                <td class="text-left">${c.car_id}</td>
+                                                <td class="text-left">${c.time}</td>
+                                                <td class="text-left">${c.mac_id}</td>
+                                                <td class="text-left">${c.amount}</td>
+                                                <td class="text-left">${c.result}</td>
+                                                <td class="text-left">${c.reason}</td>
                                             </tr>
                                         </c:forEach>
                                         </tbody>

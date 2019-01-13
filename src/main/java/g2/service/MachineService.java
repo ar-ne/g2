@@ -2,7 +2,6 @@ package g2.service;
 
 import g2.mapper.MachineMapper;
 import g2.model.Machine;
-import g2.model.Unit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +40,10 @@ public class MachineService {
         return machineMapper.DeleteByUnitId(id) + count;
     }
 
+    public List<String> getAddr() {
+        return machineMapper.getAddr();
+    }
+
     public List<Long> selectByUnitId(Long id) {
         return machineMapper.SelectByUnitId(id);
     }
@@ -68,4 +71,12 @@ public class MachineService {
     public Machine selectByPrimaryKey(Long id) {
         return machineMapper.selectByPrimaryKey(id);
     }
+//    public List<Long> getAddrByMacID(Long id){
+//        List<Long> macIDList = consumeService.getMacID(id);
+//        if (macIDList != null)
+//            for (int i = 0; i < macIDList.size(); i++) {
+//                machineMapper.getAddrByMacID(macIDList.get(i));
+//            }
+//        return  machineMapper.getAddrByMacID(id);
+//    }
 }

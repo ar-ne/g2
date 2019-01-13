@@ -14,9 +14,18 @@ public interface ConsumeExt {
     })
     List<Consume> getAll();//查询所有消费记录
 
+//    @Select({
+//            "select",
+//            "Mac_id",
+//            "from consumelog",
+//            "where Car_id=#{carID,jdbcType=NUMERIC}"
+//    })
+//    List<Long> getMacID(Long carID);//查询用户消费卡机ID
+
+
     @Select({
             "select",
-            "id, Car_id, name, Mac_id,amount, time, result, reason",
+            "*",
             "from consumelog",
             "where Car_id=#{carID,jdbcType=NUMERIC}"
     })
