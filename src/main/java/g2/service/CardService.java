@@ -57,4 +57,8 @@ public class CardService {
     public Card get(Long id) {
         return cardMapper.selectByPrimaryKey(id);
     }
+
+    public int update(Card card) {
+        return cardMapper.updateByPrimaryKeySelective(card);
+    }
 }

@@ -2,6 +2,7 @@ package g2.controller.admin2;
 
 import g2.model.Card;
 import g2.model.Charge;
+import g2.model.Machine;
 import g2.service.CardService;
 import g2.service.ChargeService;
 import g2.service.MachineService;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Date;
 
@@ -31,6 +33,20 @@ public class ChargeAction {
         this.chargeService = chargeService;
     }
 
+    @RequestMapping(value = "mac", params = "macID", method = RequestMethod.POST)
+    public ModelAndView mac(Long macID) {
+        Machine mac = machineService.selectByPrimaryKey(macID);
+        if (mac == null || mac.getId() == null) return new ModelAndView("redirect:/admin2/charge");
+        ModelAndView modelAndView = new ModelAndView("admin2/chargeAction/machine");
+        modelAndView.addObject("mac", mac);
+        return modelAndView;
+    }
+
+    @RequestMapping("scan")
+    public String scanner() {
+        return "admin2/chargeAction/scan";
+    }
+
     /**
      * 接口：从单位ID获取machine
      *
@@ -42,8 +58,17 @@ public class ChargeAction {
         return new JSONMsg(machineService.getMachineByUnit(id));
     }
 
+    /**
+     * 接口：产生收费记录
+     *
+     * @param cardID 卡号
+     * @param macID  刷卡机号
+     * @param amount 金额
+     * @return 收费信息
+     */
     @RequestMapping(value = "chargeIF", method = RequestMethod.POST)
     public JSONMsg charge(Long cardID, Long macID, double amount) {
+        machineService.selectByPrimaryKey(macID);//确保刷卡机没被删除
         Charge charge = new Charge();
         Card card = cardService.get(cardID);
         charge.setCar_id(cardID);
@@ -59,7 +84,29 @@ public class ChargeAction {
             return new JSONMsg(charge);
         }
         //检查余额
+        if (card.getAmount() < amount) {
+            charge.setReason(Properites.ErrorMessages.Insufficient_Balance);
+            charge.setResult(Properites.Result.failed);
+            chargeService.add(charge);
+            return new JSONMsg(charge);
+        }
 
+        //检查消费限制
+        if (card.getLimit() < amount) {
+            charge.setReason(Properites.ErrorMessages.Exceed_Limit);
+            charge.setResult(Properites.Result.failed);
+            chargeService.add(charge);
+            return new JSONMsg(charge);
+        }
+
+        //扣费
+        card.setAmount(card.getAmount() - amount);
+        if (cardService.update(card) > 0)
+            charge.setResult(Properites.Result.success);
+        else {
+            charge.setResult(Properites.Result.failed);
+            charge.setReason(Properites.ErrorMessages.DBERROR);
+        }
         chargeService.add(charge);
         return new JSONMsg(charge);
     }

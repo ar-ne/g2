@@ -64,6 +64,7 @@ public class Admin2 {
     public ModelAndView charge() {
         ModelAndView modelAndView = new ModelAndView("admin2/charge");
         List<Unit> unitList = unitService.getAll();
+        modelAndView.addObject("unitList", unitList);
         return modelAndView;
     }
 
