@@ -123,7 +123,7 @@
                                                     <ul class="mdc-list mdc-simple-menu__items">
                                                         <c:forEach items="${addrlist}" var="addr">
                                                             <li class="mdc-list-item" role="option" tabindex="0">
-                                                                    ${c}
+                                                                    ${addr}
                                                             </li>
                                                         </c:forEach>
                                                     </ul>

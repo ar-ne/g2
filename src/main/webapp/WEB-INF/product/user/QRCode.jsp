@@ -19,7 +19,7 @@
 <script src="${pageContext.request.contextPath}/js/qrcode.min.js"></script>
 <div class="body-wrapper">
     <!-- partial:partials/_sidebar.html -->
-    <aside class="mdc-persistent-drawer mdc-persistent-drawer--open">
+    <aside class="mdc-persistent-drawer">
         <nav class="mdc-persistent-drawer__drawer">
             <div class="mdc-persistent-drawer__toolbar-spacer">
                 <a href="/">
@@ -105,8 +105,8 @@
                         <script type="text/javascript">
                             var qrcode = new QRCode(document.getElementById("qrcode"), {
                                 text: "${qrText}",
-                                width: 128,
-                                height: 128,
+                                width: document.body.clientWidth,
+                                height: document.body.clientWidth,
                                 colorDark: "#000000",
                                 colorLight: "#ffffff",
                                 correctLevel: QRCode.CorrectLevel.H
