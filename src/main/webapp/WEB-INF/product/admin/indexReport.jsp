@@ -28,6 +28,22 @@
             border-radius: 5px;
         }
     </style>
+    <script type="text/javascript">
+        function doSubmit(url) {
+            //  var data=$('#frm').serialize();
+            // alert(url+"?"+data);
+            $.ajax({
+                type: "post",
+                contentType: "application/json",
+                url: url,
+                success: function () {
+                    alert("统计成功，保存在C:/index目录下！！！");
+                    window.location = "/admin/report";
+                },
+            })
+        }
+
+    </script>
 </head>
 <body>
 <div class="body-wrapper">
@@ -145,10 +161,10 @@
                     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
                         <form style="margin: auto auto">
                             <div class="form-group">
-                                <a class="btn btn-info" href="/admin/report/user">统计用户消费报表</a>
+                                <Button class="btn btn-info" onclick="doSubmit('/admin/report/user')">统计用户消费报表</Button>
                         </div>
                             <div class="form-group">
-                                <a class="btn btn-info" href="/admin/report/unit">统计单位收费报表</a>
+                                <Button class="btn btn-info" onclick="doSubmit('/admin/report/unit')">统计单位收费报表</Button>
                         </div>
                         </form>
                     </div>

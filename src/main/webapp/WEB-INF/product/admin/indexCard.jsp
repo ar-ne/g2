@@ -163,7 +163,7 @@
         <main class="content-wrapper">
             <div class="mdc-layout-grid">
                 <div class="mdc-layout-grid__inner">
-                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-10">
 
                         <form name="frm" action="/admin/card/">
                             <div class="form-froup" style="float:left;margin-right:30px">
@@ -179,24 +179,13 @@
                                     </c:forEach>
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-info" style="float:left;margin-top:32px"> 查找</button>
-
-                            <div class="form-froup" style="float:left;margin-right:30px">
-                                <label class="form-label">资助金额：</label>
-                                <input class="form-control" type="text" name="money"
-                                       value='${money}'>
-                            </div>
-                            <button class="btn btn-success" type="submit" style="float:left;margin-top:30px"> 资助
-                            </button>
-                            <div class="form-froup" style="float:left;margin-right:30px">
-                                <button class="btn btn-success" type="submit" style="float:left;margin-top:30px">充值
-                                </button>
-                            </div>
+                            <button type="submit" class="btn btn-info" style="margin-top:30px"> 查找</button>
+                            <a class="btn btn-info" href="/admin/card/support" style="margin-top:30px"> 资助</a>
                         </form>
                     </div>
                     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-2">
                         <div id="toolbar" style="text-align:center;margin-right:10px;margin-top: 30px;">
-                            <a class="btn btn-success" href="/admin/card/insert">办卡</a>
+                            <a class="btn btn-info" href="/admin/card/insert">办卡</a>
                         </div>
                     </div>
 
@@ -225,7 +214,8 @@
                                     <td class="text-left">
                                         <button class="btn btn-danger" onclick="del(${c.id},'冻结')">冻结</button>
                                         <button class="btn btn-primary" onclick="add(${c.id},'正常')">恢复</button>
-                                            <%--<button class="btn btn-primary" onclick="delT(${c.id})">删除</button>--%>
+                                        <a class="btn btn-success"
+                                           href='/admin/card/recharge?id=${c.id}&amount=${c.amount}'>充值</a>
                                     </td>
                                 </tr>
                             </c:forEach>

@@ -2,6 +2,7 @@ package g2.mapper.Extra;
 
 import g2.model.Charge;
 import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -25,9 +26,17 @@ public interface ChargeExt {
             "from chargelog",
     })
     List<Charge> getAll();//查询所有消费记录
-    /*@Delete({
-            "delete from chargelog",
-            "where name = #{name,jdbcType=VARCHAR}"
+
+    @Select({
+            "<script>",
+            "select",
+            "id, Car_id, Mac_id,name,amount, time, result, reason",
+            "from chargelog",
+            "where 1=1",
+            "<when test=\"Mac_id!=null and Mac_id!=''\">",
+            "AND Mac_id= #{Mac_id,jdbcType=NUMERIC}",
+            "</when>",
+            "</script>"
     })
-    int DeleteByName(String name);*/
+    List<Charge> selectByMacId(@Param("Mac_id") Long Mac_id);
 }

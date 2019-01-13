@@ -33,10 +33,33 @@
 </head>
 <body>
 <script type="text/javascript">
+    function doSubmit(url) {
+        var data = $('#form1').serialize();
+        alert(url + "?" + data);
+        $.ajax({
+            type: "post",
+            contentType: "application/json",
+            url: url + "?" + data,
+            success: function (data) {
+                alert("添加成功！！！")
+                window.location = "/admin/ma";
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        })
+    }
+
     function del(e) {
         if (confirm("确认要删除该刷卡机和相关的收费消费信息？")) {
             window.location.href = '/admin/ma/MaDelete?id=' + e;
         }
+    }
+
+    function selec() {
+        var e = document.getElementById("id");
+        var e1 = e.value;
+        window.location.href = '/admin/ma/chargedo?id=' + e1;
     }
 </script>
 <div class="body-wrapper">
@@ -156,7 +179,7 @@
                         <form name="frm" action="/admin/ma/">
                             <div class="form-froup" style="float:left;margin-right:30px">
                                 <label class="form-label">刷卡机编号：</label><input class="form-control" type="text"
-                                                                               name="id"
+                                                                               name="id" id="id"
                                                                                value='${id}'>
                             </div>
                             <div class="form-froup" style="float:left;margin-right:30px">
@@ -201,10 +224,11 @@
                     </div>
                     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
                         <div style="margin: auto auto">
-                            <button class="btn btn-info" style="float:left;"> 查询刷卡机消费信息</button>
+                            <button class="btn btn-info" style="float:left;" onclick="selec()">查询刷卡机消费信息</button>
                         </div>
                         <div style="margin: auto auto">
-                            <button class="btn btn-info" style="float:left;"> 批量导入</button>
+                            <button class="btn btn-info" style="float:left;" onclick="input('/admin/ma/')"> 批量导入
+                            </button>
                         </div>
                     </div>
                 </div>

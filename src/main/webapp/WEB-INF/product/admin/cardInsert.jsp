@@ -28,6 +28,26 @@
             border-radius: 5px;
         }
     </style>
+    <script type="text/javascript">
+        function doSubmit(url) {
+            var data = $('#frm').serialize();
+            // alert(url+"?"+data);
+            $.ajax({
+                type: "post",
+                contentType: "application/json",
+                url: url + "?" + data,
+                success: function (data) {
+                    alert("办卡成功！！！");
+                    window.location = "/admin/card";
+                },
+                failed: function (data) {
+                    alert("办卡失败！！！");
+                    console.log(data);
+                }
+            })
+        }
+
+    </script>
 </head>
 <body>
 <div class="body-wrapper">
@@ -143,7 +163,7 @@
             <div class="mdc-layout-grid">
                 <div class="mdc-layout-grid__inner">
                     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-10">
-                        <form name="frm" action="/admin/card/insertDo" style="margin: auto auto;">
+                        <form id="frm" action="" style="margin: auto auto;">
                             <div class="form-froup">
                                 <label class="form-label">用户类型：</label>
                                 <input class="form-control" type="text" name="type" value='1级'>
@@ -164,7 +184,9 @@
                                                                               name="limit" value='30'>
                             </div>
                             <div class="form-froup">
-                                <button type="submit" class="btn btn-info" style="float: left">保存</button>
+                                <button onclick="doSubmit('/admin/card/insertDo')" class="btn btn-info"
+                                        style="float: left">保存
+                                </button>
                                 <button type="button" class="btn btn-danger" onclick="ret()" style="float: right"> 重置
                                 </button>
                             </div>

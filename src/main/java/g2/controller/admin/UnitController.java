@@ -5,6 +5,7 @@ import g2.service.UnitService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -28,29 +29,31 @@ public class UnitController {
 
     @RequestMapping("/UnitSelect")
     public String unitselect(Model model, Long id) {
-        Unit unit = unitService.selectById(id);
+        Unit unit = unitService.getByPrimaryKey(id);
         model.addAttribute("unit", unit);
         return "admin/unitUpdate";
     }
 
     @RequestMapping("/UnitDelete")
     public String unitdelete(Long id) {
-        unitService.UnitDelete(id);
+        unitService.delete(id);
         return "redirect:/admin/unit";
     }
 
     @RequestMapping("/UnitUpdate")
+    @ResponseBody
     public String unitupdate(Long id, String type, String account, String password, String pnum) {
         Unit unit = new Unit(id, type, account, password, pnum);
-        unitService.update(unit);
-        return "redirect:/admin/unit";
+        int n = unitService.update(unit);
+        return n > 0 ? "success" : "failed";
     }
 
     @RequestMapping("/UnitInsertDo")
+    @ResponseBody
     public String unitinsertdo(Long id, String type, String account, String password, String pnum) {
         Unit unit = new Unit(null, type, account, password, pnum);
-        unitService.insert(unit);
-        return "redirect:/admin/unit";
+        int n = unitService.add(unit);
+        return n > 0 ? "success" : "failed";
     }
 
     @RequestMapping("/UnitInsert")

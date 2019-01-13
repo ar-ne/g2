@@ -16,6 +16,27 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <!-- endinject -->
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.png"/>
+    <script type="text/javascript">
+        //$(function () {
+        function doSubmit(url) {
+            var data = $('#form1').serialize();
+            //       alert(url+"?"+data);
+            $.ajax({
+                type: "post",
+                contentType: "application/json",
+                url: url + "?" + data,
+                success: function (data) {
+                    alert("添加成功！！！")
+                    window.location = "/admin/ma";
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            })
+        }
+
+        //  })
+    </script>
     <style type="text/css">
         @import url('${pageContext.request.contextPath}/css/admin.css');
 
@@ -28,6 +49,7 @@
             border-radius: 5px;
         }
     </style>
+
 </head>
 <body>
 <div class="body-wrapper">
@@ -143,7 +165,7 @@
             <div class="mdc-layout-grid">
                 <div class="mdc-layout-grid__inner">
                     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-10">
-                        <form name="frm" action="/admin/ma/MaInsertDo" style="margin: auto auto;">
+                        <form name="frm" id="form1" action="" style="margin: auto auto;">
                             <div class="form-froup">
                                 <label class="form-label">单位编号：</label>
 
@@ -155,15 +177,12 @@
                             </div>
                             <div class="form-froup">
                                 <label class="form-label">放置地点：</label>
-
-                                <select class="form-control" name="addr">
-                                    <option value="车队">车队</option>
-                                    <option value="食堂窗口">食堂窗口</option>
-                                    <option value="售电窗口">售电窗口</option>
-                                </select>
+                                <input class="form-control" type="text" name="addr" value=''>
                             </div>
                             <div class="form-froup">
-                                <button type="submit" class="btn btn-info" style="float: left">保存</button>
+                                <button type="button" onclick="doSubmit('/admin/ma/MaInsertDo')" class="btn btn-info"
+                                        style="float: left">保存
+                                </button>
                                 <button type="button" class="btn btn-danger" onclick="ret()" style="float: right"> 重置
                                 </button>
 

@@ -28,29 +28,41 @@
             border-radius: 5px;
         }
     </style>
-    <script type="text/javascript">
-        //$(function () {
-        function doSubmit(url) {
-            var data = $('#frm').serialize();
-            //    alert(url+"?"+data);
-            $.ajax({
-                type: "post",
-                contentType: "application/json",
-                url: url + "?" + data,
-                success: function (data) {
-                    alert("修改成功！！！")
-                    window.location = "/admin/unit";
-                },
-                error: function (data) {
-                    console.log(data);
-                }
-            })
-        }
 
-        //  })
-    </script>
+
 </head>
 <body>
+<script type="text/javascript">
+    function del(e1, e2) {
+        if (confirm("确认要冻结该卡？")) {
+            window.location.href = '/admin/card/update?id=' + e1 + '&state=' + e2;
+        }
+    }
+
+    function add(e1, e2) {
+        if (confirm("确认要恢复该卡？")) {
+            window.location.href = '/admin/card/update?id=' + e1 + '&state=' + e2;
+        }
+    }
+
+    //$(function () {
+    function doSubmit(url) {
+        var data = $('#frm').serialize();
+        $.ajax({
+            type: "post",
+            contentType: "application/json",
+            url: url + "?" + data,
+            success: function (data) {
+                alert("资助成功！！！");
+                window.location = "/admin/card?type=${type}";
+            },
+            failed: function (data) {
+                alert("资助失败！！！");
+                console.log(data);
+            }
+        })
+    }
+</script>
 <div class="body-wrapper">
     <!-- partial:partials/_sidebar.html -->
     <aside class="mdc-persistent-drawer mdc-persistent-drawer--open">
@@ -72,7 +84,7 @@
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link active" href="/admin/unit/">
+                        <a class="mdc-drawer-link" href="/admin/unit/">
                             <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">group_work</i>
                             单位管理
                         </a>
@@ -86,7 +98,7 @@
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="/admin/card/">
+                        <a class="mdc-drawer-link active" href="/admin/card/">
                             <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">extension</i>
                             办卡中心管理
                         </a>
@@ -163,47 +175,26 @@
         <main class="content-wrapper">
             <div class="mdc-layout-grid">
                 <div class="mdc-layout-grid__inner">
-                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-10">
-                        <form id="frm" action="" style="margin: auto auto">
-                            <div class="form-froup">
-                                <input type="hidden" name="id" value="${unit.id}"><!-- 增加隐藏变量-->
-                                <label class="form-label">单位类型：</label>
+                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6"
+                         style="margin: auto auto;">
+                        <form id="frm" style="margin: auto auto;" action="">
+                            <div class="form-group" style="float:left;margin-right:30px">
+                                <label class="form-label">用户类型：</label>
                                 <select class="form-control" name="type">
                                     <option value="">请选择</option>
-                                    <option value="车队"     <c:if test="${unit.type=='车队'}">${"selected"}</c:if>>车队
-                                    </option>
-                                    <option value="食堂窗口" <c:if test="${unit.type=='食堂窗口'}">${"selected"}</c:if>>食堂窗口
-                                    </option>
-                                    <option value="售电窗口" <c:if test="${unit.type=='售电窗口'}">${"selected"}</c:if>>售电窗口
-                                    </option>
+                                    <c:forEach items="${list}" var="l">
+                                        <option value="${l}" <c:if test="${l==type}">${"selected"}</c:if>>${l}</option>
+                                    </c:forEach>
                                 </select>
                             </div>
-                            <div class="form-froup">
-                                <label class="form-label">单位帐号：</label><input class="form-control" type="text"
-                                                                              name="account"
-                                                                              value='${unit.account}'>
+                            <div class="form-froup" style="float:left;margin-right:30px">
+                                <label class="form-label">资助金额：</label>
+                                <input class="form-control" type="text" name="money"
+                                       value='${money}'>
                             </div>
-                            <div class="form-froup">
-                                <label class="form-label">单位密码：</label><input class="form-control" type="text"
-                                                                              name="password"
-                                                                              value='${unit.password}'>
-                            </div>
-                            <div class="form-froup">
-                                <label class="form-label">单位密码：</label><input class="form-control" type="text"
-                                                                              name="pnum"
-                                                                              value='${unit.pnum}'>
-                            </div>
-                            <div class="form-froup">
-                                <button type="submit" class="btn btn-info" style="float: left"
-                                        onclick="doSubmit('/admin/unit/UnitUpdate')">保存
-                                </button>
-                                <button type="button" class="btn btn-danger" onclick="ret()" style="float: right"> 返回
-                                </button>
-
-                            </div>
+                            <button class="btn btn-primary" type="submit" style="margin-top:32px;">资助</button>
                         </form>
                     </div>
-
                 </div>
             </div>
         </main>
@@ -236,6 +227,9 @@
 <!-- inject:js -->
 <script src="${pageContext.request.contextPath}/js/misc.js"></script>
 <script src="${pageContext.request.contextPath}/js/material.js"></script>
+<script>
+    $("form").submit(doSubmit('/admin/card/supportDo'));
+</script>
 <!-- endinject -->
 <!-- Custom js for this page-->
 <script src="${pageContext.request.contextPath}/js/dashboard.js"></script>

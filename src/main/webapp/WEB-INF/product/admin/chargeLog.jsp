@@ -28,29 +28,17 @@
             border-radius: 5px;
         }
     </style>
-    <script type="text/javascript">
-        //$(function () {
-        function doSubmit(url) {
-            var data = $('#frm').serialize();
-            //    alert(url+"?"+data);
-            $.ajax({
-                type: "post",
-                contentType: "application/json",
-                url: url + "?" + data,
-                success: function (data) {
-                    alert("修改成功！！！")
-                    window.location = "/admin/unit";
-                },
-                error: function (data) {
-                    console.log(data);
-                }
-            })
-        }
 
-        //  })
-    </script>
+
 </head>
 <body>
+<script type="text/javascript">
+    function del(e) {
+        if (confirm("确认要删除该刷卡机和相关的收费消费信息？")) {
+            window.location.href = '/admin/ma/MaDelete?id=' + e;
+        }
+    }
+</script>
 <div class="body-wrapper">
     <!-- partial:partials/_sidebar.html -->
     <aside class="mdc-persistent-drawer mdc-persistent-drawer--open">
@@ -72,13 +60,13 @@
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link active" href="/admin/unit/">
+                        <a class="mdc-drawer-link" href="/admin/unit/">
                             <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">group_work</i>
                             单位管理
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="/admin/ma/">
+                        <a class="mdc-drawer-link active" href="/admin/ma/">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
 
@@ -163,47 +151,37 @@
         <main class="content-wrapper">
             <div class="mdc-layout-grid">
                 <div class="mdc-layout-grid__inner">
-                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-10">
-                        <form id="frm" action="" style="margin: auto auto">
-                            <div class="form-froup">
-                                <input type="hidden" name="id" value="${unit.id}"><!-- 增加隐藏变量-->
-                                <label class="form-label">单位类型：</label>
-                                <select class="form-control" name="type">
-                                    <option value="">请选择</option>
-                                    <option value="车队"     <c:if test="${unit.type=='车队'}">${"selected"}</c:if>>车队
-                                    </option>
-                                    <option value="食堂窗口" <c:if test="${unit.type=='食堂窗口'}">${"selected"}</c:if>>食堂窗口
-                                    </option>
-                                    <option value="售电窗口" <c:if test="${unit.type=='售电窗口'}">${"selected"}</c:if>>售电窗口
-                                    </option>
-                                </select>
-                            </div>
-                            <div class="form-froup">
-                                <label class="form-label">单位帐号：</label><input class="form-control" type="text"
-                                                                              name="account"
-                                                                              value='${unit.account}'>
-                            </div>
-                            <div class="form-froup">
-                                <label class="form-label">单位密码：</label><input class="form-control" type="text"
-                                                                              name="password"
-                                                                              value='${unit.password}'>
-                            </div>
-                            <div class="form-froup">
-                                <label class="form-label">单位密码：</label><input class="form-control" type="text"
-                                                                              name="pnum"
-                                                                              value='${unit.pnum}'>
-                            </div>
-                            <div class="form-froup">
-                                <button type="submit" class="btn btn-info" style="float: left"
-                                        onclick="doSubmit('/admin/unit/UnitUpdate')">保存
-                                </button>
-                                <button type="button" class="btn btn-danger" onclick="ret()" style="float: right"> 返回
-                                </button>
+                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th class="text-left">收费编号</th>
+                                <th class="text-left">卡号</th>
+                                <th class="text-left">卡机编号</th>
+                                <th class="text-left">用户姓名</th>
+                                <th class="text-left">消费金额</th>
+                                <th class="text-left">消费时间</th>
+                                <th class="text-left">消费结果</th>
+                                <th class="text-left">原因</th>
+                            </tr>
+                            </thead>
 
-                            </div>
-                        </form>
+                            <tbody>
+                            <c:forEach items="${charges}" var="c">
+                                <tr>
+                                    <td class="text-left">&nbsp;&nbsp;${c.id}</td>
+                                    <td class="text-left">&nbsp;&nbsp;${c.car_id}</td>
+                                    <td class="text-left">&nbsp;&nbsp;${c.mac_id}</td>
+                                    <td class="text-left">&nbsp;&nbsp;${c.name}</td>
+                                    <td class="text-left">&nbsp;&nbsp;${c.amount}</td>
+                                    <td class="text-left">&nbsp;&nbsp;${c.time}</td>
+                                    <td class="text-left">&nbsp;&nbsp;${c.result}</td>
+                                    <td class="text-left">&nbsp;&nbsp;${c.reason}</td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
                     </div>
-
                 </div>
             </div>
         </main>

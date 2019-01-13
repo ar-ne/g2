@@ -28,6 +28,28 @@
             border-radius: 5px;
         }
     </style>
+    <script type="text/javascript">
+        //$(function () {
+        function doSubmit(url) {
+            var data = $('#frm').serialize();
+            alert(url + "?" + data);
+            $.ajax({
+                type: "post",
+                contentType: "application/json",
+                url: url + "?" + data,
+                success: function (data) {
+                    alert("修改成功！！！");
+                    window.location = "/admin/ma";
+                },
+                failed: function (data) {
+                    alert("修改失败！！！");
+                    console.log(data);
+                }
+            })
+        }
+
+        //  })
+    </script>
 </head>
 <body>
 <div class="body-wrapper">
@@ -143,7 +165,7 @@
             <div class="mdc-layout-grid">
                 <div class="mdc-layout-grid__inner">
                     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-10">
-                        <form name="frm" action="/admin/ma/MaUpdateDo" style="margin: auto auto">
+                        <form id="frm" action="" style="margin: auto auto">
                             <div class="form-froup">
                                 <input type="hidden" name="id" value="${machine.id}"><!-- 增加隐藏变量-->
                                 <label class="form-label">单位编号：</label>
@@ -168,7 +190,9 @@
                                 </select>
                             </div>
                             <div class="form-froup">
-                                <button type="submit" class="btn btn-info" style="float: left">保存</button>
+                                <button onclick="doSubmit('/admin/ma/MaUpdateDo')" class="btn btn-info"
+                                        style="float: left">保存
+                                </button>
                                 <button type="button" class="btn btn-danger" onclick="ret()" style="float: right"> 重置
                                 </button>
 
