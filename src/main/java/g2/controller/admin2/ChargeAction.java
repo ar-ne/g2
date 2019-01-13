@@ -2,6 +2,7 @@ package g2.controller.admin2;
 
 import g2.model.Card;
 import g2.model.Charge;
+import g2.model.Machine;
 import g2.service.CardService;
 import g2.service.ChargeService;
 import g2.service.MachineService;
@@ -32,11 +33,18 @@ public class ChargeAction {
         this.chargeService = chargeService;
     }
 
-    @RequestMapping("mac")
+    @RequestMapping(value = "mac", params = "macID", method = RequestMethod.POST)
     public ModelAndView mac(Long macID) {
+        Machine mac = machineService.selectByPrimaryKey(macID);
+        if (mac == null || mac.getId() == null) return new ModelAndView("redirect:/admin2/charge");
         ModelAndView modelAndView = new ModelAndView("admin2/chargeAction/machine");
-        modelAndView.addObject("mac", machineService.selectByPrimaryKey(macID));
+        modelAndView.addObject("mac", mac);
         return modelAndView;
+    }
+
+    @RequestMapping("scan")
+    public String scanner() {
+        return "admin2/chargeAction/scan";
     }
 
     /**

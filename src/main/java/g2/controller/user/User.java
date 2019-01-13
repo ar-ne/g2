@@ -1,6 +1,6 @@
 package g2.controller.user;
 
-import g2.util.properties.SessionProperties;
+import g2.util.Properites;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,7 +17,7 @@ public class User {
     @RequestMapping("/user/QRCode")
     public ModelAndView doQRCode(HttpServletRequest request) {
         ModelAndView mv = new ModelAndView("/user/QRCode");
-        mv.addObject("qrText", request.getSession().getAttribute(SessionProperties.cardID));
+        mv.addObject("qrText", request.getSession().getAttribute(Properites.Session.cardID));
         return mv;
     }
 
