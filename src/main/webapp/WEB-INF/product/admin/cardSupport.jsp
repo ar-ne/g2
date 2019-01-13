@@ -32,37 +32,6 @@
 
 </head>
 <body>
-<script type="text/javascript">
-    function del(e1, e2) {
-        if (confirm("确认要冻结该卡？")) {
-            window.location.href = '/admin/card/update?id=' + e1 + '&state=' + e2;
-        }
-    }
-
-    function add(e1, e2) {
-        if (confirm("确认要恢复该卡？")) {
-            window.location.href = '/admin/card/update?id=' + e1 + '&state=' + e2;
-        }
-    }
-
-    //$(function () {
-    function doSubmit(url) {
-        var data = $('#frm').serialize();
-        $.ajax({
-            type: "post",
-            contentType: "application/json",
-            url: url + "?" + data,
-            success: function (data) {
-                alert("资助成功！！！");
-                window.location = "/admin/card?type=${type}";
-            },
-            failed: function (data) {
-                alert("资助失败！！！");
-                console.log(data);
-            }
-        })
-    }
-</script>
 <div class="body-wrapper">
     <!-- partial:partials/_sidebar.html -->
     <aside class="mdc-persistent-drawer mdc-persistent-drawer--open">
@@ -228,7 +197,39 @@
 <script src="${pageContext.request.contextPath}/js/misc.js"></script>
 <script src="${pageContext.request.contextPath}/js/material.js"></script>
 <script>
-    $("form").submit(doSubmit('/admin/card/supportDo'));
+    function del(e1, e2) {
+        if (confirm("确认要冻结该卡？")) {
+            window.location.href = '/admin/card/update?id=' + e1 + '&state=' + e2;
+        }
+    }
+
+    function add(e1, e2) {
+        if (confirm("确认要恢复该卡？")) {
+            window.location.href = '/admin/card/update?id=' + e1 + '&state=' + e2;
+        }
+    }
+
+    //$(function () {
+    function doSubmit(url) {
+        var data = $('#frm').serialize();
+        $.ajax({
+            type: "post",
+            contentType: "application/json",
+            url: url + "?" + data,
+            success: function (data) {
+                alert("资助成功！！！");
+                window.location = "/admin/card?type=${type}";
+            },
+            failed: function (data) {
+                alert("资助失败！！！");
+                console.log(data);
+            }
+        })
+    }
+
+    $("form").submit(function () {
+        doSubmit('/admin/card/supportDo');
+    });
 </script>
 <!-- endinject -->
 <!-- Custom js for this page-->

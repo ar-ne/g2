@@ -52,4 +52,11 @@ public interface ConsumeExt {
             "where Mac_id = #{id,jdbcType=NUMERIC}"
     })
     int DeleteByMacId(Long id);
+
+    @Delete({
+            "delete from consumelog",
+            "where Car_id = #{id,jdbcType=NUMERIC}"
+    })
+    int DeleteByCardId(Long id);
+
 }

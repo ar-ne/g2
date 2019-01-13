@@ -136,30 +136,41 @@
                                                              style="transform-origin: 115.89999389648438px center"></div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
-                                            <div class="mdc-card__primary">
-                                                <h1>单位:${mac.uni_id}</h1>
-                                            </div>
-                                        </div>
-                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
-                                            <div class="mdc-card__primary">
-                                                <h1>卡机:${mac.id}</h1>
-                                            </div>
-                                        </div>
-                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
-                                            <div class="mdc-card__primary">
-                                                <h1>地点:${mac.addr}</h1>
+                                                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+                                                    <div class="mdc-card__primary">
+                                                        <h1 id="name"></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+                                                    <div class="mdc-card__primary">
+                                                        <h1 id="cid"></h1>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <%--右半边--%>
-                                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
-                                    <h3 id="rrrr"></h3>
-                                </div>
+                                    <%--右半边--%>
+                                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+                                        <div class="mdc-layout-grid__inner">
+                                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+                                                <div class="mdc-card__primary">
+                                                    <h1>单位:${mac.uni_id}</h1>
+                                                </div>
+                                            </div>
+                                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+                                                <div class="mdc-card__primary">
+                                                    <h1>卡机:${mac.id}</h1>
+                                                </div>
+                                            </div>
+                                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+                                                <div class="mdc-card__primary">
+                                                    <h1>地点:${mac.addr}</h1>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                             </div>
                         </div>
                     </div>
@@ -217,31 +228,16 @@
         $("#macContent")[0].innerHTML = "";
     }
 
-    function loadMacList(uid) {
+    function getChargeResylt(card, mac, amount) {
         var mac = $("#mac");
-        $.post("/admin2/charge/macListIF", {id: uid}, function (data, status) {
+        $.post("/admin2/charge/chargeIF", {cardID: card, macID: mac, amount: amount}, function (data, status) {
             data = eval(data);
-            mac.empty();
-            resetSelector();
-            if (data.length === 0) append(mac, "空");
-            else
-                for (var i = 0; i < data.length; i++) {
-                    append(mac, data[i].id);
-                }
+            alert("结果:" + data)
         });
     }
 
     function append(obj, text) {
         obj.append("<li class='mdc-list-item' role='option' tabindex='0' style='' aria-selected='true'>" + text + "</li>");
-    }
-
-    function chk() {
-        var c = $("#macContent")[0].innerHTML;
-        if (c === null || c === "" || c === "空") {
-            $("#errMsg").show();
-            return false;
-        }
-        $("form").submit();
     }
 
     var qrResult;
@@ -259,10 +255,14 @@
     }
 
     function doScanned() {
-        var cardID = qrResult;
+        var result = qrResult;
+        console.log(result);
         qrResult = null;
-        console.log(cardID);
-        $("#rrrr")[0].innerHTML = cardID;
+        var name = "用户名：" + result.substring(0, result.indexOf(" "));
+        var card = "卡  号：" + result.substring(result.indexOf(" ") + 1);
+        $("#name")[0].innerHTML = name;
+        $("#card")[0].innerHTML = card;
+
     }
 </script>
 <!-- endinject -->

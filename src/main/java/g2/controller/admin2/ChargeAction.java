@@ -66,7 +66,7 @@ public class ChargeAction {
      * @param amount 金额
      * @return 收费信息
      */
-    @RequestMapping(value = "chargeIF", method = RequestMethod.POST)
+    @RequestMapping(value = "chargeIF", method = RequestMethod.POST, params = "cardID,macID,amount")
     public JSONMsg charge(Long cardID, Long macID, double amount) {
         machineService.selectByPrimaryKey(macID);//确保刷卡机没被删除
         Charge charge = new Charge();
