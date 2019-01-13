@@ -28,6 +28,28 @@
             border-radius: 5px;
         }
     </style>
+    <script type="text/javascript">
+        //$(function () {
+        function doSubmit(url) {
+            var data = $('#frm').serialize();
+            alert(url + "?" + data);
+            $.ajax({
+                type: "post",
+                contentType: "application/json",
+                url: url + "?" + data,
+                success: function (data) {
+                    alert("添加成功！！！");
+                    window.location = "/admin/unit";
+                },
+                error: function (data) {
+                    alert("添加失败！！！");
+                    console.log(data);
+                }
+            })
+        }
+
+        //  })
+    </script>
 </head>
 <body>
 <div class="body-wrapper">
@@ -118,7 +140,7 @@
             <div class="mdc-layout-grid">
                 <div class="mdc-layout-grid__inner">
                     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-10">
-                        <form name="frm" action="/admin/unit/UnitInsertDo" style="margin: auto auto">
+                        <form id="frm" action="" style="margin: auto auto">
                             <div class="form-froup">
                                 <label class="form-label">单位类型：</label>
                                 <select class="form-control" name="type">
@@ -144,7 +166,9 @@
                                                                                 value=''>
                             </div>
                             <div class="form-froup">
-                                <button type="submit" class="btn btn-info" style="float: left">保存</button>
+                                <button onclick="doSubmit('/admin/unit/UnitInsertDo')" class="btn btn-info"
+                                        style="float: left">保存
+                                </button>
                                 <button type="button" class="btn btn-danger" onclick="ret()" style="float: right"> 重置
                                 </button>
 

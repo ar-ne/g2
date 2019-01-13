@@ -1,7 +1,7 @@
 package g2.controller.auth;
 
 import g2.model.Extra.UserSession;
-import g2.util.properties.UserProperties;
+import g2.util.Properites;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -16,7 +16,7 @@ public class AuthInterceptor implements HandlerInterceptor {
         if (debug) return true;
         UserSession session = new UserSession(request);
         try {
-            if (session.getState() && !session.getName().isEmpty() && session.getType() != UserProperties.unAuth)
+            if (session.getState() && !session.getName().isEmpty() && session.getType() != Properites.Login.unAuth)
                 return true;
         } catch (Exception e) {
             return false;

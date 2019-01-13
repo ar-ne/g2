@@ -3,6 +3,7 @@ package g2.controller.admin;
 import g2.service.ExportService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/admin/report")
@@ -19,14 +20,16 @@ public class ExportController {
     }
 
     @RequestMapping("/user")
+    @ResponseBody
     public String userreport() {
         exportService.reportUser();
-        return "admin/indexReport";
+        return "success";
     }
 
     @RequestMapping("/unit")
+    @ResponseBody
     public String unitreport() {
         exportService.reportUnit();
-        return "admin/indexReport";
+        return "success";
     }
 }

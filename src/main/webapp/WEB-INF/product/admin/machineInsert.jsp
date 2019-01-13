@@ -16,6 +16,27 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <!-- endinject -->
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.png"/>
+    <script type="text/javascript">
+        //$(function () {
+        function doSubmit(url) {
+            var data = $('#form1').serialize();
+            //       alert(url+"?"+data);
+            $.ajax({
+                type: "post",
+                contentType: "application/json",
+                url: url + "?" + data,
+                success: function (data) {
+                    alert("添加成功！！！")
+                    window.location = "/admin/ma";
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            })
+        }
+
+        //  })
+    </script>
     <style type="text/css">
         @import url('${pageContext.request.contextPath}/css/admin.css');
 
@@ -28,6 +49,7 @@
             border-radius: 5px;
         }
     </style>
+
 </head>
 <body>
 <div class="body-wrapper">
@@ -42,7 +64,7 @@
             <div class="mdc-list-group">
                 <nav class="mdc-list mdc-drawer-menu">
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link " href="/admin">
+                        <a class="mdc-drawer-link " href="/admin/">
                             <%--<i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
 --%>
@@ -51,13 +73,13 @@
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="/admin/unit/UnitList">
+                        <a class="mdc-drawer-link" href="/admin/unit/">
                             <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">group_work</i>
                             单位管理
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link active" href="/admin/ma/MaList">
+                        <a class="mdc-drawer-link active" href="/admin/ma/">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
 
@@ -76,6 +98,12 @@
                             统计报表管理
                         </a>
                     </div>
+                    <div class="mdc-list-item mdc-drawer-item">
+                        <a class="mdc-drawer-link " href="/admin/data/">
+                            <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">poll</i>
+                            数据分析与挖掘
+                        </a>
+                    </div>
                 </nav>
             </div>
         </nav>
@@ -91,6 +119,25 @@
           </span>
             </section>
             <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
+                <div class="mdc-menu-anchor">
+                    <a href="#" class="mdc-toolbar__icon toggle mdc-ripple-surface" data-toggle="dropdown"
+                       toggle-dropdown="notification-menu" data-mdc-auto-init="MDCRipple">
+                        <i class="material-icons">notifications</i>
+                        <span class="dropdown-count">2</span>
+                    </a>
+                    <div class="mdc-simple-menu mdc-simple-menu--right" tabindex="-1" id="notification-menu">
+                        <ul class="mdc-simple-menu__items mdc-list" role="menu" aria-hidden="true">
+                            <li class="mdc-list-item" role="menuitem" tabindex="0">
+                                <i class="material-icons mdc-theme--primary mr-1">email</i>
+                                检查更新
+                            </li>
+                            <li class="mdc-list-item" role="menuitem" tabindex="0">
+                                <i class="material-icons mdc-theme--primary mr-1">group</i>
+                                未读信息
+                            </li>
+                        </ul>
+                    </div>
+                </div>
                 <div class="mdc-menu-anchor mr-1">
                     <a href="#" class="mdc-toolbar__icon toggle mdc-ripple-surface" data-toggle="dropdown"
                        toggle-dropdown="logout-menu" data-mdc-auto-init="MDCRipple">
@@ -118,23 +165,24 @@
             <div class="mdc-layout-grid">
                 <div class="mdc-layout-grid__inner">
                     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-10">
-                        <form name="frm" action="/admin/ma/MaInsertDo" style="margin: auto auto;">
+                        <form name="frm" id="form1" action="" style="margin: auto auto;">
                             <div class="form-froup">
                                 <label class="form-label">单位编号：</label>
 
-                                <select class="form-control" name="Uni_id" value=''>
-                                    <option value="">请选择</option>
+                                <select class="form-control" name="Uni_id">
                                     <c:forEach items="${list}" var="l">
                                         <option value="${l}">${l}</option>
                                     </c:forEach>
                                 </select>
                             </div>
                             <div class="form-froup">
-                                <label class="form-label">放置地点：</label><input class="form-control" type="text"
-                                                                              name="addr" value=''>
+                                <label class="form-label">放置地点：</label>
+                                <input class="form-control" type="text" name="addr" value=''>
                             </div>
                             <div class="form-froup">
-                                <button type="submit" class="btn btn-info" style="float: left">保存</button>
+                                <button type="button" onclick="doSubmit('/admin/ma/MaInsertDo')" class="btn btn-info"
+                                        style="float: left">保存
+                                </button>
                                 <button type="button" class="btn btn-danger" onclick="ret()" style="float: right"> 重置
                                 </button>
 

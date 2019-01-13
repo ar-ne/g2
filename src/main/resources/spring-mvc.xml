@@ -19,11 +19,13 @@
             <map>
                 <entry key="ResourceNotFoundException" value="NotFound" />
                 <entry key="DataAccessException" value="InternalError"/>
+                <entry key="HttpRequestMethodNotSupportedException" value="MethodError" />
             </map>
         </property>
         <property name="statusCodes">
             <map>
                 <entry key="NotFound" value="404"/>
+                <entry key="MethodError" value="405" />
                 <entry key="InternalError" value="500"/>
             </map>
         </property>

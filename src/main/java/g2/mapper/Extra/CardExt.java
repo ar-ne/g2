@@ -39,7 +39,7 @@ public interface CardExt {
             "type= #{type,jdbcType=VARCHAR}",
             "AND state= '正常'",
             "</script>"})
-    int addMoney(@Param("type") String type, @Param("money") Double money);
+    int support(@Param("type") String type, @Param("money") Double money);
 
     @Update({
             "update Card",

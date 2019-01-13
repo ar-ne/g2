@@ -34,11 +34,10 @@
 <body>
 <script type="text/javascript">
     function del(e) {
-        if (confirm("确认要删除该单位和相关的刷卡机信息？")) {
-            window.location.href = '/admin/unit/UnitDelete?id=' + e;
+        if (confirm("确认要删除该刷卡机和相关的收费消费信息？")) {
+            window.location.href = '/admin/ma/MaDelete?id=' + e;
         }
     }
-
 </script>
 <div class="body-wrapper">
     <!-- partial:partials/_sidebar.html -->
@@ -61,13 +60,13 @@
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link active" href="/admin/unit/">
+                        <a class="mdc-drawer-link" href="/admin/unit/">
                             <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">group_work</i>
                             单位管理
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="/admin/ma/">
+                        <a class="mdc-drawer-link active" href="/admin/ma/">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
 
@@ -152,64 +151,37 @@
         <main class="content-wrapper">
             <div class="mdc-layout-grid">
                 <div class="mdc-layout-grid__inner">
-                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-10">
-
-                        <form name="frm" action="/admin/unit/">
-                            <div class="form-froup" style="float:left;margin-right:30px">
-                                <label class="form-label">单位编号：</label><input class="form-control" type="text" name="id"
-                                                                              id="id" value='${id}'>
-                            </div>
-                            <div class="form-group" style="float:left;margin-right:30px">
-                                <label class="form-label">单位类型：</label>
-                                <select class="form-control" name="type" id="type">
-                                    <option value="">请选择</option>
-                                    <option value="车队"     <c:if test="${type=='车队'}">${"selected"}</c:if>>车队</option>
-                                    <option value="食堂窗口" <c:if test="${type=='食堂窗口'}">${"selected"}</c:if>>食堂窗口</option>
-                                    <option value="售电窗口" <c:if test="${type=='售电窗口'}">${"selected"}</c:if>>售电窗口</option>
-                                </select>
-                            </div>
-                            <button onclick="submit" class="btn btn-info" style="float:left;margin-top:32px"> 查找
-                            </button>
-                        </form>
-                    </div>
-                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-2">
-                        <div id="toolbar" style="text-align:center;margin-right:10px;margin-top: 30px;">
-                            <a class="btn btn-success" href="/admin/unit/UnitInsert">新增单位</a>
-                        </div>
-                    </div>
-
                     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
-                        <table class="table table-hover" id="unit">
+                        <table class="table table-hover">
                             <thead>
-                            <tr style="font-family: 'Arial Narrow'">
-                                    <th class="text-left">单位编号</th>
-                                    <th class="text-left">单位类型</th>
-                                    <th class="text-left">单位账号</th>
-                                    <th class="text-left">单位密码</th>
-                                    <th class="text-left">单位联系方式</th>
-                                <th class="text-left">操作</th>
-                                </tr>
+                            <tr>
+                                <th class="text-left">收费编号</th>
+                                <th class="text-left">卡号</th>
+                                <th class="text-left">卡机编号</th>
+                                <th class="text-left">用户姓名</th>
+                                <th class="text-left">消费金额</th>
+                                <th class="text-left">消费时间</th>
+                                <th class="text-left">消费结果</th>
+                                <th class="text-left">原因</th>
+                            </tr>
                             </thead>
 
                             <tbody>
-                            <c:forEach items="${unit}" var="u">
+                            <c:forEach items="${charges}" var="c">
                                 <tr>
-                                    <td class="text-left">&nbsp;&nbsp;${u.id}</td>
-                                    <td class="text-left">&nbsp;&nbsp;${u.type}</td>
-                                    <td class="text-left">&nbsp;&nbsp;${u.account}</td>
-                                    <td class="text-left">&nbsp;&nbsp;${u.password}</td>
-                                    <td class="text-left">&nbsp;&nbsp;${u.pnum}</td>
-
-                                    <td class="text-left"><a class="btn btn-primary"
-                                                             href='/admin/unit/UnitSelect?id=${u.id}'>修改</a>
-                                        <button class="btn btn-danger" onclick="del(${u.id})">删除</button>
-                                    </td>
+                                    <td class="text-left">&nbsp;&nbsp;${c.id}</td>
+                                    <td class="text-left">&nbsp;&nbsp;${c.car_id}</td>
+                                    <td class="text-left">&nbsp;&nbsp;${c.mac_id}</td>
+                                    <td class="text-left">&nbsp;&nbsp;${c.name}</td>
+                                    <td class="text-left">&nbsp;&nbsp;${c.amount}</td>
+                                    <td class="text-left">&nbsp;&nbsp;${c.time}</td>
+                                    <td class="text-left">&nbsp;&nbsp;${c.result}</td>
+                                    <td class="text-left">&nbsp;&nbsp;${c.reason}</td>
                                 </tr>
                             </c:forEach>
                             </tbody>
                         </table>
                     </div>
-
                 </div>
             </div>
         </main>

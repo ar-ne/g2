@@ -5,6 +5,8 @@ import g2.model.Charge;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ChargeService {
     private final ChargeMapper chargeMapper;
@@ -25,9 +27,10 @@ public class ChargeService {
     public int deleteByCardId(Long id) {
         return chargeMapper.DeleteByCardId(id);
     }
-  /*  public int deleteByName(String name) {
-        return chargeMapper.DeleteByName(name);
-    }*/
+
+    public List<Charge> selectByMacId(Long id) {
+        return chargeMapper.selectByMacId(id);
+    }
 }
 
 

@@ -2,9 +2,7 @@ package g2.model.Extra;
 
 import g2.model.Extra.UserKey;
 import g2.model.User;
-import g2.util.properties.SessionProperties;
-import g2.util.properties.UserProperties;
-
+import g2.util.Properites;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -24,15 +22,15 @@ public class UserSession {
      */
     public UserSession(HttpServletRequest request) {
         try {
-            this.type = (int) request.getSession(false).getAttribute(SessionProperties.type);
-            this.name = (String) request.getSession(false).getAttribute(SessionProperties.name);
-            this.state = (boolean) request.getSession(false).getAttribute(SessionProperties.state);
-            this.cardID = (Long) request.getSession(false).getAttribute(SessionProperties.cardID);
+            this.type = (int) request.getSession(false).getAttribute(Properites.Session.type);
+            this.name = (String) request.getSession(false).getAttribute(Properites.Session.name);
+            this.state = (boolean) request.getSession(false).getAttribute(Properites.Session.state);
+            this.cardID = (Long) request.getSession(false).getAttribute(Properites.Session.cardID);
             if (name.isEmpty() || !state)
                 throw new Exception("登录状态肯定有问题");
         } catch (Exception e) {
             this.state = false;
-            this.type = UserProperties.unAuth;
+            this.type = Properites.Login.unAuth;
         }
     }
 
@@ -49,10 +47,10 @@ public class UserSession {
     }
 
     public void setSession(HttpServletRequest request) {
-        request.getSession().setAttribute(SessionProperties.state, state);
-        request.getSession().setAttribute(SessionProperties.type, type);
-        request.getSession().setAttribute(SessionProperties.name, name);
-        request.getSession().setAttribute(SessionProperties.cardID, cardID);
+        request.getSession().setAttribute(Properites.Session.state, state);
+        request.getSession().setAttribute(Properites.Session.type, type);
+        request.getSession().setAttribute(Properites.Session.name, name);
+        request.getSession().setAttribute(Properites.Session.cardID, cardID);
     }
 
     public int getType() {

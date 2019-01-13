@@ -113,7 +113,7 @@
                                     <div class="mdc-layout-grid__inner">
                                         <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
                                             <div class="mdc-card__primary w-100">
-                                                <button onclick="clk()"
+                                                <button onclick="scan()"
                                                         class="mdc-button mdc-button--stroked thick-stroke-button mdc-ripple-upgraded w-100"
                                                         data-mdc-auto-init="MDCRipple"
                                                         style="--mdc-ripple-fg-size:115.62px; --mdc-ripple-fg-scale:1.78199; --mdc-ripple-fg-translate-start:104.79px, -32.2099px; --mdc-ripple-fg-translate-end:38.54px, -39.81px;">
@@ -126,10 +126,10 @@
                                             <div class="mdc-card__primary">
                                                 <div id="demo-tf-box-leading-wrapper" class="w-100">
                                                     <div id="tf-box-leading-example"
-                                                         class="mdc-text-field mdc-text-field--box w-100 mdc-text-field--upgraded mdc-ripple-upgraded"
+                                                         class="mdc-text-field mdc-text-field--box w-100 mdc-text-field--upgraded mdc-ripple-upgraded w-100"
                                                          style="--mdc-ripple-fg-size:111.06px; --mdc-ripple-fg-scale:1.83131; --mdc-ripple-fg-translate-start:60.37px, -17.93px; --mdc-ripple-fg-translate-end:37.02px, -27.53px;">
                                                         <input type="text" id="tf-box-leading"
-                                                               class="mdc-text-field__input" name="address">
+                                                               class="mdc-text-field__input w-100" name="address">
                                                         <label for="tf-box-leading"
                                                                class="mdc-text-field__label">金额</label>
                                                         <div class="mdc-text-field__bottom-line"
@@ -158,7 +158,7 @@
 
                                 <%--右半边--%>
                                 <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
-
+                                    <h3 id="rrrr"></h3>
                                 </div>
                             </div>
                         </div>
@@ -242,6 +242,27 @@
             return false;
         }
         $("form").submit();
+    }
+
+    var qrResult;
+    var scanWindow;
+
+    function scan() {
+        qrResult = null;
+        scanWindow = window.open("scan", "foo", "width=800px, height=600px, location=no, resizable=yes");
+    }
+
+    function onScanned(msg) {
+        qrResult = msg;
+        scanWindow.close();
+        doScanned();
+    }
+
+    function doScanned() {
+        var cardID = qrResult;
+        qrResult = null;
+        console.log(cardID);
+        $("#rrrr")[0].innerHTML = cardID;
     }
 </script>
 <!-- endinject -->

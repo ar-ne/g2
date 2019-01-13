@@ -35,8 +35,8 @@ public class CardService {
         return cardMapper.selectByIT(id, type);
     }
 
-    public int addMoney(String type, Double money) {
-        return cardMapper.addMoney(type, money);
+    public int support(String type, Double money) {
+        return cardMapper.support(type, money);
     }
 
     public int updateByType(Long id, String state) {

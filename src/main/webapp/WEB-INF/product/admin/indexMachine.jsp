@@ -33,10 +33,33 @@
 </head>
 <body>
 <script type="text/javascript">
+    function doSubmit(url) {
+        var data = $('#form1').serialize();
+        alert(url + "?" + data);
+        $.ajax({
+            type: "post",
+            contentType: "application/json",
+            url: url + "?" + data,
+            success: function (data) {
+                alert("添加成功！！！")
+                window.location = "/admin/ma";
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        })
+    }
+
     function del(e) {
         if (confirm("确认要删除该刷卡机和相关的收费消费信息？")) {
             window.location.href = '/admin/ma/MaDelete?id=' + e;
         }
+    }
+
+    function selec() {
+        var e = document.getElementById("id");
+        var e1 = e.value;
+        window.location.href = '/admin/ma/chargedo?id=' + e1;
     }
 </script>
 <div class="body-wrapper">
@@ -51,7 +74,7 @@
             <div class="mdc-list-group">
                 <nav class="mdc-list mdc-drawer-menu">
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link " href="/admin">
+                        <a class="mdc-drawer-link " href="/admin/">
                             <%--<i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
 --%>
@@ -60,13 +83,13 @@
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="/admin/unit/UnitList">
+                        <a class="mdc-drawer-link" href="/admin/unit/">
                             <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">group_work</i>
                             单位管理
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link active" href="/admin/ma/MaList">
+                        <a class="mdc-drawer-link active" href="/admin/ma/">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
 
@@ -85,6 +108,12 @@
                             统计报表管理
                         </a>
                     </div>
+                    <div class="mdc-list-item mdc-drawer-item">
+                        <a class="mdc-drawer-link " href="/admin/data/">
+                            <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">poll</i>
+                            数据分析与挖掘
+                        </a>
+                    </div>
                 </nav>
             </div>
         </nav>
@@ -100,6 +129,25 @@
           </span>
             </section>
             <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
+                <div class="mdc-menu-anchor">
+                    <a href="#" class="mdc-toolbar__icon toggle mdc-ripple-surface" data-toggle="dropdown"
+                       toggle-dropdown="notification-menu" data-mdc-auto-init="MDCRipple">
+                        <i class="material-icons">notifications</i>
+                        <span class="dropdown-count">2</span>
+                    </a>
+                    <div class="mdc-simple-menu mdc-simple-menu--right" tabindex="-1" id="notification-menu">
+                        <ul class="mdc-simple-menu__items mdc-list" role="menu" aria-hidden="true">
+                            <li class="mdc-list-item" role="menuitem" tabindex="0">
+                                <i class="material-icons mdc-theme--primary mr-1">email</i>
+                                检查更新
+                            </li>
+                            <li class="mdc-list-item" role="menuitem" tabindex="0">
+                                <i class="material-icons mdc-theme--primary mr-1">group</i>
+                                未读信息
+                            </li>
+                        </ul>
+                    </div>
+                </div>
                 <div class="mdc-menu-anchor mr-1">
                     <a href="#" class="mdc-toolbar__icon toggle mdc-ripple-surface" data-toggle="dropdown"
                        toggle-dropdown="logout-menu" data-mdc-auto-init="MDCRipple">
@@ -128,10 +176,10 @@
                 <div class="mdc-layout-grid__inner">
                     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-8">
 
-                        <form name="frm" action="/admin/ma/MaList">
+                        <form name="frm" action="/admin/ma/">
                             <div class="form-froup" style="float:left;margin-right:30px">
                                 <label class="form-label">刷卡机编号：</label><input class="form-control" type="text"
-                                                                               name="id"
+                                                                               name="id" id="id"
                                                                                value='${id}'>
                             </div>
                             <div class="form-froup" style="float:left;margin-right:30px">
@@ -150,13 +198,14 @@
 
                     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
                         <table class="table table-hover">
-                            <thread>
+                            <thead>
                                 <tr>
                                     <th class="text-left">卡机编号</th>
                                     <th class="text-left">单位编号</th>
                                     <th class="text-left">放置地点</th>
+                                    <th class="text-left">操作</th>
                                 </tr>
-                            </thread>
+                            </thead>
 
                             <tbody>
                             <c:forEach items="${mac}" var="m">
@@ -173,7 +222,15 @@
                             </tbody>
                         </table>
                     </div>
-
+                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+                        <div style="margin: auto auto">
+                            <button class="btn btn-info" style="float:left;" onclick="selec()">查询刷卡机消费信息</button>
+                        </div>
+                        <div style="margin: auto auto">
+                            <button class="btn btn-info" style="float:left;" onclick="input('/admin/ma/')"> 批量导入
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
