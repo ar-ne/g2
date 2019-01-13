@@ -1,9 +1,13 @@
 package g2.util;
 
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+
 public final class Properites {
     public static final int[] loginType = {Login.user, Login.admin, Login.admin2, Login.unAuth};
     public static final String[] loginTypeString = {"user", "admin", "admin2", "unAuth"};
     public static final String[] loginUrlString = {"/user", "/admin", "/admin2", "/unAuth"};
+    public static final Charset encodeing = StandardCharsets.UTF_8;
 
     public final class CardStatus {
         public final static String frozen = "冻结";

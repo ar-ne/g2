@@ -9,10 +9,11 @@
     "jquery": "3.2.1",
     "material-components-web": "^0.27.0",
     "mdi": "2.0.46",
-    "progressbar.js": "1.0.1"
+    "progressbar.js": "1.0.1",
+    "qrcode-generator": "^1.4.1"
   },
   "devDependencies": {
-    "browser-sync": "^2.16.0",
+    "browser-sync": "^2.26.3",
     "compass-mixins": "^0.12.10",
     "gulp": "^3.9.1",
     "gulp-bower-src": "^0.1.0",

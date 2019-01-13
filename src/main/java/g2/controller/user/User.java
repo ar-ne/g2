@@ -3,6 +3,7 @@ package g2.controller.user;
 import g2.model.Consume;
 import g2.service.ConsumeService;
 import g2.service.MachineService;
+import g2.util.Parse;
 import g2.util.Properites;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,7 +33,8 @@ public class User {
     @RequestMapping("QRCode")
     public ModelAndView doQRCode(HttpServletRequest request) {
         ModelAndView mv = new ModelAndView("user/QRCode");
-        mv.addObject("qrText", request.getSession().getAttribute(Properites.Session.name) + " " + request.getSession().getAttribute(Properites.Session.cardID));
+        QR qr = new QR(request.getSession().getAttribute(Properites.Session.name), request.getSession().getAttribute(Properites.Session.cardID));
+        mv.addObject("qrText", Parse.encodeBase64JSON(qr));
         return mv;
     }
 
@@ -55,5 +57,15 @@ public class User {
     @RequestMapping("ReportLoss")
     public String doReportLoss() {
         return "user/ReportLoss";
+    }
+
+    class QR {
+        public String name;
+        public String card;
+
+        QR(Object attribute, Object attribute1) {
+            this.name = (String) attribute;
+            this.card = String.valueOf(attribute1);
+        }
     }
 }

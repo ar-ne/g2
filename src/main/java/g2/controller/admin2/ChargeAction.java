@@ -7,6 +7,7 @@ import g2.service.CardService;
 import g2.service.ChargeService;
 import g2.service.MachineService;
 import g2.service.UserService;
+import g2.util.Parse;
 import g2.util.Properites;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,6 +46,17 @@ public class ChargeAction {
     @RequestMapping("scan")
     public String scanner() {
         return "admin2/chargeAction/scan";
+    }
+
+    /**
+     * decode Base64 to JSON
+     *
+     * @param str Base64 String
+     * @return JSONMsg
+     */
+    @RequestMapping("decodeIF")
+    public JSONMsg decode(String str) {
+        return new JSONMsg(Parse.decodeBase64JSON(str));
     }
 
     /**
