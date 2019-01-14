@@ -44,4 +44,11 @@ public interface MachineExt {
 
     @Select({"SElect * from machine where uni_id=#{id,jdbcType=NUMERIC}"})
     List<Machine> selectMachinesByUnitID(Long id);
+
+    @Select({
+            "select",
+            "id",
+            "from Machine"
+    })
+    List<Long> selectId();
 }

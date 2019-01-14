@@ -33,22 +33,22 @@
 </head>
 <body>
 <script type="text/javascript">
-    function doSubmit(url) {
-        var data = $('#form1').serialize();
-        alert(url + "?" + data);
-        $.ajax({
-            type: "post",
-            contentType: "application/json",
-            url: url + "?" + data,
-            success: function (data) {
-                alert("添加成功！！！")
-                window.location = "/admin/ma";
-            },
-            error: function (data) {
-                console.log(data);
-            }
-        })
-    }
+    /*  function doSubmit(url) {
+          var data = $('#form1').serialize();
+          alert(url + "?" + data);
+          $.ajax({
+              type: "post",
+              contentType: "application/json",
+              url: url + "?" + data,
+              success: function (data) {
+                  alert("添加成功！！！")
+                  window.location = "/admin/ma";
+              },
+              error: function (data) {
+                  console.log(data);
+              }
+          })
+      }*/
 
     function del(e) {
         if (confirm("确认要删除该刷卡机和相关的收费消费信息？")) {
@@ -60,6 +60,10 @@
         var e = document.getElementById("id");
         var e1 = e.value;
         window.location.href = '/admin/ma/chargedo?id=' + e1;
+    }
+
+    function input() {
+        window.location.href = '/admin/ma/input';
     }
 </script>
 <div class="body-wrapper">
@@ -178,12 +182,12 @@
 
                         <form name="frm" action="/admin/ma/">
                             <div class="form-froup" style="float:left;margin-right:30px">
-                                <label class="form-label">刷卡机编号：</label><input class="form-control" type="text"
+                                <label class="form-label">刷卡机编号：</label><input class="form-control" type="number"
                                                                                name="id" id="id"
                                                                                value='${id}'>
                             </div>
                             <div class="form-froup" style="float:left;margin-right:30px">
-                                <label class="form-label">单位编号：</label><input class="form-control" type="text"
+                                <label class="form-label">单位编号：</label><input class="form-control" type="number"
                                                                               name="Uni_id"
                                                                               value='${Uni_id}'>
                             </div>
@@ -214,7 +218,7 @@
                                     <td class="text-left">&nbsp;&nbsp;${m.uni_id}</td>
                                     <td class="text-left">&nbsp;&nbsp;${m.addr}</td>
                                     <td class="text-left"><a class="btn btn-primary"
-                                                             href='/admin/ma/MaUpdate?id=${m.id}'>修改</a>
+                                                             href='/admin/ma/MaUpdate?id=${m.id}&addr=${m.addr}'>修改</a>
                                         <button class="btn btn-danger" onclick="del(${m.id})">删除</button>
                                     </td>
                                 </tr>
@@ -227,7 +231,7 @@
                             <button class="btn btn-info" style="float:left;" onclick="selec()">查询刷卡机消费信息</button>
                         </div>
                         <div style="margin: auto auto">
-                            <button class="btn btn-info" style="float:left;" onclick="input('/admin/ma/')"> 批量导入
+                            <button class="btn btn-info" style="float:left;" onclick="input()"> 批量导入
                             </button>
                         </div>
                     </div>

@@ -107,7 +107,7 @@ options: options
 // 正常卡/冻结卡
 var doughnutPieData = {
 datasets: [{
-data: [100, 20],
+data: [5,6],
 backgroundColor: [
 'rgba(255, 99, 132, 0.5)',
 'rgba(54, 162, 235, 0.5)',
@@ -254,7 +254,7 @@ options: options
 // 正常卡/冻结卡
 var doughnutPieData = {
 datasets: [{
-data: [100, 20],
+data: [${n1},${n2}],
 backgroundColor: [
 'rgba(255, 99, 132, 0.5)',
 'rgba(54, 162, 235, 0.5)',

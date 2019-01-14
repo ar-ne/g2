@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=1" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" type="text/css">
     <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
-    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     <!-- endinject -->
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
@@ -17,6 +16,28 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <!-- endinject -->
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.png"/>
+    <%-- <script type="text/javascript">
+         //$(function () {
+         function doSubmit(url) {
+            // var data = $('#frm').serialize();
+             data:{mac_Ids[1,2,3,4]},
+                    alert(url+"?"+data);
+             $.ajax({
+                 type: "post",
+                 contentType: "application/json",
+                 url: url ,
+                 success: function (data) {
+                     alert("添加成功！！！");
+                     window.location = "/admin/ma";
+                 },
+                 error: function (data) {
+                     console.log(data);
+                 }
+             })
+         }
+
+         //  })
+     </script>--%>
     <style type="text/css">
         @import url('${pageContext.request.contextPath}/css/admin.css');
 
@@ -29,8 +50,28 @@
             border-radius: 5px;
         }
     </style>
+    <script type="text/javascript">
+        //$(function () {
+        function doSubmit(url) {
+            var data = $('#frm').serialize();
+            $.ajax({
+                type: "post",
+                contentType: "application/json",
+                url: url + "?" + data,
+                success: function (datax) {
+                    console.log(datax);
+                    //alert("导入成功！！！");
+                    window.location = "/admin/ma";
+                },
+                error: function (data) {
+                    alert("导入失败！！！");
+                    console.log(data);
+                }
+            })
+        }
 
-
+        //  })
+    </script>
 </head>
 <body>
 <div class="body-wrapper">
@@ -145,37 +186,22 @@
         <main class="content-wrapper">
             <div class="mdc-layout-grid">
                 <div class="mdc-layout-grid__inner">
-                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
-                        <table class="table table-hover">
-                            <thead>
-                            <tr>
-                                <th class="text-left">收费编号</th>
-                                <th class="text-left">卡号</th>
-                                <th class="text-left">卡机编号</th>
-                                <th class="text-left">用户姓名</th>
-                                <th class="text-left">消费金额</th>
-                                <th class="text-left">消费时间</th>
-                                <th class="text-left">消费结果</th>
-                                <th class="text-left">原因</th>
-                            </tr>
-                            </thead>
-
-                            <tbody>
-                            <c:forEach items="${charges}" var="c">
-                                <tr>
-                                    <td class="text-left">&nbsp;&nbsp;${c.id}</td>
-                                    <td class="text-left">&nbsp;&nbsp;${c.car_id}</td>
-                                    <td class="text-left">&nbsp;&nbsp;${c.mac_id}</td>
-                                    <td class="text-left">&nbsp;&nbsp;${c.name}</td>
-                                    <td class="text-left">&nbsp;&nbsp;${c.amount}</td>
-                                    <td class="text-left">&nbsp;&nbsp;<fmt:formatDate value="${c.time}"
-                                                                                      pattern="yyyy年mm月dd日hh点mm分"/></td>
-                                    <td class="text-left">&nbsp;&nbsp;${c.result}</td>
-                                    <td class="text-left">&nbsp;&nbsp;${c.reason}</td>
-                                </tr>
-                            </c:forEach>
-                            </tbody>
-                        </table>
+                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-10">
+                        <form id="frm" style="margin: auto auto;">
+                            <div class="form-group">
+                                选择卡机编号：
+                            </div>
+                            <div class="form-group">
+                                <c:forEach items="${ids}" var="id">
+                                    <input type="checkbox" value="${id}" name="mac_Ids">${id}
+                                </c:forEach>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-10">
+                        <button onclick="doSubmit('/admin/ma/inputDo')" class="btn btn-info"
+                                style="margin: auto;width: 21%">确认
+                        </button>
                     </div>
                 </div>
             </div>

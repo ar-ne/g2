@@ -41,4 +41,8 @@ public class UserService {
     public String getNameByCardID(Long cardID) {
         return userMapper.selectNameByCardID(cardID);
     }
+
+    public int insertUser(User user) {
+        return userMapper.insert(user);
+    }
 }

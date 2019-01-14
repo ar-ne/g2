@@ -19,6 +19,11 @@
     <script type="text/javascript">
         //$(function () {
         function doSubmit(url) {
+            var addr = (document.getElementsByName("addr")[0]);
+            if (addr.value == "" || addr.value == null) {
+                alert("放置地点未填写！！！");
+                return;
+            }
             var data = $('#form1').serialize();
             //       alert(url+"?"+data);
             $.ajax({
@@ -179,15 +184,13 @@
                                 <label class="form-label">放置地点：</label>
                                 <input class="form-control" type="text" name="addr" value=''>
                             </div>
-                            <div class="form-froup">
-                                <button type="button" onclick="doSubmit('/admin/ma/MaInsertDo')" class="btn btn-info"
-                                        style="float: left">保存
-                                </button>
-                                <button type="button" class="btn btn-danger" onclick="ret()" style="float: right"> 重置
-                                </button>
-
-                            </div>
+                            <input type="reset" value="重置" class="btn btn-danger" style="margin-top:25px;width: 100%">
                         </form>
+                    </div>
+                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-10">
+                        <button onclick="doSubmit('/admin/ma/MaInsertDo')" class="btn btn-info"
+                                style="margin: auto;width: 21%">保存
+                        </button>
                     </div>
 
                 </div>

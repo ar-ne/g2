@@ -31,8 +31,28 @@
     <script type="text/javascript">
         //$(function () {
         function doSubmit(url) {
+            var type = (document.getElementsByName("type")[0]);
+            if (type.value == "" || type.value == null) {
+                alert("类型未填写！！！");
+                return;
+            }
+            var account = (document.getElementsByName("account")[0]);
+            if (account.value == "" || account.value == null) {
+                alert("账户未填写！！！");
+                return;
+            }
+            var password = (document.getElementsByName("password")[0]);
+            if (password.value == "" || password.value == null) {
+                alert("密码未填写！！！");
+                return;
+            }
+            var pnum = (document.getElementsByName("pnum")[0]);
+            var re = /^1\d{10}$/;
+            if (!re.test(pnum.value)) {
+                alert("联系方式填写错误！！！");
+                return;
+            }
             var data = $('#frm').serialize();
-            alert(url + "?" + data);
             $.ajax({
                 type: "post",
                 contentType: "application/json",
@@ -119,25 +139,6 @@
           </span>
             </section>
             <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
-                <div class="mdc-menu-anchor">
-                    <a href="#" class="mdc-toolbar__icon toggle mdc-ripple-surface" data-toggle="dropdown"
-                       toggle-dropdown="notification-menu" data-mdc-auto-init="MDCRipple">
-                        <i class="material-icons">notifications</i>
-                        <span class="dropdown-count">2</span>
-                    </a>
-                    <div class="mdc-simple-menu mdc-simple-menu--right" tabindex="-1" id="notification-menu">
-                        <ul class="mdc-simple-menu__items mdc-list" role="menu" aria-hidden="true">
-                            <li class="mdc-list-item" role="menuitem" tabindex="0">
-                                <i class="material-icons mdc-theme--primary mr-1">email</i>
-                                检查更新
-                            </li>
-                            <li class="mdc-list-item" role="menuitem" tabindex="0">
-                                <i class="material-icons mdc-theme--primary mr-1">group</i>
-                                未读信息
-                            </li>
-                        </ul>
-                    </div>
-                </div>
                 <div class="mdc-menu-anchor mr-1">
                     <a href="#" class="mdc-toolbar__icon toggle mdc-ripple-surface" data-toggle="dropdown"
                        toggle-dropdown="logout-menu" data-mdc-auto-init="MDCRipple">
@@ -188,18 +189,17 @@
                             <div class="form-froup">
                                 <label class="form-label">单位联系方式：</label><input class="form-control" type="text"
                                                                                 name="pnum"
-                                                                                value=''>
+                                                                                value='138xxxxxxxx'>
                             </div>
-                            <div class="form-froup">
-                                <button onclick="doSubmit('/admin/unit/UnitInsertDo')" class="btn btn-info"
-                                        style="float: left">保存
-                                </button>
-                                <button type="button" class="btn btn-danger" onclick="ret()" style="float: right"> 重置
-                                </button>
-
-                            </div>
+                            <input type="reset" value="重置" class="btn btn-danger" style="margin-top:25px;width: 100%">
                         </form>
                     </div>
+                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-10">
+                        <button onclick="doSubmit('/admin/unit/UnitInsertDo')" class="btn btn-info"
+                                style="margin: auto;width: 21%">保存
+                        </button>
+                    </div>
+
 
                 </div>
             </div>

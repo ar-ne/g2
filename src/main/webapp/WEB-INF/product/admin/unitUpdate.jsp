@@ -31,6 +31,27 @@
     <script type="text/javascript">
         //$(function () {
         function doSubmit(url) {
+            var type = (document.getElementsByName("type")[0]);
+            if (type.value == "" || type.value == null) {
+                alert("类型未填写！！！");
+                return;
+            }
+            var account = (document.getElementsByName("account")[0]);
+            if (account.value == "" || account.value == null) {
+                alert("账户未填写！！！");
+                return;
+            }
+            var password = (document.getElementsByName("password")[0]);
+            if (password.value == "" || password.value == null) {
+                alert("密码未填写！！！");
+                return;
+            }
+            var pnum = (document.getElementsByName("pnum")[0]);
+            var re = /^1\d{10}$/;
+            if (!re.test(pnum.value)) {
+                alert("联系方式填写错误！！！");
+                return;
+            }
             var data = $('#frm').serialize();
             //    alert(url+"?"+data);
             $.ajax({
@@ -189,19 +210,15 @@
                                                                               value='${unit.password}'>
                             </div>
                             <div class="form-froup">
-                                <label class="form-label">单位密码：</label><input class="form-control" type="text"
-                                                                              name="pnum"
-                                                                              value='${unit.pnum}'>
+                                <label class="form-label">单位联系方式：</label><input class="form-control" type="text"
+                                                                                name="pnum"
+                                                                                value='${unit.pnum}'>
                             </div>
-                            <div class="form-froup">
-                                <button type="submit" class="btn btn-info" style="float: left"
-                                        onclick="doSubmit('/admin/unit/UnitUpdate')">保存
-                                </button>
-                                <button type="button" class="btn btn-danger" onclick="ret()" style="float: right"> 返回
-                                </button>
-
-                            </div>
+                            <input type="reset" value="重置" class="btn btn-danger">
                         </form>
+                        <button type="submit" class="btn btn-info" style="float: left"
+                                onclick="doSubmit('/admin/unit/UnitUpdate')">保存
+                        </button>
                     </div>
 
                 </div>

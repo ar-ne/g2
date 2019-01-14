@@ -61,5 +61,15 @@ public interface CardExt {
             "</script>"})
     int recharge(@Param("id") Long id, @Param("money") Double money);
 
+    @Select({
+            "SELECT TOP 1 * FROM Card ORDER BY id DESC;"
+    })
+    Card selectLast();
 
+    @Select({
+            "select count(*) from Card",
+            "where ",
+            "state=#{state,jdbcType=VARCHAR}"
+    })
+    int selectCount(String state);
 }

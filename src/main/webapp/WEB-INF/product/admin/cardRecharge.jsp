@@ -47,6 +47,11 @@
 
     //$(function () {
     function doSubmit(url) {
+        var money = document.getElementsByName("money")[0];
+        if (money.value == "" || money.value == null) {
+            alert("余额不能为空！！！");
+            return;
+        }
         var data = $('#frm').serialize();
         $.ajax({
             type: "post",
@@ -175,7 +180,7 @@
         <main class="content-wrapper">
             <div class="mdc-layout-grid">
                 <div class="mdc-layout-grid__inner">
-                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6"
+                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12"
                          style="margin: auto auto;">
                         <form id="frm" style="margin: auto auto;" action="">
                             <div class="form-froup">
@@ -184,13 +189,16 @@
                                 <input class="form-control" type="text" name="amount"
                                        value='${amount}' readonly="true">
                                 <label class="form-label">充值金额：</label>
-                                <input class="form-control" type="text" name="money"
+                                <input class="form-control" type="number" name="money"
                                        value=''>
-                                <button class="btn btn-success" onclick="doSubmit('/admin/card/rechargeDo')"
-                                        style="float:left;margin-top:30px">充值
-                                </button>
                             </div>
                         </form>
+                    </div>
+                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12"
+                         style="margin: auto auto;">
+                        <button class="btn btn-success" onclick="doSubmit('/admin/card/rechargeDo')"
+                                style="float:left;margin:auto">充值
+                        </button>
                     </div>
                 </div>
             </div>

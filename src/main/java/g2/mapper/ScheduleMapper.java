@@ -28,10 +28,10 @@ public interface ScheduleMapper extends ScheduleExt {
      * @mbg.generated
      */
     @Insert({
-            "insert into schedule (id, start, ",
-            "stop, address)",
-            "values (#{id,jdbcType=NUMERIC}, #{start,jdbcType=TIMESTAMP}, ",
-            "#{stop,jdbcType=TIMESTAMP}, #{address,jdbcType=VARCHAR})"
+            "insert into schedule (id, begin, ",
+            "end, address)",
+            "values (#{id,jdbcType=NUMERIC}, #{begin,jdbcType=TIMESTAMP}, ",
+            "#{end,jdbcType=TIMESTAMP}, #{address,jdbcType=VARCHAR})"
     })
     int insert(Schedule record);
 
@@ -51,7 +51,7 @@ public interface ScheduleMapper extends ScheduleExt {
      */
     @Select({
         "select",
-            "id, start, stop, address",
+            "id, begin, end, address",
         "from schedule",
         "where id = #{id,jdbcType=NUMERIC}"
     })
@@ -74,8 +74,8 @@ public interface ScheduleMapper extends ScheduleExt {
      */
     @Update({
         "update schedule",
-            "set start = #{start,jdbcType=TIMESTAMP},",
-            "stop = #{stop,jdbcType=TIMESTAMP},",
+            "set begin = #{begin,jdbcType=TIMESTAMP},",
+            "end = #{end,jdbcType=TIMESTAMP},",
           "address = #{address,jdbcType=VARCHAR}",
         "where id = #{id,jdbcType=NUMERIC}"
     })

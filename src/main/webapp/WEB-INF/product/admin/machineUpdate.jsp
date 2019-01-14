@@ -30,9 +30,19 @@
     </style>
     <script type="text/javascript">
         //$(function () {
+
         function doSubmit(url) {
+            var Uni_id = (document.getElementsByName("Uni_id")[0]);
+            if (Uni_id.value == "" || Uni_id.value == null) {
+                alert("单位编号未填写！！！");
+                return;
+            }
+            var addr = (document.getElementsByName("addr")[0]);
+            if (addr.value == "" || addr.value == null) {
+                alert("放置地点未填写！！！");
+                return;
+            }
             var data = $('#frm').serialize();
-            alert(url + "?" + data);
             $.ajax({
                 type: "post",
                 contentType: "application/json",
@@ -165,7 +175,7 @@
             <div class="mdc-layout-grid">
                 <div class="mdc-layout-grid__inner">
                     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-10">
-                        <form id="frm" action="" style="margin: auto auto">
+                        <form id="frm" style="margin: auto auto">
                             <div class="form-froup">
                                 <input type="hidden" name="id" value="${machine.id}"><!-- 增加隐藏变量-->
                                 <label class="form-label">单位编号：</label>
@@ -179,27 +189,16 @@
                             </div>
                             <div class="form-froup">
                                 <label class="form-label">放置地点：</label>
-
-                                <select class="form-control" name="addr">
-                                    <option value="车队"     <c:if test="${machine.addr=='车队'}">${"selected"}</c:if>>车队
-                                    </option>
-                                    <option value="食堂窗口" <c:if test="${machine.addr=='食堂窗口'}">${"selected"}</c:if>>食堂窗口
-                                    </option>
-                                    <option value="售电窗口" <c:if test="${machine.addr=='售电窗口'}">${"selected"}</c:if>>售电窗口
-                                    </option>
-                                </select>
+                                <input class="form-control" type="text" name="addr" value='${machine.addr}'>
                             </div>
-                            <div class="form-froup">
-                                <button onclick="doSubmit('/admin/ma/MaUpdateDo')" class="btn btn-info"
-                                        style="float: left">保存
-                                </button>
-                                <button type="button" class="btn btn-danger" onclick="ret()" style="float: right"> 重置
-                                </button>
-
-                            </div>
+                            <input type="reset" value="重置" class="btn btn-danger" style="margin-top:25px;width: 100%">
                         </form>
                     </div>
-
+                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-10">
+                        <button onclick="doSubmit('/admin/ma/MaUpdateDo')" class="btn btn-info"
+                                style="margin: auto;width: 21%">保存
+                        </button>
+                    </div>
                 </div>
             </div>
         </main>

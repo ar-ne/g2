@@ -116,7 +116,7 @@
                enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <property name="useActualColumnNames" value="true"/>
-            <property name="rootInterface" value="g2.mapper.Extra.UsertypeExt">
+            <property name="rootInterface" value="g2.mapper.Extra.UsertypeExt"/>
         </table>
 
     </context>

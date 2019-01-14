@@ -156,7 +156,8 @@
 
                         <form name="frm" action="/admin/unit/">
                             <div class="form-froup" style="float:left;margin-right:30px">
-                                <label class="form-label">单位编号：</label><input class="form-control" type="text" name="id"
+                                <label class="form-label">单位编号：</label><input class="form-control" type="number"
+                                                                              name="id"
                                                                               id="id" value='${id}'>
                             </div>
                             <div class="form-group" style="float:left;margin-right:30px">

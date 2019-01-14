@@ -159,14 +159,14 @@
             <div class="mdc-layout-grid">
                 <div class="mdc-layout-grid__inner">
                     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
-                        <form style="margin: auto auto">
+                        <div style="margin: auto auto">
                             <div class="form-group">
                                 <Button class="btn btn-info" onclick="doSubmit('/admin/report/user')">统计用户消费报表</Button>
-                        </div>
+                            </div>
                             <div class="form-group">
                                 <Button class="btn btn-info" onclick="doSubmit('/admin/report/unit')">统计单位收费报表</Button>
                         </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
