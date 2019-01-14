@@ -7,6 +7,7 @@ import g2.service.CardService;
 import g2.service.ChargeService;
 import g2.service.MachineService;
 import g2.service.UserService;
+import g2.util.Parse;
 import g2.util.Properites;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -47,6 +48,24 @@ public class ChargeAction {
         return "admin2/chargeAction/scan";
     }
 
+    @RequestMapping("popMsg")
+    public ModelAndView popUpMsg(String pMsg) {
+        ModelAndView modelAndView = new ModelAndView("admin2/chargeAction/message");
+        modelAndView.addObject(new JSONMsg.PlainMessage(pMsg).toString());
+        return modelAndView;
+    }
+
+    /**
+     * decode Base64 to JSON
+     *
+     * @param str Base64 String
+     * @return JSONMsg
+     */
+    @RequestMapping("decodeIF")
+    public JSONMsg decode(String str) {
+        return new JSONMsg(Parse.decodeBase64JSON(str));
+    }
+
     /**
      * 接口：从单位ID获取machine
      *
@@ -66,8 +85,9 @@ public class ChargeAction {
      * @param amount 金额
      * @return 收费信息
      */
-    @RequestMapping(value = "chargeIF", method = RequestMethod.POST)
-    public JSONMsg charge(Long cardID, Long macID, double amount) {
+    @RequestMapping(value = "chargeIF", method = RequestMethod.POST, params = {"cardID", "macID", "amount", "name"})
+    public JSONMsg charge(Long cardID, Long macID, Double amount, String name) {
+        if (!userService.getNameByCardID(cardID).equals(name)) return new JSONMsg("Err:扫描出错,请重新扫码");
         machineService.selectByPrimaryKey(macID);//确保刷卡机没被删除
         Charge charge = new Charge();
         Card card = cardService.get(cardID);

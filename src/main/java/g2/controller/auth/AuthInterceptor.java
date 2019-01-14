@@ -1,5 +1,6 @@
 package g2.controller.auth;
 
+import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import g2.model.Extra.UserSession;
 import g2.util.Properites;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -14,14 +15,26 @@ public class AuthInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         if (debug) return true;
+        boolean rlt = false;
+        String accessPart = request.getRequestURI();
         UserSession session = new UserSession(request);
         try {
-            if (session.getState() && !session.getName().isEmpty() && session.getType() != Properites.Login.unAuth)
-                return true;
-        } catch (Exception e) {
-            return false;
+            if (session.getState() && !session.getName().isEmpty() && session.getType() != Properites.Login.unAuth) {
+                String vailedURI = Properites.loginUrlString[session.getType()];
+                if (accessPart.startsWith(vailedURI)) {//对比访问路径
+                    rlt = true;
+                    if (accessPart.startsWith(Properites.loginUrlString[Properites.Login.admin])) {
+                        if (session.getType() == Properites.Login.admin2) rlt = false;
+                    }
+                } else {
+                    response.sendRedirect(Properites.loginUrlString[session.getType()]);
+                    return false;
+                }
+            }
+        } catch (Exception ignored) {
         }
-        return false;
+        if (!rlt) response.sendRedirect("/");
+        return rlt;
     }
 
     @Override

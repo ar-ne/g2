@@ -28,6 +28,14 @@ public interface MachineExt {
     })
     List<Long> SelectByUnitId(Long id);
 
+    @Select({
+            "select",
+            "distinct",
+            "addr",
+            "from Machine"
+    })
+    List<String> getAddr();
+
     @Select({"<script>",
             "select ",
             "id, Uni_id,addr",
@@ -41,6 +49,14 @@ public interface MachineExt {
             "</when>",
             "</script>"})
     List<Machine> GetByTwoId(@Param("id") Long id, @Param("Uni_id") Long Uni_id);
+
+//    @Select({
+//            "select",
+//            "addr",
+//            "from Machine",
+//            "where Uni_id = #{id,jdbcType=NUMERIC}"
+//    })
+//    List<Long> getAddrByMacID(Long MacID);
 
     @Select({"SElect * from machine where uni_id=#{id,jdbcType=NUMERIC}"})
     List<Machine> selectMachinesByUnitID(Long id);

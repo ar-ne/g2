@@ -108,11 +108,11 @@
                             <%--按钮/输入框区--%>
                             <div class="mdc-card__primary">
                                 <div class="mdc-layout-grid__inner">
-                                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6 w-100"></div>
+                                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-10 w-100"></div>
 
                                     <%--添加按钮--%>
-                                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4 w-100">
-                                        <a href="/admin2/schedule/add"
+                                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2 w-100">
+                                        <a href="/admin2/stuff/add"
                                            class="mdc-button mdc-button--stroked mdc-ripple-upgraded w-100"
                                            data-mdc-auto-init="MDCRipple"
                                            style="--mdc-ripple-fg-size:60.2325px; --mdc-ripple-fg-scale:1.93662; --mdc-ripple-fg-translate-start:32.9175px, -5.18249px; --mdc-ripple-fg-translate-end:20.255px, -12.3825px;">
@@ -141,24 +141,22 @@
                                                 <c:forEach items="${list}" var="i">
                                                     <tr id="tr_id_${i.id}">
                                                         <td class="text-left">${i.id}</td>
-                                                        <td ${i.start==null?"style='color: lightgray;'":""}
-                                                                class="text-left">${i.start==null?"空":i.start}</td>
-                                                        <td ${i.stop==null?"style='color: lightgray;'":""}
-                                                                class="text-left">${i.stop==null?"空":i.stop}</td>
+                                                        <td ${i.begin==null?"style='color: lightgray;'":""}
+                                                                class="text-left">${i.begin==null?"空":i.begin}</td>
+                                                        <td ${i.end==null?"style='color: lightgray;'":""}
+                                                                class="text-left">${i.end==null?"空":i.end}</td>
                                                         <td ${i.address==null?"style='color: lightgray;'":""}
                                                                 class="text-left">${i.address==null?"空":i.address}</td>
                                                         <td class="text-left">
-                                                            <a href="/admin2/schedule/edit?id=${i.id}"
-                                                               class="col mdc-button mdc-ripple-upgraded"
+                                                            <a class="col mdc-button mdc-ripple-upgraded"
                                                                data-mdc-auto-init="MDCRipple"
+                                                               href="/admin2/schedule/edit?id=${i.id}"
                                                                style="--mdc-ripple-fg-size:27.9375px; --mdc-ripple-fg-scale:2.23298; --mdc-ripple-fg-translate-start:5.19373px, -3.39374px; --mdc-ripple-fg-translate-end:9.3125px, -1.96875px;">
                                                                 <i class="material-icons text-green">edit</i></a>
-                                                            <button onclick="confirmInfo(${i.id})"
-                                                                    class="col mdc-button mdc-ripple-upgraded"
-                                                                    data-mdc-auto-init="MDCRipple"
-                                                                    style="--mdc-ripple-fg-size:27.9375px; --mdc-ripple-fg-scale:2.23298;">
-                                                                <i class="material-icons text-red">delete_forever</i>
-                                                            </button>
+                                                            <a class="col mdc-button mdc-ripple-upgraded"
+                                                               data-mdc-auto-init="MDCRipple"
+                                                               style="--mdc-ripple-fg-size:27.9375px; --mdc-ripple-fg-scale:2.23298;">
+                                                                <i class="material-icons text-red">delete_forever</i></a>
                                                         </td>
                                                     </tr>
                                                 </c:forEach>
@@ -166,7 +164,7 @@
                                             </table>
                                         </c:if>
                                         <c:if test="${list.size()==0}">
-                                            <h2>排班信息为空</h2>
+                                            <h2>员工信息为空</h2>
                                         </c:if>
                                     </div>
                                 </div>
@@ -209,14 +207,6 @@
 <!-- endinject -->
 <!-- Custom js for this page-->
 <script src="${pageContext.request.contextPath}/js/dashboard.js"></script>
-<script>
-    function confirmInfo(e) {
-        if (confirm("确认删除？")) {
-            //console.log(e);
-            window.location.href = "/admin2/schedule/del?id=" + e;
-        }
-    }
-</script>
 <!-- End custom js for this page-->
 </body>
 </html>

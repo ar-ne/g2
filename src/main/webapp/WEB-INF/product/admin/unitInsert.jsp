@@ -84,7 +84,7 @@
             <div class="mdc-list-group">
                 <nav class="mdc-list mdc-drawer-menu">
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link " href="/admin/">
+                        <a class="mdc-drawer-link " href="/admin">
                             <%--<i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
 --%>
@@ -93,13 +93,13 @@
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link active" href="/admin/unit/">
+                        <a class="mdc-drawer-link active" href="/admin/unit/UnitList">
                             <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">group_work</i>
                             单位管理
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="/admin/ma/">
+                        <a class="mdc-drawer-link" href="/admin/ma/MaList">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
 
@@ -116,12 +116,6 @@
                         <a class="mdc-drawer-link" href="/admin/report/">
                             <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">timeline</i>
                             统计报表管理
-                        </a>
-                    </div>
-                    <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link " href="/admin/data/">
-                            <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">poll</i>
-                            数据分析与挖掘
                         </a>
                     </div>
                 </nav>

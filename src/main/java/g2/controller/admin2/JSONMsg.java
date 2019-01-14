@@ -3,27 +3,33 @@ package g2.controller.admin2;
 import com.alibaba.fastjson.JSON;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
-import java.util.Map;
+class JSONMsg extends ModelAndView {
 
-public class JSONMsg extends ModelAndView {
-    public JSONMsg(String msg) {
+    JSONMsg(String jMsg) {
         this.setViewName("/admin2/jsonMsg");
-        this.addObject("msg", msg);
+        this.addObject("msg", jMsg);
     }
 
-    public JSONMsg(Object o) {
+    JSONMsg(PlainMessage plainMessage) {
+        this.setViewName("/admin2/jsonMsg");
+        this.addObject("msg", JSON.toJSONString(plainMessage));
+    }
+
+    JSONMsg(Object o) {
         this.setViewName("/admin2/jsonMsg");
         this.addObject("msg", JSON.toJSONString(o));
     }
 
-    public JSONMsg(List list) {
-        this.setViewName("/admin2/jsonMsg");
-        this.addObject("msg", JSON.toJSONString(list));
-    }
+    static class PlainMessage {
+        String msg;
 
-    public JSONMsg(Map map) {
-        this.setViewName("/admin2/jsonMsg");
-        this.addObject("msg", JSON.toJSONString(map));
+        PlainMessage(String msg) {
+            this.msg = msg;
+        }
+
+        @Override
+        public String toString() {
+            return JSON.toJSONString(this);
+        }
     }
 }

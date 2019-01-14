@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page pageEncoding="utf-8" contentType="text/html; utf-8" %>
 <html>
 <head>
@@ -8,33 +9,32 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/node_modules/mdi/css/materialdesignicons.min.css">
     <!-- endinject -->
     <!-- plugin css for this page -->
-    <style type="text/css">
-        a:hover {
-            background: rgba(0, 0, 0, 0.06);
-            -webkit-border-radius: 5px;
-            -moz-border-radius: 5px;
-            -ms-border-radius: 5px;
-            -o-border-radius: 5px;
-            border-radius: 5px;
-        }
-    </style>
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <!-- endinject -->
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.png"/>
 </head>
+
 <body>
 <div class="body-wrapper">
     <!-- partial:partials/_sidebar.html -->
     <aside class="mdc-persistent-drawer mdc-persistent-drawer--open">
         <nav class="mdc-persistent-drawer__drawer">
             <div class="mdc-persistent-drawer__toolbar-spacer">
-                <a href="index">
+                <a href="/">
+                    欢迎使用校园一卡通系统
                 </a>
             </div>
             <div class="mdc-list-group">
                 <nav class="mdc-list mdc-drawer-menu">
+                    <div class="mdc-list-item mdc-drawer-item">
+                        <a class="mdc-drawer-link" href="/">
+                            <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
+                               aria-hidden="true">desktop_mac</i>
+                            首页
+                        </a>
+                    </div>
                     <div class="mdc-list-item mdc-drawer-item">
                         <a class="mdc-drawer-link" href="/user/QRCode">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
@@ -50,7 +50,7 @@
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="index">
+                        <a class="mdc-drawer-link" href="/user/Management">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
                             校园卡管理
@@ -103,8 +103,7 @@
                                             <div id="demo-tf-box-leading-wrapper" class="w-100">
                                                 <div id="tf-box-leading-example"
                                                      class="mdc-text-field mdc-text-field--box mdc-text-field--with-leading-icon w-100">
-                                                    <i class="material-icons mdc-text-field__icon"
-                                                       tabindex="0">event</i>
+                                                    <i class="material-icons mdc-text-field__icon" tabindex="0">monetization_on</i>
                                                     <input type="text" id="tf-box-leading"
                                                            class="mdc-text-field__input w-100">
                                                     <label for="tf-box-leading"
@@ -122,80 +121,54 @@
                                                 </div>
                                                 <div class="mdc-simple-menu mdc-select__menu">
                                                     <ul class="mdc-list mdc-simple-menu__items">
-                                                        <li class="mdc-list-item" role="option" tabindex="0">
-                                                            Bread, Cereal, Rice, and Pasta
-                                                        </li>
-                                                        <li class="mdc-list-item" role="option" tabindex="0">
-                                                            Vegetables
-                                                        </li>
-                                                        <li class="mdc-list-item" role="option" tabindex="0">
-                                                            Fruit
-                                                        </li>
-                                                        <li class="mdc-list-item" role="option" tabindex="0">
-                                                            Milk, Yogurt, and Cheese
-                                                        </li>
-                                                        <li class="mdc-list-item" role="option" tabindex="0">
-                                                            Meat, Poultry, Fish, Dry Beans, Eggs, and Nuts
-                                                        </li>
-                                                        <li class="mdc-list-item" role="option" tabindex="0">
-                                                            Fats, Oils, and Sweets
-                                                        </li>
+                                                        <c:forEach items="${addrlist}" var="addr">
+                                                            <li class="mdc-list-item" role="option" tabindex="0">
+                                                                    ${addr}
+                                                            </li>
+                                                        </c:forEach>
                                                     </ul>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-2">
-                                            <button class="mdc-button mdc-button--raised w-100"
+                                            <button class="mdc-button mdc-button--raised w-100" onclick="onSearch()"
                                                     data-mdc-auto-init="MDCRipple">
                                                 查询
                                             </button>
                                         </div>
                                         <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-2">
-                                            <button class="mdc-button mdc-button--raised w-100"
-                                                    data-mdc-auto-init="MDCRipple">
+                                            <a href="/user" class="mdc-button mdc-button--raised w-100"
+                                               data-mdc-auto-init="MDCRipple">
                                                 统计
-                                            </button>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
-                                    <table class="table table-hoverable">
+                                    <table class="table table-hoverable" id="consume">
                                         <thead>
                                         <tr>
-                                            <th class="text-left">Dessert (100g serving)</th>
-                                            <th>Calories</th>
-                                            <th>Fat (g)</th>
-                                            <th>Link</th>
-                                            <th>Carbs</th>
-                                            <th>Protein (g)</th>
-                                            <th>Sodium (mg)</th>
-                                            <th>Calcium (%)</th>
-                                            <th>Iron (%)</th>
+                                            <th class="text-left">消费编号</th>
+                                            <th class="text-left">校园卡编号</th>
+                                            <th class="text-left">消费时间</th>
+                                            <th class="text-left">消费卡机编号</th>
+                                            <th class="text-left">消费金额</th>
+                                            <th class="text-left">消费结果</th>
+                                            <th class="text-left">失败原因</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td class="text-left">Frozen yogurt</td>
-                                            <td>1.59</td>
-                                            <td>6.0</td>
-                                            <td>50</td>
-                                            <td>4.0</td>
-                                            <td>87</td>
-                                            <td>20%</td>
-                                            <td>4%</td>
-                                            <td>6%</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-left">Frozen yogurt</td>
-                                            <td>1.59</td>
-                                            <td>2.5</td>
-                                            <td>35</td>
-                                            <td>2.0</td>
-                                            <td>97</td>
-                                            <td>17%</td>
-                                            <td>2%</td>
-                                            <td>6%</td>
-                                        </tr>
+                                        <c:forEach items="${cosumelist}" var="c">
+                                            <tr id="tr_id_${c.id}">
+                                                <td class="text-left">${c.id}</td>
+                                                <td class="text-left">${c.car_id}</td>
+                                                <td class="text-left">${c.time}</td>
+                                                <td class="text-left">${c.mac_id}</td>
+                                                <td class="text-left">${c.amount}</td>
+                                                <td class="text-left">${c.result}</td>
+                                                <td class="text-left">${c.reason}</td>
+                                            </tr>
+                                        </c:forEach>
                                         </tbody>
                                     </table>
                                 </div>
@@ -238,6 +211,22 @@
 <!-- endinject -->
 <!-- Custom js for this page-->
 <script src="${pageContext.request.contextPath}/js/dashboard.js"></script>
+<script type="text/javascript">
+    function onSearch() {
+        var consumeId = document.getElementById('consume');
+        var rowsLength = consumeId.rows.length;
+        var key = document.getElementById('tf-box-leading');
+        var searchCol = 0;
+        for (var i = 1; i < rowsLength; i++) {
+            var searchText = consumeId.rows[i].cells[searchCol].innerHTML;
+            if (searchText.match(key)) {
+                consumeId.rows[i].style.display = '';
+            } else {
+                consumeId.rows[i].style.display = 'none';
+            }
+        }
+    }
+</script>
 <!-- End custom js for this page-->
 </body>
 </html>

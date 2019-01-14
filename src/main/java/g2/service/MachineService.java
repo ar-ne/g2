@@ -4,7 +4,6 @@ import g2.mapper.MachineMapper;
 import g2.model.Charge;
 import g2.model.Consume;
 import g2.model.Machine;
-import g2.model.Unit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +40,10 @@ public class MachineService {
                 count += chargeService.deleteByMacId(macList.get(i));
             }
         return machineMapper.DeleteByUnitId(id) + count;
+    }
+
+    public List<String> getAddr() {
+        return machineMapper.getAddr();
     }
 
     public List<Long> selectByUnitId(Long id) {

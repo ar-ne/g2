@@ -8,16 +8,6 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/node_modules/mdi/css/materialdesignicons.min.css">
     <!-- endinject -->
     <!-- plugin css for this page -->
-    <style type="text/css">
-        a:hover {
-            background: rgba(0, 0, 0, 0.06);
-            -webkit-border-radius: 5px;
-            -moz-border-radius: 5px;
-            -ms-border-radius: 5px;
-            -o-border-radius: 5px;
-            border-radius: 5px;
-        }
-    </style>
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
@@ -25,18 +15,24 @@
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.png"/>
 </head>
 <body>
-<script src="${pageContext.request.contextPath}/node_modules/jquery/dist/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/qrcode.min.js"></script>
 <div class="body-wrapper">
     <!-- partial:partials/_sidebar.html -->
-    <aside class="mdc-persistent-drawer mdc-persistent-drawer--open">
+    <aside class="mdc-persistent-drawer">
         <nav class="mdc-persistent-drawer__drawer">
             <div class="mdc-persistent-drawer__toolbar-spacer">
-                <a href="index">
+                <a href="/">
+                    欢迎使用校园一卡通系统
                 </a>
             </div>
             <div class="mdc-list-group">
                 <nav class="mdc-list mdc-drawer-menu">
+                    <div class="mdc-list-item mdc-drawer-item">
+                        <a class="mdc-drawer-link" href="/">
+                            <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
+                               aria-hidden="true">desktop_mac</i>
+                            首页
+                        </a>
+                    </div>
                     <div class="mdc-list-item mdc-drawer-item">
                         <a class="mdc-drawer-link active" href="/user/QRCode">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
@@ -52,7 +48,7 @@
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="index">
+                        <a class="mdc-drawer-link" href="/user/Management">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
                             校园卡管理
@@ -93,20 +89,18 @@
     <!-- partial -->
 
     <div class="page-wrapper mdc-toolbar-fixed-adjust">
-        <main class="content-wrapper">
+        <main class="auth-screen">
             <div class="mdc-layout-grid">
                 <div class="mdc-layout-grid__inner">
-                    <div id="qrcode"></div>
-                    <script type="text/javascript">
-                        var qrcode = new QRCode(document.getElementById("qrcode"), {
-                            text: "${qrText}",
-                            width: 128,
-                            height: 128,
-                            colorDark: "#000000",
-                            colorLight: "#ffffff",
-                            correctLevel: QRCode.CorrectLevel.H
-                        });
-                    </script>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-5">
+                        <h1 class="mdc-typography--display1">
+                            快用你的刷卡机扫我吧！！！
+                            <i class="mdi mdi-hand-pointing-right icon-md"></i>
+                        </h1>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
+                        <div id="qrcode" class="w-100"></div>
+                    </div>
                 </div>
             </div>
         </main>
@@ -134,6 +128,8 @@
 
 <!-- endinject -->
 <!-- Plugin js for this page-->
+<script src="${pageContext.request.contextPath}/node_modules/jquery/dist/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/node_modules/qrcode-generator/qrcode.js"></script>
 <script src="${pageContext.request.contextPath}/node_modules/chart.js/dist/Chart.min.js"></script>
 <script src="${pageContext.request.contextPath}/node_modules/progressbar.js/dist/progressbar.min.js"></script>
 <!-- End plugin js for this page-->
@@ -143,6 +139,14 @@
 <!-- endinject -->
 <!-- Custom js for this page-->
 <script src="${pageContext.request.contextPath}/js/dashboard.js"></script>
+<script type="text/javascript">
+    var typeNumber = 0;
+    var errorCorrectionLevel = 'H';
+    var qr = qrcode(typeNumber, errorCorrectionLevel);
+    qr.addData("${qrText}");
+    qr.make();
+    document.getElementById('qrcode').innerHTML = qr.createImgTag(8);
+</script>
 <!-- End custom js for this page-->
 
 </body>

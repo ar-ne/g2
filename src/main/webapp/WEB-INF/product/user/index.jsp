@@ -8,16 +8,6 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/node_modules/mdi/css/materialdesignicons.min.css">
     <!-- endinject -->
     <!-- plugin css for this page -->
-    <style type="text/css">
-        a:hover {
-            background: rgba(0, 0, 0, 0.06);
-            -webkit-border-radius: 5px;
-            -moz-border-radius: 5px;
-            -ms-border-radius: 5px;
-            -o-border-radius: 5px;
-            border-radius: 5px;
-        }
-    </style>
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
@@ -30,11 +20,19 @@
     <aside class="mdc-persistent-drawer mdc-persistent-drawer--open">
         <nav class="mdc-persistent-drawer__drawer">
             <div class="mdc-persistent-drawer__toolbar-spacer">
-                <a href="index">
+                <a href="/">
+                    欢迎使用校园一卡通系统
                 </a>
             </div>
             <div class="mdc-list-group">
                 <nav class="mdc-list mdc-drawer-menu">
+                    <div class="mdc-list-item mdc-drawer-item">
+                        <a class="mdc-drawer-link" href="/">
+                            <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
+                               aria-hidden="true">desktop_mac</i>
+                            首页
+                        </a>
+                    </div>
                     <div class="mdc-list-item mdc-drawer-item">
                         <a class="mdc-drawer-link" href="/user/QRCode">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
@@ -50,7 +48,7 @@
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="index">
+                        <a class="mdc-drawer-link" href="/user/Management">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
                             校园卡管理
