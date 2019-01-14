@@ -18,6 +18,22 @@
             -o-border-radius: 5px;
             border-radius: 5px;
         }
+
+        #JPO {
+            transform: scale(0.8);
+        }
+
+        .popup_visible #JPO {
+            transform: scale(1);
+        }
+
+        #JPO1 {
+            transform: scale(0.8);
+        }
+
+        .popup_visible #JPO1 {
+            transform: scale(1);
+        }
     </style>
     <!-- End plugin css for this page -->
     <!-- inject:css -->
@@ -98,10 +114,7 @@
         </div>
     </header>
     <!-- partial -->
-    <form method="post" action="/admin2/charge/mac" style="display: none;">
-        <input type="hidden" name="macID" id="macID">
-    </form>
-    <div class="page-wrapper mdc-toolbar-fixed-adjust">
+    <div class="page-wrapper mdc-toolbar-fixed-adjust" id="page">
         <main class="content-wrapper drawer-minimized">
             <div class="mdc-layout-grid">
                 <div class="mdc-layout-grid__inner">
@@ -113,7 +126,7 @@
                                     <div class="mdc-layout-grid__inner">
                                         <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
                                             <div class="mdc-card__primary w-100">
-                                                <button onclick="scan()"
+                                                <button onclick="scan()" id="buttonScan"
                                                         class="mdc-button mdc-button--stroked thick-stroke-button mdc-ripple-upgraded w-100"
                                                         data-mdc-auto-init="MDCRipple"
                                                         style="--mdc-ripple-fg-size:115.62px; --mdc-ripple-fg-scale:1.78199; --mdc-ripple-fg-translate-start:104.79px, -32.2099px; --mdc-ripple-fg-translate-end:38.54px, -39.81px;">
@@ -129,6 +142,7 @@
                                                          class="mdc-text-field mdc-text-field--box w-100 mdc-text-field--upgraded mdc-ripple-upgraded w-100"
                                                          style="--mdc-ripple-fg-size:111.06px; --mdc-ripple-fg-scale:1.83131; --mdc-ripple-fg-translate-start:60.37px, -17.93px; --mdc-ripple-fg-translate-end:37.02px, -27.53px;">
                                                         <input type="text" id="tf-box-leading"
+                                                               onkeyup="clearNoNum(this)"
                                                                class="mdc-text-field__input w-100" name="address">
                                                         <label for="tf-box-leading"
                                                                class="mdc-text-field__label">金额</label>
@@ -151,26 +165,26 @@
                                     </div>
                                 </div>
 
-                                    <%--右半边--%>
-                                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
-                                        <div class="mdc-layout-grid__inner">
-                                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
-                                                <div class="mdc-card__primary">
-                                                    <h1>单位:${mac.uni_id}</h1>
-                                                </div>
+                                <%--右半边--%>
+                                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+                                    <div class="mdc-layout-grid__inner">
+                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+                                            <div class="mdc-card__primary">
+                                                <h1>单位:${mac.uni_id}</h1>
                                             </div>
-                                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
-                                                <div class="mdc-card__primary">
-                                                    <h1>卡机:${mac.id}</h1>
-                                                </div>
+                                        </div>
+                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+                                            <div class="mdc-card__primary">
+                                                <h1>卡机:${mac.id}</h1>
                                             </div>
-                                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
-                                                <div class="mdc-card__primary">
-                                                    <h1>地点:${mac.addr}</h1>
-                                                </div>
+                                        </div>
+                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+                                            <div class="mdc-card__primary">
+                                                <h1>地点:${mac.addr}</h1>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -192,52 +206,133 @@
         </footer>
         <!-- partial -->
     </div>
-
 </div>
 <!-- body wrapper -->
-
+<div id="JPO">
+    <div class="mdc-layout-grid">
+        <div class="mdc-layout-grid__inner">
+            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+                <div class="mdc-card py-3 pl-2 d-flex flex-row align-item-center">
+                    <div class="mdc--tile mdc--tile-success rounded">
+                        <i class="material-icons text-white icon-md">done</i>
+                    </div>
+                    <div class="text-wrapper pl-1">
+                        <h3 class="mdc-typography--display1 font-weight-bold mb-1 text-green">成功</h3>
+                        <p class="font-weight-normal mb-0 mt-0" id="amountPaid"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="JPO1">
+    <div class="mdc-layout-grid">
+        <div class="mdc-layout-grid__inner">
+            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+                <div class="mdc-card py-3 pl-2 d-flex flex-row align-item-center">
+                    <div class="mdc--tile mdc--tile-danger rounded">
+                        <i class="material-icons text-white icon-md">warning</i>
+                    </div>
+                    <div class="text-wrapper pl-1">
+                        <h3 class="mdc-typography--display1 font-weight-bold mb-1 text-red">失败</h3>
+                        <p class="font-weight-normal mb-0 mt-0" id="failText"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- plugins:js -->
 <script src="${pageContext.request.contextPath}/node_modules/material-components-web/dist/material-components-web.min.js"></script>
 <script src="${pageContext.request.contextPath}/node_modules/jquery/dist/jquery.min.js"></script>
 <!-- endinject -->
 <!-- Plugin js for this page-->
-<script src="${pageContext.request.contextPath}/node_modules/chart.js/dist/Chart.min.js"></script>
-<script src="${pageContext.request.contextPath}/node_modules/progressbar.js/dist/progressbar.min.js"></script>
+<script src="${pageContext.request.contextPath}/node_modules/jquery-popup-overlay/jquery.popupoverlay.js"></script>
 <!-- End plugin js for this page-->
 <!-- inject:js -->
 <script src="${pageContext.request.contextPath}/js/misc.js"></script>
 <script src="${pageContext.request.contextPath}/js/material.js"></script>
 <script>
-    $('#unit').bind('DOMNodeInserted', function (e) {
-        var inner = e.target.innerHTML;
-        // console.log(inner);
-        // console.log(inner.substring(inner.indexOf(":")+1));
-        loadMacList(inner.substring(inner.indexOf(":") + 1));
+    var amountDIV = $("#tf-box-leading");
+    var macID = ${mac.id};
+    $('#JPO').popup({
+        scrolllock: true,
+        transition: 'all 0.3s'
     });
-    if ($('#hero-js-select1').length) {
-        var heroSelect = document.getElementById('hero-js-select1');
-        var heroSelectComponent1 = new mdc.select.MDCSelect(heroSelect);
-    }
+    $.fn.popup.defaults.pagecontainer = '#page';
 
-    function resetSelector() {
-        if ($('#hero-js-select1').length) {
-            var heroSelect = document.getElementById('hero-js-select1');
-            var heroSelectComponent1 = new mdc.select.MDCSelect(heroSelect);
+    $('#JPO1').popup({
+        scrolllock: true,
+        transition: 'all 0.3s'
+    });
+    $.fn.popup.defaults.pagecontainer = '#page';
+    amountDIV.keypress(function () {
+        if (event.keyCode === 13) {
+            scan();
         }
-        $("#macTitle").removeClass("mdc-select__label--float-above");
-        $("#macContent")[0].innerHTML = "";
+    });
+
+    function pop() {
+        $('#JPO').popup('show');
     }
 
-    function getChargeResylt(card, mac, amount) {
-        var mac = $("#mac");
-        $.post("/admin2/charge/chargeIF", {cardID: card, macID: mac, amount: amount}, function (data, status) {
-            data = eval(data);
-            alert("结果:" + data)
+    function clearNoNum(obj) {
+        obj.value = obj.value.replace(/[^\d.]/g, "");  //清除“数字”和“.”以外的字符
+        obj.value = obj.value.replace(/^\./g, "");  //验证第一个字符是数字而不是.
+        obj.value = obj.value.replace(/\.{2,}/g, "."); //只保留第一个. 清除多余的.
+        obj.value = obj.value.replace(".", "$#$").replace(/\./g, "").replace("$#$", ".");
+
+    }
+
+    var erroredScan = false;
+
+    function pJson(url, dat) {
+        var d;
+        $.ajaxSettings.async = false;
+        $.post(url, dat, function (data) {
+            try {
+                d = $.parseJSON(data);
+            } catch (e) {
+                erroredScan = true;
+            }
         });
+        $.ajaxSettings.async = false;
+        console.log(d);
+        return d;
     }
 
-    function append(obj, text) {
-        obj.append("<li class='mdc-list-item' role='option' tabindex='0' style='' aria-selected='true'>" + text + "</li>");
+    function decode(b64s) {
+        return pJson("/admin2/charge/decodeIF", {str: b64s});
+    }
+
+    function charge(b64j) {
+        var result = pJson("/admin2/charge/chargeIF", {
+            cardID: b64j.card,
+            macID: macID,
+            amount: amountDIV.val(),
+            name: b64j.name
+        });
+        if (result.result === 1) onSuccess(result);
+        else onFailed(result);
+    }
+
+    //弹出窗口，定时关闭
+    function onSuccess(result) {
+        resetPage();
+        $("#amountPaid")[0].innerHTML = "&nbsp;金额：" + result.amount;
+        $('#JPO').popup('show');
+        setTimeout(function () {
+            $('#JPO').popup('hide');
+        }, 3000);
+    }
+
+    function onFailed(result) {
+        resetPage();
+        $("#failText")[0].innerHTML = result.reason;
+        $('#JPO1').popup('show');
+        setTimeout(function () {
+            $('#JPO1').popup('hide');
+        }, 3000);
     }
 
     var qrResult;
@@ -245,7 +340,13 @@
 
     function scan() {
         qrResult = null;
-        scanWindow = window.open("scan", "foo", "width=800px, height=600px, location=no, resizable=yes");
+        if (amountDIV.val() === "") {
+            amountDIV.focus();
+            return;
+        }
+        amountDIV.attr("disabled", true);
+        $("#buttonScan").attr("disabled", true);
+        scanWindow = window.open("scan", "foo", "width=800px, height=600px, location=no, resizable=no");
     }
 
     function onScanned(msg) {
@@ -256,13 +357,27 @@
 
     function doScanned() {
         var result = qrResult;
-        console.log(result);
         qrResult = null;
-        var name = "用户名：" + result.substring(0, result.indexOf(" "));
-        var card = "卡  号：" + result.substring(result.indexOf(" ") + 1);
+        console.log(result);
+        var info = decode(result);
+        if (erroredScan) {
+            $("#name")[0].innerHTML = "扫描错误，请重新扫描";
+            resetPage();
+            return;
+        }
+        var name = "用户名：" + info.name;
+        var card = "卡  号：" + info.card;
         $("#name")[0].innerHTML = name;
-        $("#card")[0].innerHTML = card;
+        $("#cid")[0].innerHTML = card;
+        charge(info);
+    }
 
+    function resetPage() {
+        amountDIV.attr("disabled", false);
+        $("#buttonScan").attr("disabled", false);
+        erroredScan = false;
+        $("#name")[0].innerHTML = "";
+        $("#cid")[0].innerHTML = "";
     }
 </script>
 <!-- endinject -->

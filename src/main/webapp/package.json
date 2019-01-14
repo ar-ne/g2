@@ -7,7 +7,9 @@
     "chart.js": "2.6.0",
     "del": "2.2.2",
     "jquery": "3.2.1",
+    "jquery-popup-overlay": "^2.1.0",
     "material-components-web": "^0.27.0",
+    "material-design-icons-iconfont": "^4.0.4",
     "mdi": "2.0.46",
     "progressbar.js": "1.0.1",
     "qrcode-generator": "^1.4.1"

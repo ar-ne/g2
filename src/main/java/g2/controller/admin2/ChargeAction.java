@@ -48,6 +48,13 @@ public class ChargeAction {
         return "admin2/chargeAction/scan";
     }
 
+    @RequestMapping("popMsg")
+    public ModelAndView popUpMsg(String pMsg) {
+        ModelAndView modelAndView = new ModelAndView("admin2/chargeAction/message");
+        modelAndView.addObject(new JSONMsg.PlainMessage(pMsg).toString());
+        return modelAndView;
+    }
+
     /**
      * decode Base64 to JSON
      *
@@ -78,8 +85,9 @@ public class ChargeAction {
      * @param amount 金额
      * @return 收费信息
      */
-    @RequestMapping(value = "chargeIF", method = RequestMethod.POST, params = "cardID,macID,amount")
-    public JSONMsg charge(Long cardID, Long macID, double amount) {
+    @RequestMapping(value = "chargeIF", method = RequestMethod.POST, params = {"cardID", "macID", "amount", "name"})
+    public JSONMsg charge(Long cardID, Long macID, Double amount, String name) {
+        if (!userService.getNameByCardID(cardID).equals(name)) return new JSONMsg("Err:扫描出错,请重新扫码");
         machineService.selectByPrimaryKey(macID);//确保刷卡机没被删除
         Charge charge = new Charge();
         Card card = cardService.get(cardID);
