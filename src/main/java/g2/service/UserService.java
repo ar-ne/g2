@@ -34,11 +34,18 @@ public class UserService {
         else return null;
     }
 
+    public String getPasswordByCardID(Long cardID) {
+        return userMapper.getPasswordByCardID(cardID);
+    }
     public User getUser(String name) {
         return userMapper.selectByPrimaryKey(name);
     }
 
     public String getNameByCardID(Long cardID) {
         return userMapper.selectNameByCardID(cardID);
+    }
+
+    public int editPassword(Long id, String password) {
+        return userMapper.editPassword(id, password);
     }
 }

@@ -22,14 +22,14 @@
     <aside class="mdc-persistent-drawer mdc-persistent-drawer--open">
         <nav class="mdc-persistent-drawer__drawer">
             <div class="mdc-persistent-drawer__toolbar-spacer">
-                <a href="/">
+                <a href="/user">
                     欢迎使用校园一卡通系统
                 </a>
             </div>
             <div class="mdc-list-group">
                 <nav class="mdc-list mdc-drawer-menu">
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="/">
+                        <a class="mdc-drawer-link" href="/user">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
                             首页
@@ -89,90 +89,95 @@
         </div>
     </header>
     <!-- partial -->
-
     <div class="page-wrapper mdc-toolbar-fixed-adjust">
         <main class="content-wrapper">
             <div class="mdc-layout-grid">
                 <div class="mdc-layout-grid__inner">
                     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
                         <div class="mdc-card">
-                            <div class="mdc-layout-grid__inner mdc-card__primary">
-                                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
-                                    <div class="mdc-layout-grid__inner">
-                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4">
-                                            <div id="demo-tf-box-leading-wrapper" class="w-100">
-                                                <div id="tf-box-leading-example"
-                                                     class="mdc-text-field mdc-text-field--box mdc-text-field--with-leading-icon w-100">
-                                                    <i class="material-icons mdc-text-field__icon" tabindex="0">monetization_on</i>
-                                                    <input type="text" id="tf-box-leading"
-                                                           class="mdc-text-field__input w-100">
-                                                    <label for="tf-box-leading"
-                                                           class="mdc-text-field__label">消费金额</label>
-                                                    <div class="mdc-text-field__bottom-line"></div>
+                            <form method="post" action="/user/QueSta/cmlist">
+                                <div class="mdc-layout-grid__inner mdc-card__primary">
+                                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+                                        <div class="mdc-layout-grid__inner">
+                                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4">
+                                                <div id="demo-tf-box-leading-wrapper" class="w-100">
+                                                    <div id="tf-box-leading-example"
+                                                         class="mdc-text-field mdc-text-field--box mdc-text-field--with-leading-icon w-100">
+                                                        <i class="material-icons mdc-text-field__icon" tabindex="0">monetization_on</i>
+                                                        <input type="number" id="tf-box-leading" name="money"
+                                                               class="mdc-text-field__input w-100">
+                                                        <label for="tf-box-leading" name="money"
+                                                               class="mdc-text-field__label">消费金额</label>
+                                                        <div class="mdc-text-field__bottom-line"></div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4">
-                                            <div id="hero-js-select" class="mdc-select w-100" role="listbox">
-                                                <div class="mdc-select__surface" tabindex="0">
-                                                    <div class="mdc-select__label">请选择消费地点</div>
-                                                    <div class="mdc-select__selected-text"></div>
-                                                    <div class="mdc-select__bottom-line"></div>
-                                                </div>
-                                                <div class="mdc-simple-menu mdc-select__menu">
-                                                    <ul class="mdc-list mdc-simple-menu__items">
-                                                        <c:forEach items="${addrlist}" var="addr">
-                                                            <li class="mdc-list-item" role="option" tabindex="0">
-                                                                    ${addr}
-                                                            </li>
-                                                        </c:forEach>
-                                                    </ul>
+                                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4">
+                                                <div id="hero-js-select" class="mdc-select w-100" role="listbox">
+                                                    <div class="mdc-select__surface" tabindex="0">
+                                                        <div class="mdc-select__label">请选择消费卡机编号</div>
+                                                        <div id="macID" class="mdc-select__selected-text"></div>
+                                                        <div class="mdc-select__bottom-line"></div>
+                                                    </div>
+                                                    <div class="mdc-simple-menu mdc-select__menu">
+                                                        <ul class="mdc-list mdc-simple-menu__items">
+                                                            <c:forEach items="${macIDList}" var="macID">
+                                                                <li class="mdc-list-item" role="option" tabindex="0"
+                                                                    name="macID">
+                                                                        ${macID}
+                                                                </li>
+                                                            </c:forEach>
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-2">
-                                            <button class="mdc-button mdc-button--raised w-100" onclick="onSearch()"
-                                                    data-mdc-auto-init="MDCRipple">
-                                                查询
-                                            </button>
-                                        </div>
-                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-2">
-                                            <a href="/user" class="mdc-button mdc-button--raised w-100"
-                                               data-mdc-auto-init="MDCRipple">
-                                                统计
-                                            </a>
+                                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-2">
+                                                <button class="mdc-button mdc-button--raised w-100" type="submit"
+                                                        data-mdc-auto-init="MDCRipple">
+                                                    查询
+                                                </button>
+                                            </div>
+                                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-2">
+                                                <a href="/user/QueSta/stastic"
+                                                   class="mdc-button mdc-button--raised w-100"
+                                                   data-mdc-auto-init="MDCRipple">
+                                                    统计
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
-                                    <table class="table table-hoverable" id="consume">
-                                        <thead>
-                                        <tr>
-                                            <th class="text-left">消费编号</th>
-                                            <th class="text-left">校园卡编号</th>
-                                            <th class="text-left">消费时间</th>
-                                            <th class="text-left">消费卡机编号</th>
-                                            <th class="text-left">消费金额</th>
-                                            <th class="text-left">消费结果</th>
-                                            <th class="text-left">失败原因</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <c:forEach items="${cosumelist}" var="c">
-                                            <tr id="tr_id_${c.id}">
-                                                <td class="text-left">${c.id}</td>
-                                                <td class="text-left">${c.car_id}</td>
-                                                <td class="text-left">${c.time}</td>
-                                                <td class="text-left">${c.mac_id}</td>
-                                                <td class="text-left">${c.amount}</td>
-                                                <td class="text-left">${c.result}</td>
-                                                <td class="text-left">${c.reason}</td>
+
+                                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+                                        <table class="table table-hoverable" id="consume">
+                                            <thead>
+                                            <tr>
+                                                <th class="text-left">消费编号</th>
+                                                <th class="text-left">校园卡编号</th>
+                                                <th class="text-left">消费时间</th>
+                                                <th class="text-left">消费卡机编号</th>
+                                                <th class="text-left">消费金额</th>
+                                                <th class="text-left">消费结果</th>
+                                                <th class="text-left">失败原因</th>
                                             </tr>
-                                        </c:forEach>
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                            <c:forEach items="${cosumelist}" var="c">
+                                                <tr id="tr_id_${c.id}">
+                                                    <td class="text-left">${c.id}</td>
+                                                    <td class="text-left">${c.car_id}</td>
+                                                    <td class="text-left">${c.time}</td>
+                                                    <td class="text-left">${c.mac_id}</td>
+                                                    <td class="text-left">${c.amount}</td>
+                                                    <td class="text-left">${c.result}</td>
+                                                    <td class="text-left">${c.reason}</td>
+                                                </tr>
+                                            </c:forEach>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
-                            </div>
+                                <input type="hidden" id="macIDinner" name="macID" value="">
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -211,21 +216,11 @@
 <!-- endinject -->
 <!-- Custom js for this page-->
 <script src="${pageContext.request.contextPath}/js/dashboard.js"></script>
-<script type="text/javascript">
-    function onSearch() {
-        var consumeId = document.getElementById('consume');
-        var rowsLength = consumeId.rows.length;
-        var key = document.getElementById('tf-box-leading');
-        var searchCol = 0;
-        for (var i = 1; i < rowsLength; i++) {
-            var searchText = consumeId.rows[i].cells[searchCol].innerHTML;
-            if (searchText.match(key)) {
-                consumeId.rows[i].style.display = '';
-            } else {
-                consumeId.rows[i].style.display = 'none';
-            }
-        }
-    }
+<script>
+    $('#macID').bind('DOMNodeInserted', function (e) {
+        var inner = e.target.innerHTML;
+        document.getElementById("macIDinner").value = inner;
+    });
 </script>
 <!-- End custom js for this page-->
 </body>

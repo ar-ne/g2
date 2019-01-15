@@ -15,16 +15,17 @@ public class ConsumeService {
     public ConsumeService(ConsumeMapper consumeMapper) {
         this.consumeMapper = consumeMapper;
     }
-//    public List<Long> getMacID(Long carID){
-//        return consumeMapper.getMacID(carID);
-//    }
+
+    public List<Consume> getConsumeListByMacID(Long carID, Long MacId) {
+        return consumeMapper.getConsumeListByMacID(carID, MacId);
+    }
 
     public List<Consume> getCosumeList(Long carID) {
         return consumeMapper.getCosumeList(carID);
     }
 
-    public List<Consume> selectByCdAmount(Long carID, Double money) {
-        return consumeMapper.selectByCdAmount(carID, money);
+    public List<Consume> selectByCDMAmount(Long carID, Double money, Long MacId) {
+        return consumeMapper.selectByCDMAmount(carID, money, MacId);
     }
 
     ;

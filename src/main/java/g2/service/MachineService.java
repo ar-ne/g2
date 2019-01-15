@@ -40,9 +40,15 @@ public class MachineService {
         return machineMapper.DeleteByUnitId(id) + count;
     }
 
-    public List<String> getAddr() {
-        return machineMapper.getAddr();
+    public List<Long> getmacID() {
+        return machineMapper.getmacID();
     }
+
+    public List<Long> getMacIdByAddr(String addr) {
+        return machineMapper.getMacIdByAddr(addr);
+    }
+
+    ;
 
     public List<Long> selectByUnitId(Long id) {
         return machineMapper.SelectByUnitId(id);

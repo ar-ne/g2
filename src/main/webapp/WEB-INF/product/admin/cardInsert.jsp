@@ -31,7 +31,7 @@
     <script type="text/javascript">
         function doSubmit(url) {
             var data = $('#frm').serialize();
-            // alert(url+"?"+data);
+            alert(url + "?" + data);
             $.ajax({
                 type: "post",
                 contentType: "application/json",

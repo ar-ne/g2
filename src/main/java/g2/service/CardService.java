@@ -50,6 +50,18 @@ public class CardService {
         return cardMapper.insertSelective(card);
     }
 
+    public int reportLoss(Long id) {
+        return cardMapper.reportLoss(id);
+    }
+
+    public int cReportLoss(Long id) {
+        return cardMapper.cReportLoss(id);
+    }
+
+    public String getStateById(Long id) {
+        return cardMapper.getStateById(id);
+    }
+
     public int reCharge(Long id, Double money) {
         return cardMapper.recharge(id, money);
     }
@@ -61,4 +73,9 @@ public class CardService {
     public int update(Card card) {
         return cardMapper.updateByPrimaryKeySelective(card);
     }
+
+    public int selectAmountById(Long id) {
+        return cardMapper.selectAmountById(id);
+    }
+
 }
