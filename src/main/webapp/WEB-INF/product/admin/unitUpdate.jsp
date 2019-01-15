@@ -93,13 +93,13 @@
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link active" href="/admin/unit/UnitList">
+                        <a class="mdc-drawer-link active" href="/admin/unit/">
                             <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">group_work</i>
                             单位管理
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="/admin/ma/MaList">
+                        <a class="mdc-drawer-link" href="/admin/ma/">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
 
@@ -116,6 +116,12 @@
                         <a class="mdc-drawer-link" href="/admin/report/">
                             <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">timeline</i>
                             统计报表管理
+                        </a>
+                    </div>
+                    <div class="mdc-list-item mdc-drawer-item">
+                        <a class="mdc-drawer-link " href="/admin/data/">
+                            <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">poll</i>
+                            数据分析与挖掘
                         </a>
                     </div>
                 </nav>
@@ -189,13 +195,14 @@
                                                                                 name="pnum"
                                                                                 value='${unit.pnum}'>
                             </div>
-                            <input type="reset" value="重置" class="btn btn-danger">
+                            <input type="reset" value="重置" class="btn btn-danger" style="width: 100%;margin-top: 25px">
                         </form>
-                        <button type="submit" class="btn btn-info" style="float: left"
-                                onclick="doSubmit('/admin/unit/UnitUpdate')">保存
+                    </div>
+                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-10">
+                        <button onclick="doSubmit('/admin/unit/UnitUpdate')" class="btn btn-info"
+                                style="margin: auto;width: 21%">保存
                         </button>
                     </div>
-
                 </div>
             </div>
         </main>
