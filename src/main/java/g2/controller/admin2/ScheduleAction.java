@@ -40,8 +40,8 @@ public class ScheduleAction extends BaseController {
         Schedule schedule = scheduleService.get(id);
         modelAndView.addObject("id", schedule.getId());
         modelAndView.addObject("address", schedule.getAddress());
-        // modelAndView.addObject("start", Parse.simpleDateFormatter.format(schedule.getStart()).replace(" ", "T"));
-        //modelAndView.addObject("stop", Parse.simpleDateFormatter.format(schedule.getStop()).replace(" ", "T"));
+        modelAndView.addObject("start", Parse.simpleDateFormatter.format(schedule.getStart()).replace(" ", "T"));
+        modelAndView.addObject("stop", Parse.simpleDateFormatter.format(schedule.getStop()).replace(" ", "T"));
         return modelAndView;
     }
 
