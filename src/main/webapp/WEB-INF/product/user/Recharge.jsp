@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page pageEncoding="utf-8" contentType="text/html; utf-8" %>
 <html>
 <head>
@@ -14,6 +15,7 @@
     <!-- endinject -->
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.png"/>
 </head>
+
 <body>
 <div class="body-wrapper">
     <!-- partial:partials/_sidebar.html -->
@@ -27,7 +29,7 @@
             <div class="mdc-list-group">
                 <nav class="mdc-list mdc-drawer-menu">
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link active" href="/user">
+                        <a class="mdc-drawer-link" href="/user">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
                             首页
@@ -48,7 +50,7 @@
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="/user/Management">
+                        <a class="mdc-drawer-link active" href="/user/Management">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
                             校园卡管理
@@ -87,10 +89,67 @@
         </div>
     </header>
     <!-- partial -->
-
     <div class="page-wrapper mdc-toolbar-fixed-adjust">
         <main class="content-wrapper">
-            <img class="w-100" src="/images/main.png">
+            <div class="mdc-layout-grid">
+                <div class="mdc-layout-grid__inner">
+                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+                        <div class="mdc-card">
+                            <div class="mdc-layout-grid__inner mdc-card__primary">
+                                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+                                    <div class="mdc-layout-grid__inner">
+                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4">
+                                            <div id="demo-tf-box-leading-wrapper" class="w-100">
+                                                <div id="tf-box-leading-example"
+                                                     class="mdc-text-field mdc-text-field--box mdc-text-field--with-leading-icon w-100">
+                                                    <i class="material-icons mdc-text-field__icon" tabindex="0">monetization_on</i>
+                                                    <input type="number" id="tf-box-leading" name="money"
+                                                           class="mdc-text-field__input w-100">
+                                                    <label for="tf-box-leading" name="money"
+                                                           class="mdc-text-field__label">请输入充值金额</label>
+                                                    <div class="mdc-text-field__bottom-line"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4">
+                                            <div id="password-box-wrapper">
+                                                <div id="password-box"
+                                                     class="mdc-text-field mdc-text-field--box w-100">
+                                                    <input required pattern="\S+" type="password"
+                                                           id="password" class="mdc-text-field__input"
+                                                           aria-controls="password-validation-message"
+                                                           name="password">
+                                                    <label for="password"
+                                                           class="mdc-text-field__label">请输入密码</label>
+                                                    <div class="mdc-text-field__bottom-line"></div>
+                                                </div>
+                                                <p class="mdc-text-field-helper-text mdc-text-field-helper-text--validation-msg"
+                                                   id="password-validation-msg">
+                                                    密码不能为空或包含空格
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-2">
+                                            <button class="mdc-button mdc-button--raised w-100" onclick="recharge()"
+                                                    data-mdc-auto-init="MDCRipple">
+                                                确认
+                                            </button>
+                                        </div>
+                                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-2">
+                                            <a href="/user/Management" class="mdc-button mdc-button--raised w-100"
+                                               data-mdc-auto-init="MDCRipple">
+                                                取消
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
         <!-- partial:partials/_footer.html -->
         <footer>
@@ -125,6 +184,20 @@
 <!-- endinject -->
 <!-- Custom js for this page-->
 <script src="${pageContext.request.contextPath}/js/dashboard.js"></script>
+<script src="${pageContext.request.contextPath}/js/login.js"></script>
+<script>
+    function recharge() {
+        var money = $("#tf-box-leading").val();
+        var pwd = $("#password").val();
+        $.post("/user/Management/recharge.do", {money: money, password: pwd}, function (data) {
+            if (data === "success") {
+                alert("充值成功");
+                window.location.href = "/user/Management";
+            } else
+                alert("密码错误,充值失败");
+        });
+    }
+</script>
 <!-- End custom js for this page-->
 </body>
 </html>

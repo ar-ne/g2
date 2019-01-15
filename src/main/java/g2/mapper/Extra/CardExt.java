@@ -16,6 +16,14 @@ public interface CardExt {
     })
     List<String> selectType();
 
+    @Select({
+            "select",
+            "state",
+            "from Card",
+            "where ",
+            "id= #{id,jdbcType=NUMERIC}"
+    })
+    String getStateById(Long id);
     @Select({"<script>",
             "select ",
             "id, type, state, amount, limit",
@@ -29,6 +37,11 @@ public interface CardExt {
             "</when>",
             "</script>"})
     List<Card> selectByIT(@Param("id") Long id, @Param("type") String type);
+
+    @Select({
+            "select amount from Card where id= #{id,jdbcType=NUMERIC}"
+    })
+    int selectAmountById(Long id);
 
     @Update({"<script>",
             "update Card",
@@ -48,6 +61,22 @@ public interface CardExt {
             "where ",
             "id= #{id,jdbcType=NUMERIC}"})
     int updateByType(@Param("id") Long id, @Param("state") String state);
+
+    @Update({
+            "update Card",
+            "set",
+            "state= '冻结'",
+            "where ",
+            "id= #{id,jdbcType=NUMERIC}"})
+    int reportLoss(Long id);
+
+    @Update({
+            "update Card",
+            "set",
+            "state= '正常'",
+            "where ",
+            "id= #{id,jdbcType=NUMERIC}"})
+    int cReportLoss(Long id);
 
     @Update({
             "<script>",

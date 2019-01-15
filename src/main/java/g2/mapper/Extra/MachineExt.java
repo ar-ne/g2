@@ -1,6 +1,7 @@
 package g2.mapper.Extra;
 
 import g2.model.Machine;
+import jdk.nashorn.internal.objects.annotations.Where;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -30,11 +31,19 @@ public interface MachineExt {
 
     @Select({
             "select",
-            "distinct",
-            "addr",
-            "from Machine"
+            "Mac_id",
+            "from Machine",
+            "where addr= #{addr,jdbcType=VARCHAR}"
     })
-    List<String> getAddr();
+    List<Long> getMacIdByAddr(String addr);
+
+//    @Select({
+//            "select",
+//            "distinct",
+//            "addr",
+//            "from Machine"
+//    })
+//    List<String> getAddr();
 
     @Select({"<script>",
             "select ",
@@ -50,13 +59,13 @@ public interface MachineExt {
             "</script>"})
     List<Machine> GetByTwoId(@Param("id") Long id, @Param("Uni_id") Long Uni_id);
 
-//    @Select({
-//            "select",
-//            "addr",
-//            "from Machine",
-//            "where Uni_id = #{id,jdbcType=NUMERIC}"
-//    })
-//    List<Long> getAddrByMacID(Long MacID);
+    @Select({
+            "select",
+            "distinct",
+            "id",
+            "from Machine"
+    })
+    List<Long> getmacID();
 
     @Select({"SElect * from machine where uni_id=#{id,jdbcType=NUMERIC}"})
     List<Machine> selectMachinesByUnitID(Long id);

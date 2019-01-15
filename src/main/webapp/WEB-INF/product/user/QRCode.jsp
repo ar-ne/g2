@@ -1,4 +1,5 @@
 <%@ page pageEncoding="utf-8" contentType="text/html; utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <!-- Required meta tags -->
@@ -20,14 +21,14 @@
     <aside class="mdc-persistent-drawer">
         <nav class="mdc-persistent-drawer__drawer">
             <div class="mdc-persistent-drawer__toolbar-spacer">
-                <a href="/">
+                <a href="/user">
                     欢迎使用校园一卡通系统
                 </a>
             </div>
             <div class="mdc-list-group">
                 <nav class="mdc-list mdc-drawer-menu">
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="/">
+                        <a class="mdc-drawer-link" href="/user">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
                             首页
@@ -94,7 +95,7 @@
                 <div class="mdc-layout-grid__inner">
                     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-5">
                         <h1 class="mdc-typography--display1">
-                            快用你的刷卡机扫我吧！！！
+                            <label>当前账户余额：${left}</label>
                             <i class="mdi mdi-hand-pointing-right icon-md"></i>
                         </h1>
                     </div>

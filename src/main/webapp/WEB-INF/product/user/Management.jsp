@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page pageEncoding="utf-8" contentType="text/html; utf-8" %>
 <html>
 <head>
@@ -14,20 +15,63 @@
     <!-- endinject -->
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.png"/>
 </head>
+<script>
+    function report() {
+        if ("${state}" != "冻结") {
+            if (confirm("确认要挂失？")) {
+                window.location.href = '/user/Management/reportless';
+            }
+        } else {
+            alert("挂失失败，当前卡已是冻结状态");
+        }
+    }
+
+    function cancel() {
+        if ("${state}" != "正常") {
+            if (confirm("确认要取消挂失")) {
+                window.location.href = '/user/Management/cancelReportLoss';
+            }
+        } else {
+            alert("取消挂失失败，当前卡已是正常状态");
+        }
+    }
+
+    function ePassword() {
+        if ("${state}" != "冻结") {
+            if (confirm("确认要修改密码?")) {
+                window.location.href = '/user/Management/ePassword';
+            }
+        } else {
+            alert("你的卡已被冻结，无法修改密码");
+        }
+
+    }
+
+    function recharge() {
+        if ("${state}" != "冻结") {
+            if (confirm("确认要充值")) {
+                window.location.href = '/user/Management/recharge';
+            }
+        } else {
+            alert("你的卡已被冻结，无法充值");
+        }
+
+    }
+</script>
 <body>
 <div class="body-wrapper">
     <!-- partial:partials/_sidebar.html -->
     <aside class="mdc-persistent-drawer mdc-persistent-drawer--open">
         <nav class="mdc-persistent-drawer__drawer">
             <div class="mdc-persistent-drawer__toolbar-spacer">
-                <a href="/">
+                <a href="/user">
                     欢迎使用校园一卡通系统
                 </a>
             </div>
             <div class="mdc-list-group">
                 <nav class="mdc-list mdc-drawer-menu">
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="/">
+                        <a class="mdc-drawer-link" href="/user">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
                             首页
@@ -48,7 +92,7 @@
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="/user/Management">
+                        <a class="mdc-drawer-link active" href="/user/Management">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon active"
                                aria-hidden="true">desktop_mac</i>
                             校园卡管理
@@ -93,33 +137,36 @@
             <div class="mdc-layout-grid">
                 <div class="mdc-layout-grid__inner">
                     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
-                        <a class="mdc-button mdc-button--stroked secondary-stroked-button w-100" href="/user/ReportLoss"
-                           data-mdc-auto-init="MDCRipple">
+                        <button class="mdc-button mdc-button--stroked secondary-stroked-button w-100" onclick="report()"
+                                data-mdc-auto-init="MDCRipple">
                             <i class="mdi mdi-account-alert icon-md"></i>
                             挂失
-                        </a>
+                        </button>
                     </div>
                     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
-                        <a class="mdc-button mdc-button--raised secondary-filled-button w-100"
+                        <a class="mdc-button mdc-button--raised secondary-filled-button w-100" onclick="cancel()"
                            data-mdc-auto-init="MDCRipple">
                             <i class="mdi mdi-account-circle icon-md"></i>
                             取消挂失
                         </a>
                     </div>
                     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
-                        <a class="mdc-button mdc-button--raised w-100" data-mdc-auto-init="MDCRipple">
+                        <a class="mdc-button mdc-button--raised w-100" onclick="recharge()"
+                           data-mdc-auto-init="MDCRipple">
                             <i class="mdi mdi-diamond icon-md"></i>
                             充值
                         </a>
                     </div>
                     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
-                        <a class="mdc-button mdc-button--stroked w-100" data-mdc-auto-init="MDCRipple">
+                        <a class="mdc-button mdc-button--stroked w-100" onclick="ePassword()"
+                           data-mdc-auto-init="MDCRipple">
                             <i class="mdi  mdi-account-settings-variant icon-md"></i>
                             修改密码
                         </a>
                     </div>
                 </div>
             </div>
+            <label>当前卡的状态：${state}</label><label style="color: red">${error}</label>
         </main>
         <!-- partial:partials/_footer.html -->
         <footer>

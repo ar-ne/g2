@@ -34,6 +34,9 @@ public class UserService {
         else return null;
     }
 
+    public String getPasswordByCardID(Long cardID) {
+        return userMapper.getPasswordByCardID(cardID);
+    }
     public User getUser(String name) {
         return userMapper.selectByPrimaryKey(name);
     }
@@ -44,5 +47,9 @@ public class UserService {
 
     public int insertUser(User user) {
         return userMapper.insert(user);
+    }
+
+    public int editPassword(Long id, String password) {
+        return userMapper.editPassword(id, password);
     }
 }

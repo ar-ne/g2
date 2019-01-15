@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page pageEncoding="utf-8" contentType="text/html; utf-8" %>
 <html>
 <head>
@@ -14,6 +15,7 @@
     <!-- endinject -->
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.png"/>
 </head>
+
 <body>
 <div class="body-wrapper">
     <!-- partial:partials/_sidebar.html -->
@@ -27,7 +29,7 @@
             <div class="mdc-list-group">
                 <nav class="mdc-list mdc-drawer-menu">
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link active" href="/user">
+                        <a class="mdc-drawer-link" href="/user">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
                             首页
@@ -41,7 +43,7 @@
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="/user/QueSta">
+                        <a class="mdc-drawer-link active" href="/user/QueSta">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
                             查询统计
@@ -87,10 +89,34 @@
         </div>
     </header>
     <!-- partial -->
-
     <div class="page-wrapper mdc-toolbar-fixed-adjust">
         <main class="content-wrapper">
-            <img class="w-100" src="/images/main.png">
+            <div class="mdc-layout-grid">
+                <div class="mdc-layout-grid__inner">
+                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4">
+                        <div id="demo-tf-box-leading-wrapper" class="w-100">
+                            <div id="tf-box-leading-example"
+                                 class="mdc-text-field mdc-text-field--box mdc-text-field--with-leading-icon w-100">
+                                <input type="date" id="tf-box-leading" name="start"
+                                       class="mdc-text-field__input w-100">
+                                <label for="tf-box-leading" name="start"
+                                       class="mdc-text-field__label mdc-text-field__label--float-above">请选择时间</label>
+                                <div class="mdc-text-field__bottom-line"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-2">
+                        <button class="mdc-button mdc-button--raised w-100" onclick="sta()"
+                                data-mdc-auto-init="MDCRipple">
+                            统计
+                        </button>
+                    </div>
+                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+                        <label>当天消费总额为:</label>
+                    </div>
+                </div>
+            </div>
         </main>
         <!-- partial:partials/_footer.html -->
         <footer>
@@ -125,6 +151,20 @@
 <!-- endinject -->
 <!-- Custom js for this page-->
 <script src="${pageContext.request.contextPath}/js/dashboard.js"></script>
+
+<script>
+    function sta() {
+        var start = $("#username").val();
+        var end = $("#password").val();
+        $.post("/user/Management/ePassword.do", {opassword: pwd, password: pwd1}, function (data) {
+            if (data === "success") {
+                alert("成功");
+                window.location.href = "/user/Management";
+            } else
+                alert("密码错误");
+        });
+    }
+</script>
 <!-- End custom js for this page-->
 </body>
 </html>
