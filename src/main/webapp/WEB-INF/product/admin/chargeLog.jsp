@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=1" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" type="text/css">
     <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     <!-- endinject -->
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
@@ -32,13 +33,6 @@
 
 </head>
 <body>
-<script type="text/javascript">
-    function del(e) {
-        if (confirm("确认要删除该刷卡机和相关的收费消费信息？")) {
-            window.location.href = '/admin/ma/MaDelete?id=' + e;
-        }
-    }
-</script>
 <div class="body-wrapper">
     <!-- partial:partials/_sidebar.html -->
     <aside class="mdc-persistent-drawer mdc-persistent-drawer--open">
@@ -106,25 +100,6 @@
           </span>
             </section>
             <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
-                <div class="mdc-menu-anchor">
-                    <a href="#" class="mdc-toolbar__icon toggle mdc-ripple-surface" data-toggle="dropdown"
-                       toggle-dropdown="notification-menu" data-mdc-auto-init="MDCRipple">
-                        <i class="material-icons">notifications</i>
-                        <span class="dropdown-count">2</span>
-                    </a>
-                    <div class="mdc-simple-menu mdc-simple-menu--right" tabindex="-1" id="notification-menu">
-                        <ul class="mdc-simple-menu__items mdc-list" role="menu" aria-hidden="true">
-                            <li class="mdc-list-item" role="menuitem" tabindex="0">
-                                <i class="material-icons mdc-theme--primary mr-1">email</i>
-                                检查更新
-                            </li>
-                            <li class="mdc-list-item" role="menuitem" tabindex="0">
-                                <i class="material-icons mdc-theme--primary mr-1">group</i>
-                                未读信息
-                            </li>
-                        </ul>
-                    </div>
-                </div>
                 <div class="mdc-menu-anchor mr-1">
                     <a href="#" class="mdc-toolbar__icon toggle mdc-ripple-surface" data-toggle="dropdown"
                        toggle-dropdown="logout-menu" data-mdc-auto-init="MDCRipple">
@@ -174,7 +149,8 @@
                                     <td class="text-left">&nbsp;&nbsp;${c.mac_id}</td>
                                     <td class="text-left">&nbsp;&nbsp;${c.name}</td>
                                     <td class="text-left">&nbsp;&nbsp;${c.amount}</td>
-                                    <td class="text-left">&nbsp;&nbsp;${c.time}</td>
+                                    <td class="text-left">&nbsp;&nbsp;<fmt:formatDate value="${c.time}"
+                                                                                      pattern="yyyy年mm月dd日hh点mm分"/></td>
                                     <td class="text-left">&nbsp;&nbsp;${c.result}</td>
                                     <td class="text-left">&nbsp;&nbsp;${c.reason}</td>
                                 </tr>

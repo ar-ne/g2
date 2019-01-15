@@ -1,19 +1,21 @@
 <%@ page pageEncoding="utf-8" contentType="text/html; utf-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Material Admin</title>
-    <link rel="stylesheet" href="node_modules/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/node_modules/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=1" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" type="text/css">
+    <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
     <!-- endinject -->
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="images/favicon.png"/>
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.png"/>
     <style type="text/css">
         @import url('${pageContext.request.contextPath}/css/admin.css');
 
@@ -49,13 +51,13 @@
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="/admin/unit/UnitList">
+                        <a class="mdc-drawer-link" href="/admin/unit/">
                             <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">group_work</i>
                             单位管理
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="/admin/ma/MaList">
+                        <a class="mdc-drawer-link" href="/admin/ma/">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
 
@@ -69,9 +71,15 @@
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="/admin/report/">
+                        <a class="mdc-drawer-link " href="/admin/report/">
                             <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">timeline</i>
                             统计报表管理
+                        </a>
+                    </div>
+                    <div class="mdc-list-item mdc-drawer-item">
+                        <a class="mdc-drawer-link " href="/admin/data/">
+                            <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">poll</i>
+                            数据分析与挖掘
                         </a>
                     </div>
                 </nav>
@@ -111,13 +119,13 @@
         </div>
     </header>
     <!-- partial -->
-
     <div class="page-wrapper mdc-toolbar-fixed-adjust">
         <main class="content-wrapper">
-            <div class="mdc-layout-grid">
-                <div class="mdc-layout-grid__inner">
-
-                </div>
+            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+                <h1 style="margin: auto;font-family: 隶书">欢迎！</h1>
+            </div>
+            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+                <h1 style="margin: auto;font-family: 隶书"><--点击左边进行操作！</h1>
             </div>
         </main>
         <!-- partial:partials/_footer.html -->
@@ -135,24 +143,24 @@
         </footer>
         <!-- partial -->
     </div>
-
 </div>
 <!-- body wrapper -->
 
 <!-- plugins:js -->
-<script src="node_modules/material-components-web/dist/material-components-web.min.js"></script>
-<script src="node_modules/jquery/dist/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/node_modules/material-components-web/dist/material-components-web.min.js"></script>
+<script src="${pageContext.request.contextPath}/node_modules/jquery/dist/jquery.min.js"></script>
 <!-- endinject -->
 <!-- Plugin js for this page-->
-<script src="node_modules/chart.js/dist/Chart.min.js"></script>
-<script src="node_modules/progressbar.js/dist/progressbar.min.js"></script>
+<script src="${pageContext.request.contextPath}/node_modules/chart.js/dist/Chart.min.js"></script>
+<script src="${pageContext.request.contextPath}/node_modules/progressbar.js/dist/progressbar.min.js"></script>
 <!-- End plugin js for this page-->
 <!-- inject:js -->
-<script src="js/misc.js"></script>
-<script src="js/material.js"></script>
+<script src="${pageContext.request.contextPath}/js/misc.js"></script>
+<script src="${pageContext.request.contextPath}/js/material.js"></script>
 <!-- endinject -->
 <!-- Custom js for this page-->
-<script src="js/dashboard.js"></script>
+<script src="${pageContext.request.contextPath}/js/dashboard.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 <!-- End custom js for this page-->
 </body>
 </html>

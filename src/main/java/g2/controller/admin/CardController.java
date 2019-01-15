@@ -1,9 +1,12 @@
 package g2.controller.admin;
 
 import g2.model.Card;
+import g2.model.User;
 import g2.model.Usertype;
 import g2.service.CardService;
+import g2.service.UserService;
 import g2.service.UsertypeService;
+import g2.util.Properites;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,10 +20,12 @@ import java.util.List;
 public class CardController {
     private final CardService cardService;
     private final UsertypeService usertypeService;
+    private final UserService userService;
 
-    public CardController(CardService cardService, UsertypeService usertypeService) {
+    public CardController(CardService cardService, UsertypeService usertypeService, UserService userService) {
         this.cardService = cardService;
         this.usertypeService = usertypeService;
+        this.userService = userService;
     }
 
 
@@ -49,17 +54,24 @@ public class CardController {
 
     @RequestMapping("/insertDo")
     @ResponseBody
-    public String insertDo(Long id, String type, String state, Double amount, Double limit) {
-        Card card = new Card(null, type, state, amount, limit);
+    public String insertDo(Long id, String type, String state, Double amount, Double limit,
+                           String name, String password) {
         Usertype usertype = new Usertype(type);
-        int n = cardService.insertById(usertype, card);
-        return n > 0 ? "success" : "failed";
-        //return "redirect:/admin/card";
+        User user = userService.getUser(name);
+        if (user == null) {
+            Card card = new Card(null, type, state, amount, limit);
+            Card newCard = cardService.addCard(usertype, card);
+            if (newCard != null) {
+                User newUser = new User(name, newCard.getId(), password, Properites.Login.user);
+                if (userService.insertUser(newUser) > 0) return "success";
+            }
+        }
+        return "failed";
     }
 
     @RequestMapping(value = "/recharge", method = RequestMethod.GET)
     public String reCharge(Model model, Long id, Double amount) {
-        model.addAttribute("id",id);
+        model.addAttribute("id", id);
         model.addAttribute("amount", amount);
         return "admin/cardRecharge";
     }

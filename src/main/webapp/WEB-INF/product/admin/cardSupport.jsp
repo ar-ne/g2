@@ -44,9 +44,13 @@
             window.location.href = '/admin/card/update?id=' + e1 + '&state=' + e2;
         }
     }
-
     //$(function () {
     function doSubmit(url) {
+        var money = document.getElementsByName("money")[0];
+        if (money.value == "" || money.value == null) {
+            alert("余额不能为空！！！");
+            return;
+        }
         var data = $('#frm').serialize();
         $.ajax({
             type: "post",
@@ -54,7 +58,7 @@
             url: url + "?" + data,
             success: function (data) {
                 alert("资助成功！！！");
-                window.location = "/admin/card?type=${type}";
+                window.location = "/admin/card?type=" + $("#type").val();
             },
             failed: function (data) {
                 alert("资助失败！！！");
@@ -130,25 +134,6 @@
           </span>
             </section>
             <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
-                <div class="mdc-menu-anchor">
-                    <a href="#" class="mdc-toolbar__icon toggle mdc-ripple-surface" data-toggle="dropdown"
-                       toggle-dropdown="notification-menu" data-mdc-auto-init="MDCRipple">
-                        <i class="material-icons">notifications</i>
-                        <span class="dropdown-count">2</span>
-                    </a>
-                    <div class="mdc-simple-menu mdc-simple-menu--right" tabindex="-1" id="notification-menu">
-                        <ul class="mdc-simple-menu__items mdc-list" role="menu" aria-hidden="true">
-                            <li class="mdc-list-item" role="menuitem" tabindex="0">
-                                <i class="material-icons mdc-theme--primary mr-1">email</i>
-                                检查更新
-                            </li>
-                            <li class="mdc-list-item" role="menuitem" tabindex="0">
-                                <i class="material-icons mdc-theme--primary mr-1">group</i>
-                                未读信息
-                            </li>
-                        </ul>
-                    </div>
-                </div>
                 <div class="mdc-menu-anchor mr-1">
                     <a href="#" class="mdc-toolbar__icon toggle mdc-ripple-surface" data-toggle="dropdown"
                        toggle-dropdown="logout-menu" data-mdc-auto-init="MDCRipple">
@@ -180,7 +165,7 @@
                         <form id="frm" style="margin: auto auto;" action="">
                             <div class="form-group" style="float:left;margin-right:30px">
                                 <label class="form-label">用户类型：</label>
-                                <select class="form-control" name="type">
+                                <select class="form-control" name="type" id="type">
                                     <option value="">请选择</option>
                                     <c:forEach items="${list}" var="l">
                                         <option value="${l}" <c:if test="${l==type}">${"selected"}</c:if>>${l}</option>
@@ -189,11 +174,13 @@
                             </div>
                             <div class="form-froup" style="float:left;margin-right:30px">
                                 <label class="form-label">资助金额：</label>
-                                <input class="form-control" type="text" name="money"
+                                <input class="form-control" type="number" name="money"
                                        value='${money}'>
                             </div>
-                            <button class="btn btn-primary" type="submit" style="margin-top:32px;">资助</button>
                         </form>
+                        <button class="btn btn-primary" onclick="doSubmit('/admin/card/supportDo')"
+                                style="margin-top:32px;">资助
+                        </button>
                     </div>
                 </div>
             </div>
@@ -227,9 +214,6 @@
 <!-- inject:js -->
 <script src="${pageContext.request.contextPath}/js/misc.js"></script>
 <script src="${pageContext.request.contextPath}/js/material.js"></script>
-<script>
-    $("form").submit(doSubmit('/admin/card/supportDo'));
-</script>
 <!-- endinject -->
 <!-- Custom js for this page-->
 <script src="${pageContext.request.contextPath}/js/dashboard.js"></script>

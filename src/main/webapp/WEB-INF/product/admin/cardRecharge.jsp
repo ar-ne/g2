@@ -47,6 +47,11 @@
 
     //$(function () {
     function doSubmit(url) {
+        var money = document.getElementsByName("money")[0];
+        if (money.value == "" || money.value == null) {
+            alert("余额不能为空！！！");
+            return;
+        }
         var data = $('#frm').serialize();
         $.ajax({
             type: "post",
@@ -130,25 +135,6 @@
           </span>
             </section>
             <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
-                <div class="mdc-menu-anchor">
-                    <a href="#" class="mdc-toolbar__icon toggle mdc-ripple-surface" data-toggle="dropdown"
-                       toggle-dropdown="notification-menu" data-mdc-auto-init="MDCRipple">
-                        <i class="material-icons">notifications</i>
-                        <span class="dropdown-count">2</span>
-                    </a>
-                    <div class="mdc-simple-menu mdc-simple-menu--right" tabindex="-1" id="notification-menu">
-                        <ul class="mdc-simple-menu__items mdc-list" role="menu" aria-hidden="true">
-                            <li class="mdc-list-item" role="menuitem" tabindex="0">
-                                <i class="material-icons mdc-theme--primary mr-1">email</i>
-                                检查更新
-                            </li>
-                            <li class="mdc-list-item" role="menuitem" tabindex="0">
-                                <i class="material-icons mdc-theme--primary mr-1">group</i>
-                                未读信息
-                            </li>
-                        </ul>
-                    </div>
-                </div>
                 <div class="mdc-menu-anchor mr-1">
                     <a href="#" class="mdc-toolbar__icon toggle mdc-ripple-surface" data-toggle="dropdown"
                        toggle-dropdown="logout-menu" data-mdc-auto-init="MDCRipple">
@@ -175,7 +161,7 @@
         <main class="content-wrapper">
             <div class="mdc-layout-grid">
                 <div class="mdc-layout-grid__inner">
-                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6"
+                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12"
                          style="margin: auto auto;">
                         <form id="frm" style="margin: auto auto;" action="">
                             <div class="form-froup">
@@ -184,13 +170,16 @@
                                 <input class="form-control" type="text" name="amount"
                                        value='${amount}' readonly="true">
                                 <label class="form-label">充值金额：</label>
-                                <input class="form-control" type="text" name="money"
+                                <input class="form-control" type="number" name="money"
                                        value=''>
-                                <button class="btn btn-success" onclick="doSubmit('/admin/card/rechargeDo')"
-                                        style="float:left;margin-top:30px">充值
-                                </button>
                             </div>
                         </form>
+                    </div>
+                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12"
+                         style="margin: auto auto;">
+                        <button class="btn btn-success" onclick="doSubmit('/admin/card/rechargeDo')"
+                                style="float:left;margin:auto">充值
+                        </button>
                     </div>
                 </div>
             </div>

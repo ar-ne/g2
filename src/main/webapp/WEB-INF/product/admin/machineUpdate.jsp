@@ -30,9 +30,19 @@
     </style>
     <script type="text/javascript">
         //$(function () {
+
         function doSubmit(url) {
+            var Uni_id = (document.getElementsByName("Uni_id")[0]);
+            if (Uni_id.value == "" || Uni_id.value == null) {
+                alert("单位编号未填写！！！");
+                return;
+            }
+            var addr = (document.getElementsByName("addr")[0]);
+            if (addr.value == "" || addr.value == null) {
+                alert("放置地点未填写！！！");
+                return;
+            }
             var data = $('#frm').serialize();
-            alert(url + "?" + data);
             $.ajax({
                 type: "post",
                 contentType: "application/json",
@@ -64,7 +74,7 @@
             <div class="mdc-list-group">
                 <nav class="mdc-list mdc-drawer-menu">
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link " href="/admin">
+                        <a class="mdc-drawer-link " href="/admin/">
                             <%--<i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
 --%>
@@ -73,13 +83,13 @@
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="/admin/unit/UnitList">
+                        <a class="mdc-drawer-link" href="/admin/unit/">
                             <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">group_work</i>
                             单位管理
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link active" href="/admin/ma/MaList">
+                        <a class="mdc-drawer-link active" href="/admin/ma/">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
 
@@ -96,6 +106,12 @@
                         <a class="mdc-drawer-link" href="/admin/report/">
                             <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">timeline</i>
                             统计报表管理
+                        </a>
+                    </div>
+                    <div class="mdc-list-item mdc-drawer-item">
+                        <a class="mdc-drawer-link " href="/admin/data/">
+                            <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">poll</i>
+                            数据分析与挖掘
                         </a>
                     </div>
                 </nav>
@@ -140,7 +156,7 @@
             <div class="mdc-layout-grid">
                 <div class="mdc-layout-grid__inner">
                     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-10">
-                        <form id="frm" action="" style="margin: auto auto">
+                        <form id="frm" style="margin: auto auto">
                             <div class="form-froup">
                                 <input type="hidden" name="id" value="${machine.id}"><!-- 增加隐藏变量-->
                                 <label class="form-label">单位编号：</label>
@@ -153,20 +169,17 @@
                                 </select>
                             </div>
                             <div class="form-froup">
-                                <label class="form-label">放置地点：</label><input class="form-control" type="text"
-                                                                              name="addr" value='${machine.addr}'>
+                                <label class="form-label">放置地点：</label>
+                                <input class="form-control" type="text" name="addr" value='${machine.addr}'>
                             </div>
-                            <div class="form-froup">
-                                <button onclick="doSubmit('/admin/ma/MaUpdateDo')" class="btn btn-info"
-                                        style="float: left">保存
-                                </button>
-                                <button type="button" class="btn btn-danger" onclick="ret()" style="float: right"> 重置
-                                </button>
-
-                            </div>
+                            <input type="reset" value="重置" class="btn btn-danger" style="margin-top:25px;width: 100%">
                         </form>
                     </div>
-
+                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-10">
+                        <button onclick="doSubmit('/admin/ma/MaUpdateDo')" class="btn btn-info"
+                                style="margin: auto;width: 21%">保存
+                        </button>
+                    </div>
                 </div>
             </div>
         </main>

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page pageEncoding="utf-8" contentType="text/html; utf-8" %>
 <html>
 <head>
@@ -37,14 +38,14 @@
             <div class="mdc-list-group">
                 <nav class="mdc-list mdc-drawer-menu">
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link active" href="/admin2">
+                        <a class="mdc-drawer-link" href="/admin2">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
                             首页
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="/admin2/stuff">
+                        <a class="mdc-drawer-link active" href="/admin2/stuff">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">dashboard</i>
                             员工列表
@@ -105,9 +106,88 @@
                     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
                         <div class="mdc-card">
                             <div class="mdc-card__primary">
-                                <h1>添加用户</h1>
+                                <h1>添加员工</h1>
                             </div>
                             <div class="mdc-card__primary">
+
+                                <div class="mdc-layout-grid__inner">
+                                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+                                        <div id="demo-tf-box-leading-wrapper" class="w-100">
+                                            <div id="tf-box-leading-example"
+                                                 class="mdc-text-field mdc-text-field--box w-100 mdc-text-field--upgraded mdc-ripple-upgraded"
+                                                 style="--mdc-ripple-fg-size:111.06px; --mdc-ripple-fg-scale:1.83131; --mdc-ripple-fg-translate-start:60.37px, -17.93px; --mdc-ripple-fg-translate-end:37.02px, -27.53px;">
+                                                <form id="form1" action="/admin2/stuff/add.do" method="post">
+                                                    <input type="text" id="tf-box-leading" class="mdc-text-field__input"
+                                                           name="name">
+                                                    <input type="hidden" id="uniI" class="mdc-text-field__input"
+                                                           name="uni_id">
+                                                    <input type="hidden" id="schI" class="mdc-text-field__input"
+                                                           name="sch_id">
+                                                </form>
+                                                <label for="tf-box-leading" class="mdc-text-field__label">员工姓名</label>
+                                                <div class="mdc-text-field__bottom-line"
+                                                     style="transform-origin: 115.89999389648438px center"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6"></div>
+                                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+                                        <div id="hero-js-select" class="mdc-select w-100" role="listbox">
+                                            <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0"
+                                                 style="width: 394px; --mdc-ripple-fg-size:261.6px; --mdc-ripple-fg-scale:1.71858; --mdc-ripple-fg-translate-start:-43.5px, -90px; --mdc-ripple-fg-translate-end:87.2px, -102.8px;">
+                                                <div class="mdc-select__label">选择单位</div>
+                                                <div id="uni" class="mdc-select__selected-text"></div>
+                                                <div class="mdc-select__bottom-line"
+                                                     style="transform-origin: 87.29998779296875px bottom"></div>
+                                            </div>
+                                            <div class="mdc-simple-menu mdc-select__menu">
+                                                <ul class="mdc-list mdc-simple-menu__items">
+                                                    <li class="mdc-list-item" role="option" tabindex="0">
+                                                        无
+                                                    </li>
+                                                    <c:forEach items="${uniList}" var="uni">
+                                                        <li class="mdc-list-item" role="option" tabindex="0">
+                                                                ${uni}
+                                                        </li>
+                                                    </c:forEach>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6"></div>
+                                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+                                        <div id="hero-js-select1" class="mdc-select w-100" role="listbox">
+                                            <div class="mdc-select__surface mdc-ripple-upgraded" tabindex="0"
+                                                 style="width: 394px; --mdc-ripple-fg-size:261.6px; --mdc-ripple-fg-scale:1.71858; --mdc-ripple-fg-translate-start:-43.5px, -90px; --mdc-ripple-fg-translate-end:87.2px, -102.8px;">
+                                                <div class="mdc-select__label">选择排班</div>
+                                                <div id="sch" class="mdc-select__selected-text"></div>
+                                                <div class="mdc-select__bottom-line"
+                                                     style="transform-origin: 87.29998779296875px bottom"></div>
+                                            </div>
+                                            <div class="mdc-simple-menu mdc-select__menu">
+                                                <ul class="mdc-list mdc-simple-menu__items">
+                                                    <li class="mdc-list-item" role="option" tabindex="0">
+                                                        无
+                                                    </li>
+                                                    <c:forEach items="${schList}" var="sch">
+                                                        <li class="mdc-list-item" role="option" tabindex="0">
+                                                                ${sch}
+                                                        </li>
+                                                    </c:forEach>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6"></div>
+                                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+                                        <button onclick="chk()"
+                                                class="mdc-button mdc-button--stroked thick-stroke-button mdc-ripple-upgraded"
+                                                data-mdc-auto-init="MDCRipple"
+                                                style="--mdc-ripple-fg-size:115.62px; --mdc-ripple-fg-scale:1.78199; --mdc-ripple-fg-translate-start:104.79px, -32.2099px; --mdc-ripple-fg-translate-end:38.54px, -39.81px;">
+                                            提交
+                                        </button>
+                                    </div>
+                                </div>
 
                             </div>
                         </div>
@@ -145,9 +225,32 @@
 <!-- inject:js -->
 <script src="${pageContext.request.contextPath}/js/misc.js"></script>
 <script src="${pageContext.request.contextPath}/js/material.js"></script>
+<script>
+    if ($('#hero-js-select1').length) {
+        var heroSelect1 = document.getElementById('hero-js-select1');
+        var heroSelectComponent1 = new mdc.select.MDCSelect(heroSelect1);
+    }
+    $("form").submit(chk());
+</script>
 <!-- endinject -->
 <!-- Custom js for this page-->
 <script src="${pageContext.request.contextPath}/js/dashboard.js"></script>
+<script>
+    function chk() {
+        var uni = $("#uni")[0];
+        var sch = $("#sch")[0];
+        var ui = $("#uniI")[0];
+        var si = $("#schI")[0];
+
+        if (uni.innerHTML !== "" && uni.innerHTML !== "无") ui.value = uni.innerHTML;
+        if (sch.innerHTML !== "" && sch.innerHTML !== "无") si.value = sch.innerHTML;
+        // console.log(uni.innerHTML);
+        // console.log(sch.innerHTML);
+        // console.log(ui.value);
+        // console.log(si.value);
+        $("#form1").submit();
+    }
+</script>
 <!-- End custom js for this page-->
 </body>
 </html>

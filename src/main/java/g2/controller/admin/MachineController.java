@@ -9,8 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -63,7 +66,7 @@ public class MachineController {
     }
 
     @RequestMapping("/MaUpdate")
-    public String update(Model model, Long id) {
+    public String update(Model model, Long id, String addr) {
         Machine machine = machineService.selectByPrimaryKey(id);
         List<Long> list = unitService.getIdList();
         model.addAttribute("list", list);
@@ -86,5 +89,23 @@ public class MachineController {
         List<Charge> charges = chargeService.selectByMacId(id);
         model.addAttribute("charges", charges);
         return "admin/chargeLog";
+    }
+
+    @RequestMapping("/input")
+    public String input(Model model) {
+        List<Long> ides = machineService.selectId();
+        model.addAttribute("ids", ides);
+        return "admin/inputChargelog";
+    }
+
+    @RequestMapping("/inputDo")
+    @ResponseBody
+    public String inputDo(Model model, HttpServletRequest request) {
+        String[] mac_Ids = request.getParameterValues("mac_Ids");
+        for (int i = 0; i < mac_Ids.length; i++) {
+            System.out.println(mac_Ids[i]);
+        }
+        machineService.inputChargelog(mac_Ids);
+        return "success";
     }
 }

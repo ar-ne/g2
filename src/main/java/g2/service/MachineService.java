@@ -1,6 +1,8 @@
 package g2.service;
 
 import g2.mapper.MachineMapper;
+import g2.model.Charge;
+import g2.model.Consume;
 import g2.model.Machine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -77,12 +79,28 @@ public class MachineService {
     public Machine selectByPrimaryKey(Long id) {
         return machineMapper.selectByPrimaryKey(id);
     }
-//    public List<Long> getAddrByMacID(Long id){
-//        List<Long> macIDList = consumeService.getMacID(id);
-//        if (macIDList != null)
-//            for (int i = 0; i < macIDList.size(); i++) {
-//                machineMapper.getAddrByMacID(macIDList.get(i));
-//            }
-//        return  machineMapper.getAddrByMacID(id);
-//    }
+
+    public List<Long> selectId() {
+        return machineMapper.selectId();
+    }
+
+    public int inputChargelog(String[] ids) {
+
+        for (int i = 0; i < ids.length; i++) {
+            List<Charge> charges = chargeService.selectByMacId(Long.parseLong(ids[i]));
+            for (int j = 0; j < charges.size(); j++) {
+                Consume consume = new Consume(charges.get(j).getId(), charges.get(j).getCar_id(),
+                        charges.get(j).getName(), charges.get(j).getMac_id(), charges.get(j).getAmount(),
+                        charges.get(j).getTime(), charges.get(j).getResult(), charges.get(j).getReason()
+                );
+                try {
+                    consumeService.insert(consume);
+                } catch (org.springframework.dao.DuplicateKeyException ignore) {
+                    //System.out.println("重复插入"+ignore.getMessage());
+                }
+            }
+        }
+
+        return 1;
+    }
 }

@@ -16,6 +16,28 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <!-- endinject -->
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.png"/>
+    <%-- <script type="text/javascript">
+         //$(function () {
+         function doSubmit(url) {
+            // var data = $('#frm').serialize();
+             data:{mac_Ids[1,2,3,4]},
+                    alert(url+"?"+data);
+             $.ajax({
+                 type: "post",
+                 contentType: "application/json",
+                 url: url ,
+                 success: function (data) {
+                     alert("添加成功！！！");
+                     window.location = "/admin/ma";
+                 },
+                 error: function (data) {
+                     console.log(data);
+                 }
+             })
+         }
+
+         //  })
+     </script>--%>
     <style type="text/css">
         @import url('${pageContext.request.contextPath}/css/admin.css');
 
@@ -29,54 +51,26 @@
         }
     </style>
     <script type="text/javascript">
+        //$(function () {
         function doSubmit(url) {
-            var type = (document.getElementsByName("type")[0]);
-            if (type.value == "" || type.value == null) {
-                alert("用户类型未填写！！！");
-                return;
-            }
-            var amount = (document.getElementsByName("amount")[0]);
-            if (amount.value == "" || amount.value == null) {
-                alert("余额填写错误！！！");
-                return;
-            }
-            var limit = (document.getElementsByName("limit")[0]);
-            if (limit.value == "" || limit.value == null) {
-                alert("消费上限填写错误！！！");
-                return;
-            }
-            var name = (document.getElementsByName("name")[0]);
-            if (name.value == "" || name.value == null) {
-                alert("用户姓名未填写！！！");
-                return;
-            }
-            var password = (document.getElementsByName("password")[0]);
-            if (password.value == "" || password.value == null) {
-                alert("用户密码未填写！！！");
-                return;
-            }
             var data = $('#frm').serialize();
             $.ajax({
                 type: "post",
                 contentType: "application/json",
                 url: url + "?" + data,
-                success: function (data) {
-                    if (data.toLowerCase() === "success") {
-                        alert("办卡成功！！！");
-                        window.location = "/admin/card";
-                    }
-                    else {
-                        alert("用户名重复！！！");
-                        window.location = "/admin/card/insert";
-                    }
+                success: function (datax) {
+                    console.log(datax);
+                    alert("导入成功！！！");
+                    window.location = "/admin/ma";
                 },
-                failed: function (data) {
-                    alert("请求出错");
+                error: function (data) {
+                    alert("导入失败！！！");
                     console.log(data);
                 }
             })
         }
 
+        //  })
     </script>
 </head>
 <body>
@@ -92,7 +86,7 @@
             <div class="mdc-list-group">
                 <nav class="mdc-list mdc-drawer-menu">
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link " href="/admin">
+                        <a class="mdc-drawer-link " href="/admin/">
                             <%--<i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
 --%>
@@ -107,7 +101,7 @@
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link " href="/admin/ma/">
+                        <a class="mdc-drawer-link active" href="/admin/ma/">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
 
@@ -115,7 +109,7 @@
                         </a>
                     </div>
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link active" href="/admin/card/">
+                        <a class="mdc-drawer-link" href="/admin/card/">
                             <i class="material-icons mdc-drawer-item-icon" aria-hidden="true">extension</i>
                             办卡中心管理
                         </a>
@@ -173,61 +167,21 @@
         <main class="content-wrapper">
             <div class="mdc-layout-grid">
                 <div class="mdc-layout-grid__inner">
-                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
-                        <form id="frm" style="margin: auto">
-                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
-                                <div class="form-froup" style="float: left;margin-right: 30px">
-                                <label class="form-label">用户类型：</label>
-                                <input class="form-control" type="text" name="type" value='1级'>
+                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-10">
+                        <form id="frm" style="margin: auto auto;">
+                            <div class="form-group">
+                                选择卡机编号：
                             </div>
-                                <div class="form-froup" style="float: left">
-                                <label class="form-label">用户状态：</label>
-                                <select class="form-control" name="state">
-                                    <option value="正常">正常</option>
-                                    <option value="冻结">冻结</option>
-                                </select>
+                            <div class="form-group">
+                                <c:forEach items="${ids}" var="id">
+                                    <input type="checkbox" value="${id}" name="mac_Ids">${id}
+                                </c:forEach>
                             </div>
-                            </div>
-                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
-                                <div class="form-froup" style="float: left;margin-right: 30px">
-                                    <label class="form-label">用户余额：</label>
-                                    <input class="form-control" type="number" name="amount" value='0'>
-                            </div>
-                                <div class="form-froup" style="float: left">
-                                    <label class="form-label">消费上限：</label>
-                                    <input class="form-control" type="number" name="limit" value='30'>
-                                </div>
-                            </div>
-                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
-
-                                <div class="form-froup" style="float: left;margin-right: 30px">
-                                    <label class="form-label">用户姓名：</label><input class="form-control" type="text"
-                                                                                  name="name" value='30'>
-                                </div>
-                                <div class="form-froup" style="float: left">
-                                    <label class="form-label">密码：</label><input class="form-control" type="text"
-                                                                                name="password" value='30'>
-                                </div>
-                            </div>
-                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
-                                <div class="form-froup" style="float: left;margin-right: 130px">
-                                    <label class="form-label">用户登录类型：</label>
-                                    <select class="form-control" name="u_type">
-                                        <option value="0">0</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                    </select>
-                                </div>
-                                <div class="form-froup" style="float: left;margin-top: 30px">
-                                    <input type="reset" value="重置" class="btn btn-danger" style="margin: auto">
-                                </div>
-                            </div>
-
                         </form>
                     </div>
                     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-10">
-                        <button onclick="doSubmit('/admin/card/insertDo')" class="btn btn-info"
-                                style="margin: auto;width: 21%">保存
+                        <button onclick="doSubmit('/admin/ma/inputDo')" class="btn btn-info"
+                                style="margin: auto;width: 21%">确认
                         </button>
                     </div>
                 </div>

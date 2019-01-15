@@ -4,6 +4,7 @@ import g2.model.Consume;
 import g2.service.CardService;
 import g2.service.ConsumeService;
 import g2.service.MachineService;
+import g2.util.Parse;
 import g2.util.Properites;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,8 +36,9 @@ public class User {
     @RequestMapping("QRCode")
     public ModelAndView doQRCode(HttpServletRequest request) {
         ModelAndView mv = new ModelAndView("user/QRCode");
+        QR qr = new QR(request.getSession().getAttribute(Properites.Session.name), request.getSession().getAttribute(Properites.Session.cardID));
         mv.addObject("left", cardService.selectAmountById(((Long) request.getSession().getAttribute(Properites.Session.cardID))));
-        mv.addObject("qrText", request.getSession().getAttribute(Properites.Session.name) + " " + request.getSession().getAttribute(Properites.Session.cardID));
+        mv.addObject("qrText", Parse.encodeBase64JSON(qr));
         return mv;
     }
 
@@ -57,5 +59,15 @@ public class User {
         String status = cardService.getStateById((Long) request.getSession().getAttribute(Properites.Session.cardID));
         modelAndView.addObject("state", status);
         return modelAndView;
+    }
+
+    class QR {
+        public String name;
+        public String card;
+
+        QR(Object attribute, Object attribute1) {
+            this.name = (String) attribute;
+            this.card = String.valueOf(attribute1);
+        }
     }
 }

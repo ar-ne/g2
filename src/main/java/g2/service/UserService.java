@@ -45,6 +45,10 @@ public class UserService {
         return userMapper.selectNameByCardID(cardID);
     }
 
+    public int insertUser(User user) {
+        return userMapper.insert(user);
+    }
+
     public int editPassword(Long id, String password) {
         return userMapper.editPassword(id, password);
     }

@@ -16,8 +16,6 @@
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.png"/>
 </head>
 <body>
-<script src="${pageContext.request.contextPath}/node_modules/jquery/dist/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/qrcode.min.js"></script>
 <div class="body-wrapper">
     <!-- partial:partials/_sidebar.html -->
     <aside class="mdc-persistent-drawer">
@@ -102,17 +100,7 @@
                         </h1>
                     </div>
                     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
-                        <div id="qrcode"></div>
-                        <script type="text/javascript">
-                            var qrcode = new QRCode(document.getElementById("qrcode"), {
-                                text: "${qrText}",
-                                width: document.body.clientHeight - 50,
-                                height: document.body.clientHeight - 50,
-                                colorDark: "#000000",
-                                colorLight: "#ffffff",
-                                correctLevel: QRCode.CorrectLevel.H
-                            });
-                        </script>
+                        <div id="qrcode" class="w-100"></div>
                     </div>
                 </div>
             </div>
@@ -141,6 +129,8 @@
 
 <!-- endinject -->
 <!-- Plugin js for this page-->
+<script src="${pageContext.request.contextPath}/node_modules/jquery/dist/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/node_modules/qrcode-generator/qrcode.js"></script>
 <script src="${pageContext.request.contextPath}/node_modules/chart.js/dist/Chart.min.js"></script>
 <script src="${pageContext.request.contextPath}/node_modules/progressbar.js/dist/progressbar.min.js"></script>
 <!-- End plugin js for this page-->
@@ -150,6 +140,14 @@
 <!-- endinject -->
 <!-- Custom js for this page-->
 <script src="${pageContext.request.contextPath}/js/dashboard.js"></script>
+<script type="text/javascript">
+    var typeNumber = 0;
+    var errorCorrectionLevel = 'H';
+    var qr = qrcode(typeNumber, errorCorrectionLevel);
+    qr.addData("${qrText}");
+    qr.make();
+    document.getElementById('qrcode').innerHTML = qr.createImgTag(8);
+</script>
 <!-- End custom js for this page-->
 
 </body>

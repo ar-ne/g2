@@ -108,10 +108,10 @@
                             <%--按钮/输入框区--%>
                             <div class="mdc-card__primary">
                                 <div class="mdc-layout-grid__inner">
-                                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-10 w-100"></div>
+                                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6 w-100"></div>
 
                                     <%--添加按钮--%>
-                                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2 w-100">
+                                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4 w-100">
                                         <a href="/admin2/stuff/add"
                                            class="mdc-button mdc-button--stroked mdc-ripple-upgraded w-100"
                                            data-mdc-auto-init="MDCRipple"
@@ -148,11 +148,13 @@
                                                         <td ${i.name==null?"style='color: lightgray;'":""}
                                                                 class="text-left">${i.name==null?"空":i.name}</td>
                                                         <td class="text-left">
-                                                            <a class="col mdc-button mdc-ripple-upgraded"
+                                                            <a href="/admin2/stuff/edit?id=${i.id}"
+                                                               class="col mdc-button mdc-ripple-upgraded"
                                                                data-mdc-auto-init="MDCRipple"
                                                                style="--mdc-ripple-fg-size:27.9375px; --mdc-ripple-fg-scale:2.23298; --mdc-ripple-fg-translate-start:5.19373px, -3.39374px; --mdc-ripple-fg-translate-end:9.3125px, -1.96875px;">
                                                                 <i class="material-icons text-green">edit</i></a>
-                                                            <a class="col mdc-button mdc-ripple-upgraded"
+                                                            <a href="/admin2/stuff/del?id=${i.id}"
+                                                               class="col mdc-button mdc-ripple-upgraded"
                                                                data-mdc-auto-init="MDCRipple"
                                                                style="--mdc-ripple-fg-size:27.9375px; --mdc-ripple-fg-scale:2.23298;">
                                                                 <i class="material-icons text-red">delete_forever</i></a>
