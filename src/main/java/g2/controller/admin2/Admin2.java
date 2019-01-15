@@ -25,14 +25,12 @@ public class Admin2 {
     private final StuffService stuffService;
     private final ScheduleService scheduleService;
     private final UnitService unitService;
-    private final MachineService machineService;
 
     @Autowired
-    public Admin2(StuffService stuffService, ScheduleService scheduleService, UnitService unitService, MachineService machineService) {
+    public Admin2(StuffService stuffService, ScheduleService scheduleService, UnitService unitService) {
         this.stuffService = stuffService;
         this.scheduleService = scheduleService;
         this.unitService = unitService;
-        this.machineService = machineService;
     }
 
     @RequestMapping("")
