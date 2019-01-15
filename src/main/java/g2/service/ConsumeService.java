@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,7 +32,9 @@ public class ConsumeService {
         return consumeMapper.selectByCdAmount(carID, money);
     }
 
-    ;
+    public List<Consume> getAll() {
+        return consumeMapper.getAll();
+    }
 
     public int deleteByMacId(Long id) {
         return consumeMapper.DeleteByMacId(id);
@@ -46,6 +49,25 @@ public class ConsumeService {
     }*/
     public int insert(Consume consume) {
         return consumeMapper.insert(consume);
+    }
+
+    public Map<String, Object> statisticsTime_Count(int begin, int end) {
+        Map<String, Object> result = new HashMap<>();
+        List<Consume> consumes = getAll();
+        int[] data = new int[end - begin + 1];
+        String[] label = new String[end - begin + 1];
+        for (int i = 0; i < label.length; i++) {
+            label[i] = String.valueOf(begin + i);
+        }
+        for (int i = 0; i < consumes.size(); i++) {
+            for (int j = 0; j < data.length; j++) {
+                if (consumes.get(i).getTime().getHours() == j)
+                    data[j]++;
+            }
+        }
+        result.put("data", data);
+        result.put("label", label);
+        return result;
     }
 
     public Map<String, Object> statisticsAmount_AmountCount(int section) {
