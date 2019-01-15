@@ -97,25 +97,6 @@
           </span>
             </section>
             <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
-                <div class="mdc-menu-anchor">
-                    <a href="#" class="mdc-toolbar__icon toggle mdc-ripple-surface" data-toggle="dropdown"
-                       toggle-dropdown="notification-menu" data-mdc-auto-init="MDCRipple">
-                        <i class="material-icons">notifications</i>
-                        <span class="dropdown-count">2</span>
-                    </a>
-                    <div class="mdc-simple-menu mdc-simple-menu--right" tabindex="-1" id="notification-menu">
-                        <ul class="mdc-simple-menu__items mdc-list" role="menu" aria-hidden="true">
-                            <li class="mdc-list-item" role="menuitem" tabindex="0">
-                                <i class="material-icons mdc-theme--primary mr-1">email</i>
-                                检查更新
-                            </li>
-                            <li class="mdc-list-item" role="menuitem" tabindex="0">
-                                <i class="material-icons mdc-theme--primary mr-1">group</i>
-                                未读信息
-                            </li>
-                        </ul>
-                    </div>
-                </div>
                 <div class="mdc-menu-anchor mr-1">
                     <a href="#" class="mdc-toolbar__icon toggle mdc-ripple-surface" data-toggle="dropdown"
                        toggle-dropdown="logout-menu" data-mdc-auto-init="MDCRipple">
@@ -155,7 +136,7 @@
                     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
                         <div class="mdc-card">
                             <section class="mdc-card__primary">
-                                <h1 class="mdc-card__title mdc-card__title--large">消费金额/星期</h1>
+                                <h1 class="mdc-card__title mdc-card__title--large">消费次数/星期</h1>
                             </section>
                             <section class="mdc-card__supporting-text">
                                 <canvas id="barChart" style="height:250px"></canvas>
@@ -219,7 +200,7 @@
 <script src="${pageContext.request.contextPath}/js/dashboard.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/admin/data/jsData"></script>
+<script src="${pageContext.request.contextPath}/admin/data/jsData"></script>
 <!-- End custom js for this page-->
 </body>
 </html>
