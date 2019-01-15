@@ -60,7 +60,7 @@
                 url: url + "?" + data,
                 success: function (datax) {
                     console.log(datax);
-                    //alert("导入成功！！！");
+                    alert("导入成功！！！");
                     window.location = "/admin/ma";
                 },
                 error: function (data) {
