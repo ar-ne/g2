@@ -29,7 +29,6 @@ public class DataAnaly {
     @RequestMapping("jsData")
     public ModelAndView jsData() {
         ModelAndView modelAndView = new ModelAndView("admin/jsData");
-        modelAndView.addObject("name", "safdd");
         int n1 = cardService.selectCount("正常");
         int n2 = cardService.selectCount("冻结");
         //  System.out.println(n1);

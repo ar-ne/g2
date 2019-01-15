@@ -66,4 +66,7 @@ public class ConsumeService {
         result.put("label", label);
         return result;
     }
+  /*  public List<Integer> getNumDay(){
+
+    }*/
 }
