@@ -1,10 +1,12 @@
 package g2.mapper.Extra;
 
 import g2.model.Consume;
+import jxl.write.DateTime;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.Date;
 import java.util.List;
 
 public interface ConsumeExt {
@@ -59,6 +61,14 @@ public interface ConsumeExt {
     })
     List<Consume> selectByCDMAmount(@Param("carId") Long carId, @Param("money") Double money, @Param("MacId") Long MacId);//通过消费金额,卡机编号查询用户的消费记录
 
+    /* @Select({
+             "select",
+             "amount",
+             "from consumelog",
+             "where Car_id=#{carId,jdbcType=NUMERIC}",
+             "AND time like CONCAT(CONCAT(#{time,jdbcType=TIMESTAMP},'%'))"
+     })
+     List<Long> selectByCDateAmount(@Param("carId") Long carId, @Param("time") Date time);//通过卡号时间查询用户的消费金额*/
     @Delete({
             "delete from consumelog",
             "where Mac_id = #{id,jdbcType=NUMERIC}"

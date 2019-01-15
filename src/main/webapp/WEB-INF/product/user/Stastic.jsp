@@ -91,32 +91,36 @@
     <!-- partial -->
     <div class="page-wrapper mdc-toolbar-fixed-adjust">
         <main class="content-wrapper">
-            <div class="mdc-layout-grid">
-                <div class="mdc-layout-grid__inner">
-                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4">
-                        <div id="demo-tf-box-leading-wrapper" class="w-100">
-                            <div id="tf-box-leading-example"
-                                 class="mdc-text-field mdc-text-field--box mdc-text-field--with-leading-icon w-100">
-                                <input type="date" id="tf-box-leading" name="start"
-                                       class="mdc-text-field__input w-100">
-                                <label for="tf-box-leading" name="start"
-                                       class="mdc-text-field__label mdc-text-field__label--float-above">请选择时间</label>
-                                <div class="mdc-text-field__bottom-line"></div>
+            <form name="frm" action="/user/QueSta/stastic.do" method="post">
+                <div class="mdc-layout-grid">
+                    <div class="mdc-layout-grid__inner">
+
+                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4">
+                            <div id="demo-tf-box-leading-wrapper" class="w-100">
+                                <div id="tf-box-leading-example"
+                                     class="mdc-text-field mdc-text-field--box mdc-text-field--with-leading-icon w-100">
+                                    <input type="date" id="tf-box-leading" name="time"
+                                           class="mdc-text-field__input w-100">
+                                    <label for="tf-box-leading" name="time"
+                                           class="mdc-text-field__label mdc-text-field__label--float-above">请选择时间</label>
+                                    <div class="mdc-text-field__bottom-line"></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-2">
-                        <button class="mdc-button mdc-button--raised w-100" onclick="sta()"
-                                data-mdc-auto-init="MDCRipple">
-                            统计
-                        </button>
-                    </div>
-                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
-                        <label>当天消费总额为:</label>
+                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-2">
+                            <button class="mdc-button mdc-button--raised w-100" type="submit"
+                                    data-mdc-auto-init="MDCRipple">
+                                统计
+                            </button>
+                        </div>
+                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+                            <label>${showtime}的消费总额为:${total}</label>
+                        </div>
+
                     </div>
                 </div>
-            </div>
+            </form>
         </main>
         <!-- partial:partials/_footer.html -->
         <footer>
@@ -152,19 +156,6 @@
 <!-- Custom js for this page-->
 <script src="${pageContext.request.contextPath}/js/dashboard.js"></script>
 
-<script>
-    function sta() {
-        var start = $("#username").val();
-        var end = $("#password").val();
-        $.post("/user/Management/ePassword.do", {opassword: pwd, password: pwd1}, function (data) {
-            if (data === "success") {
-                alert("成功");
-                window.location.href = "/user/Management";
-            } else
-                alert("密码错误");
-        });
-    }
-</script>
 <!-- End custom js for this page-->
 </body>
 </html>

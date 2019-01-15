@@ -3,14 +3,12 @@ package g2.service;
 import g2.mapper.ConsumeMapper;
 import g2.model.Consume;
 import javafx.util.Pair;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.util.*;
 import java.util.HashMap;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Service
 public class ConsumeService {
@@ -25,6 +23,9 @@ public class ConsumeService {
         return consumeMapper.getConsumeListByMacID(carID, MacId);
     }
 
+    //    public List<Long> selectByCDateAmount(Long carId, Date time){
+//        return consumeMapper.selectByCDateAmount(carId,time);
+//    }
     public List<Consume> getCosumeList(Long carID) {
         return consumeMapper.getCosumeList(carID);
     }
