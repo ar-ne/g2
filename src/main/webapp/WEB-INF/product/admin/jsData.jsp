@@ -154,3 +154,61 @@ options: doughnutPieOptions
 });
 }
 });
+//消费次数/星期
+var data = {
+labels: [<c:forEach items="${Clabel}" var="label" varStatus="s">
+    "${label}"<c:if test="${!s.last}">,</c:if>
+</c:forEach> ],
+datasets: [{
+label: '# of times',
+data: [
+<c:forEach items="${Cdata}" var="num" varStatus="flag">
+    ${num} <c:if test="${!flag.last}">,</c:if>
+</c:forEach>],
+backgroundColor: [
+'rgba(255, 99, 132, 0.2)',
+'rgba(54, 162, 235, 0.2)',
+'rgba(255, 206, 86, 0.2)',
+'rgba(75, 192, 192, 0.2)',
+'rgba(153, 102, 255, 0.2)',
+'rgba(255, 159, 64, 0.2)'
+],
+borderColor: [
+'rgba(255,99,132,1)',
+'rgba(54, 162, 235, 1)',
+'rgba(255, 206, 86, 1)',
+'rgba(75, 192, 192, 1)',
+'rgba(153, 102, 255, 1)',
+'rgba(255, 159, 64, 1)'
+],
+borderWidth: 1
+}]
+};
+var options = {
+scales: {
+yAxes: [{
+ticks: {
+beginAtZero: false
+}
+}]
+},
+legend: {
+display: false
+},
+elements: {
+point: {
+radius: 0
+}
+}
+
+};
+// Get context with jQuery - using jQuery's .get() method.
+if ($("#barChart1").length) {
+var barChartCanvas = $("#barChart1").get(0).getContext("2d");
+// This will get the first returned node in the jQuery collection.
+var barChart = new Chart(barChartCanvas, {
+type: 'bar',
+data: data,
+options: options
+});
+}

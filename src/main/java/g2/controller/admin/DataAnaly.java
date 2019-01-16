@@ -29,7 +29,6 @@ public class DataAnaly {
     @RequestMapping("jsData")
     public ModelAndView jsData() {
         ModelAndView modelAndView = new ModelAndView("admin/jsData");
-        modelAndView.addObject("name", "safdd");
         int n1 = cardService.selectCount("正常");
         int n2 = cardService.selectCount("冻结");
         //  System.out.println(n1);
@@ -88,6 +87,10 @@ public class DataAnaly {
         Map TCG = consumeService.statisticsTime_Count(6, 21);
         modelAndView.addObject("TCdata", TCG.get("data"));
         modelAndView.addObject("TClabel", TCG.get("label"));
+
+        Map CAG = consumeService.statisticsAmount_AmountCount(10);
+        modelAndView.addObject("Cdata", CAG.get("data"));
+        modelAndView.addObject("Clabel", CAG.get("label"));
         return modelAndView;
     }
 }

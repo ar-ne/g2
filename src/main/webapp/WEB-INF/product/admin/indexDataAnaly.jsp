@@ -126,7 +126,7 @@
                     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
                         <div class="mdc-card">
                             <section class="mdc-card__primary">
-                                <h1 class="mdc-card__title mdc-card__title--large">消费金额/消费时间</h1>
+                                <h1 class="mdc-card__title mdc-card__title--large">消费次数/消费时间</h1>
                             </section>
                             <section class="mdc-card__supporting-text">
                                 <canvas id="lineChart" style="height:250px"></canvas>
@@ -146,10 +146,10 @@
                     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
                         <div class="mdc-card">
                             <section class="mdc-card__primary">
-                                <h1 class="mdc-card__title mdc-card__title--large">消费时间分布</h1>
+                                <h1 class="mdc-card__title mdc-card__title--large">消费金额分布</h1>
                             </section>
                             <section class="mdc-card__supporting-text">
-                                <canvas id="areaChart" style="height:250px"></canvas>
+                                <canvas id="barChart1" style="height:250px"></canvas>
                             </section>
                         </div>
                     </div>
