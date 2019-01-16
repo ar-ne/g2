@@ -91,15 +91,18 @@ public class ConsumeService {
         String[] label = new String[section];
         List<Pair<Integer, Integer>> MMVs = new ArrayList<>();//Min-Max-Value(Pairs)
         for (int i = 0, v0 = min; i < section; i++) {
-            MMVs.add(new Pair<>(v0, v0 + step - 1));
+            MMVs.add(new Pair<>(v0, v0 + step));
             label[i] = MMVs.get(i).getKey() + "~" + MMVs.get(i).getValue();
+            v0 += step + 1;
         }
         result.put("label", label);
 
         for (Double amount : amounts) {
             for (int i = 0; i < MMVs.size(); i++) {
-                if (amount >= MMVs.get(i).getKey() && amount < MMVs.get(i).getValue())
+                if (amount >= MMVs.get(i).getKey() && amount <= MMVs.get(i).getValue()) {
                     data[i]++;
+                    break;
+                }
             }
         }
         result.put("data", data);

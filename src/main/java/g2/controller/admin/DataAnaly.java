@@ -87,6 +87,10 @@ public class DataAnaly {
         Map TCG = consumeService.statisticsTime_Count(6, 21);
         modelAndView.addObject("TCdata", TCG.get("data"));
         modelAndView.addObject("TClabel", TCG.get("label"));
+
+        Map CAG = consumeService.statisticsAmount_AmountCount(10);
+        modelAndView.addObject("Cdata", CAG.get("data"));
+        modelAndView.addObject("Clabel", CAG.get("label"));
         return modelAndView;
     }
 }
