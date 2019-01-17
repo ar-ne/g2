@@ -115,7 +115,8 @@
                             </button>
                         </div>
                         <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
-                            <label>${showtime}的消费总额为:${total}</label>
+                            <label>${showtime}消费总额为:${total}</label>
+                            <label style="color: red">${error}</label>
                         </div>
 
                     </div>

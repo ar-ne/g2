@@ -48,19 +48,25 @@ public class QueStaAction extends BaseController {
 
     @RequestMapping(value = "stastic.do", method = RequestMethod.POST)
     public ModelAndView doStastic(Date time, HttpServletRequest request) {
-        String showTime = (time.getYear() + 1900) + "年" + (time.getMonth() + 1) + "月" + time.getDate() + '日';
-        ModelAndView modelAndView = new ModelAndView("user/Stastic");
-        List<Consume> total = consumeService.getCosumeList((Long) request.getSession().getAttribute(Properites.Session.cardID));
-        double totalAmount = 0;
-        for (Consume consume : total) {
-            if (consume.getTime().getYear() == time.getYear() && consume.getTime().getMonth() == time.getMonth() &&
-                    consume.getTime().getDate() == time.getDate()) {
-                totalAmount += consume.getAmount();
+        if (time != null) {
+            String showTime = (time.getYear() + 1900) + "年" + (time.getMonth() + 1) + "月" + time.getDate() + '日';
+            ModelAndView modelAndView = new ModelAndView("user/Stastic");
+            List<Consume> total = consumeService.getCosumeList((Long) request.getSession().getAttribute(Properites.Session.cardID));
+            double totalAmount = 0;
+            for (Consume consume : total) {
+                if (consume.getTime().getYear() == time.getYear() && consume.getTime().getMonth() == time.getMonth() &&
+                        consume.getTime().getDate() == time.getDate()) {
+                    totalAmount += consume.getAmount();
+                }
             }
+            modelAndView.addObject("showtime", showTime);
+            modelAndView.addObject("total", totalAmount);
+            return modelAndView;
+        } else {
+            ModelAndView modelAndView = new ModelAndView("user/Stastic");
+            modelAndView.addObject("error", "*请输入时间");
+            return modelAndView;
         }
-        modelAndView.addObject("showtime", showTime);
-        modelAndView.addObject("total", totalAmount);
-        return modelAndView;
     }
 
 
